@@ -25,6 +25,7 @@ class DetailsViewController: UIViewController {
     
     //var controller : MovieController?
     
+    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var moviePhoto: CustomImageView!
     @IBOutlet weak var movieName: UILabel!
     @IBOutlet weak var moviePlot: UILabel!
@@ -136,7 +137,9 @@ class DetailsViewController: UIViewController {
     //        }
     //    }
     
-    func setupCell() {
+    private func setupCell() {
+        
+        mainScrollView.contentInsetAdjustmentBehavior = .never
         
         favoriteView.layer.cornerRadius = favoriteView.frame.width / 2
         

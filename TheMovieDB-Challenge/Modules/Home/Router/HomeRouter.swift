@@ -43,6 +43,7 @@ class HomeRouter: HomePresenterToRouterProtocol {
         
     }
 
+    /*
     static func initModule(from view: HomeViewController) {
         
         view.modalPresentationStyle = .fullScreen
@@ -58,5 +59,5 @@ class HomeRouter: HomePresenterToRouterProtocol {
         interactor.presenter = presenter
         
     }
-    
+    */
 }

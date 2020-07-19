@@ -9,13 +9,19 @@
 import UIKit
 import FirebaseCrashlytics
 
+struct IdentifierObject {
+    var selection: Constants.MovieSelection
+    var section: Int
+}
+
 class MovieViewController: UIViewController {
     
-    //var controller : MovieController?
+    weak var presenter: HomeViewToPresenterProtocol?
     var refreshControl: UIRefreshControl?
     var fetchingMore = false
     var noticeNoMoreData = false
     var movieSelection: Constants.MovieSelection?
+    var identifierObject: IdentifierObject?
     
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollectionView: UICollectionView!
@@ -28,28 +34,12 @@ class MovieViewController: UIViewController {
         setupView()
         
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        //navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
     
     fileprivate func setupView() {
         
-        //self.tabBarController?.tabBar.isHidden = true
+        addRefreshingControl()
         
         movieSearchBar.searchTextField.textColor = UIColor.white
-        
-        self.addRefreshingControl()
-        
-//controller = MovieController()
- //       controller?.delegate = self
-//        controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
         
         ///Delegate and Datasource
         movieCollectionView.delegate = self
@@ -73,10 +63,10 @@ class MovieViewController: UIViewController {
     
     @objc func refreshList() {
         
-        self.refreshControl?.endRefreshing()
-        //self.controller?.loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
-        self.movieCollectionView.reloadData()
-        
+        refreshControl?.endRefreshing()
+        presenter?.getMovies(page: 0, category: .Movie, movieSelection: movieSelection!)
+        movieCollectionView.reloadData()
+    
     }
     
     //MARK: - GoBack
@@ -113,25 +103,29 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 0
-        //return self.controller?.numberOfRows() ?? 0
+        return presenter?.getNumberOfRowsInSection(section: identifierObject?.section ?? 0) ?? 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
+        let identifier = "MovieCell"
         
-        //cell.setupCell(movie: (self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: false))!)
+        let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! MovieCollectionViewCell
         
+        let index = IndexPath(row: indexPath.row, section: identifierObject?.section ?? 0)
+        
+        if let movie = presenter?.loadMovieWithIndexPath(indexPath: index) {
+            cell.setupCell(movie: movie)
+        }
+                
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return .init(width: view.frame.width / 3.4 , height: 190)//
-        //return .init(width: view.frame.width / 2.2 , height: view.frame.height / 2.3)
+        return .init(width: view.frame.width / 3.4 , height: 190)
         
     }
     
@@ -186,15 +180,15 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
+         let identifier = "DetailsViewControllerID"
+         
+         let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! DetailsViewController
+         
+        let index = IndexPath(row: indexPath.row, section: identifierObject?.section ?? 0)
         
-        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewControllerID") as! DetailsViewController
-        
-//        let cellHero = "cellID\(indexPath.item)\(self.movieCollectionView.tag)"
-//        collectionView.hero.id = cellHero
-        
-        //vc.movie = controller?.loadMovieWithIndexPath(indexPath: indexPath)
-        
-        present(vc, animated: true, completion: nil)
+         vc.movie = presenter?.loadMovieWithIndexPath(indexPath: index)
+         
+         present(vc, animated: true, completion: nil)
         
     }
     

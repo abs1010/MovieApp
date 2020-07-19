@@ -32,6 +32,7 @@ protocol HomeInteractorToPresenterProtocol: class {
 }
 
 protocol HomePresenterToViewProtocol: class {
+    var presenter: HomeViewToPresenterProtocol? { get set }
     func showMovieResults()
     func problemOnFetchingData(error: Constants.errorTypes)
 }

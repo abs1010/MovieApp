@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
         
         if !signIn.hasPreviousSignIn() {
             
-            perform(#selector(shouldShowOnboarding), with: self, afterDelay: 1)
+            perform(#selector(shouldShowOnboarding), with: self, afterDelay: 2.5)
             
         }
         
@@ -86,17 +86,6 @@ class HomeViewController: UIViewController {
         mainCollectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.reuseIdentifier)
         
     }
-        
-    //MARK: - TapGestures
-//    @IBAction func tapToSeeMorePopularMovies(_ sender: UIButton) {
-//
-//        let storyboard = UIStoryboard.init(name: "Movies", bundle: nil)
-//
-//        let vc = storyboard.instantiateViewController(withIdentifier: "MoviesList") as! MovieViewController
-//
-//        self.present(vc, animated: true, completion: nil)
-//
-//    }
     
     private func addRefreshingControl() {
         
@@ -130,7 +119,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 1//presenter?.getNumberOfRowsInSection(section: section) ?? 0
+        return 1 ///One row for each category
         
     }
     
@@ -165,7 +154,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         }
         
-        //cell.categoryLabel.text = presenter?.getCategoryName(section: indexPath.row)
         cell.selectedSection = indexPath.section
         cell.delegate = self
         
@@ -231,7 +219,27 @@ extension HomeViewController: MainCollectionViewCellDelegate {
         
         let movieStoryboard = UIStoryboard.init(name: "Movies", bundle: Bundle.main)
         
-        let vc = movieStoryboard.instantiateViewController(withIdentifier: "MoviesList")
+        let vc = movieStoryboard.instantiateViewController(withIdentifier: "MoviesList") as! MovieViewController
+        
+        vc.presenter = presenter
+        
+        var selection: Constants.MovieSelection {
+
+            if section == 0 {
+                return .Popular
+            }else if section == 1 {
+                return .NowPlaying
+            }else if section == 2 {
+                return .TopRated
+            }else {
+                return .Upcoming
+            }
+
+        }
+        
+        vc.identifierObject = IdentifierObject(selection: selection, section: section)
+        
+        //vc.movieSelection = selection
         
         self.present(vc, animated: true, completion: nil)
         

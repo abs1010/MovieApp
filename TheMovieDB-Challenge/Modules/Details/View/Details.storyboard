@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dtf-ND-H8k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dtf-ND-H8k">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -217,6 +217,7 @@
                     <connections>
                         <outlet property="btnFavorite" destination="qrM-Tc-Sg7" id="KLb-Fh-zX4"/>
                         <outlet property="favoriteView" destination="qRE-0e-6Kb" id="NxR-WP-kmt"/>
+                        <outlet property="mainScrollView" destination="x16-5u-dzE" id="b9y-PL-4Rn"/>
                         <outlet property="movieGenre" destination="EQb-r4-EvB" id="v3I-mp-qIl"/>
                         <outlet property="movieName" destination="CGC-1U-5Tv" id="hgH-M1-sVq"/>
                         <outlet property="moviePhoto" destination="oAn-xA-ZhZ" id="cAb-Zy-Vn1"/>
