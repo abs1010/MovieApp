@@ -225,8 +225,8 @@
 		BC366B7C23E0A043009ABFD6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BC366B6923E08C51009ABFD6 /* MainViewController.swift */,
 				BC366B6B23E08C51009ABFD6 /* Main.storyboard */,
+				BC366B6923E08C51009ABFD6 /* MainViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

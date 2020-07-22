@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ShT-yI-S9j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ShT-yI-S9j">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main View Controller-->
         <scene sceneID="bb9-mB-xH1">
             <objects>
-                <tabBarController storyboardIdentifier="MainViewControllerIdentifier" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="ShT-yI-S9j" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainViewControllerIdentifier" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="ShT-yI-S9j" customClass="MainViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hvw-sd-tPY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
