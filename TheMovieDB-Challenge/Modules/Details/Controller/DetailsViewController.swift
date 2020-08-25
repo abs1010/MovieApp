@@ -23,16 +23,16 @@ class DetailsViewController: UIViewController {
     var player = AVPlayer()
     var playerViewController = AVPlayerViewController()
     
-    //var controller : MovieController?
-    
     @IBOutlet weak var mainScrollView: UIScrollView!
-    @IBOutlet weak var moviePhoto: CustomImageView!
+    @IBOutlet weak var backgroundImage: CustomImageView!
     @IBOutlet weak var movieName: UILabel!
     @IBOutlet weak var moviePlot: UILabel!
     @IBOutlet weak var movieRating: UILabel!
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
     @IBOutlet weak var favoriteView: UIView!
+    @IBOutlet weak var scoreView: UIView!
+    let shapeLayer = CAShapeLayer()
     
     var movie : Movie? {
         
@@ -44,21 +44,52 @@ class DetailsViewController: UIViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //self.controller = MovieController()
-        
-        self.setupCell()
-        
-    }
-    
     //MARK: - Sets the StatusBar as white
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
         return UIStatusBarStyle.lightContent
         
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setupCell()
+        
+    }
+    
+    private func setScore(rating: Int) {
+        
+        let center = CGPoint(x: 38.0, y: 38.0)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        shapeLayer.path = circularPath.cgPath
+        shapeLayer.strokeColor = #colorLiteral(red: 0.8242291808, green: 0.8366972804, blue: 0.1931050718, alpha: 1)
+        shapeLayer.fillColor = #colorLiteral(red: 0.03029535897, green: 0.1094857976, blue: 0.1347175539, alpha: 1)
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        shapeLayer.lineWidth = 5
+        shapeLayer.strokeEnd = 0
+        
+        scoreView.layer.addSublayer(shapeLayer)
+        
+        perform(#selector(animateScore), with: nil, afterDelay: 0.5)
+        
+    }
+    
+    @objc private func animateScore() {
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        
+        basicAnimation.toValue = 1
+        basicAnimation.duration = 1.5
+        
+        basicAnimation.fillMode = .forwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+        
+    }
+    
+
     
     @IBAction func tappedGoBack(_ sender: UIButton) {
         
@@ -67,8 +98,6 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func playVideo(_ sender: UIButton) {
-        
-        //let videoPath = URL(string: "https://www.youtube.com/watch?v=Bw0-cV_J9q4&feature=youtu.be")
         
         let selectedVideo = Bundle.main.path(forResource: "presentingVideo", ofType: "mp4")
         
@@ -89,7 +118,7 @@ class DetailsViewController: UIViewController {
         
     }
     
-    func setGenres(idArray: [Int]?) -> String {
+    private func setGenres(idArray: [Int]?) -> String {
         
         if let id = idArray {
             
@@ -146,7 +175,7 @@ class DetailsViewController: UIViewController {
         //self.setFavButtonStatus()
         
         if let urlString = self.movie?.backdropPath {
-            self.moviePhoto.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { isLoadFinished in
+            self.backgroundImage.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { isLoadFinished in
                 
                 if isLoadFinished {
                     
@@ -157,13 +186,15 @@ class DetailsViewController: UIViewController {
             })
             
         }else {
-            self.moviePhoto.image = UIImage(named: "placeholder")
+            self.backgroundImage.image = UIImage(named: "placeholder")
         }
         
-        self.movieName.text = movie?.title
-        self.moviePlot.text = movie?.overview
-        self.movieRating.text = movie?.voteAverage?.toStringWithStar()
-        self.movieGenre.text = self.setGenres(idArray: movie?.genreIDS ?? [])
+        movieName.text = movie?.title
+        moviePlot.text = movie?.overview
+        movieGenre.text = setGenres(idArray: movie?.genreIDS ?? [])
+        
+        movieRating.text = "\(movie?.voteCount ?? 0)"
+        setScore(rating: movie?.voteCount ?? 50)
         
     }
     
