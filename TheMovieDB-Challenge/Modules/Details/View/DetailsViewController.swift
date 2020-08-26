@@ -26,17 +26,22 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var backgroundImage: CustomImageView!
     @IBOutlet weak var movieName: UILabel!
+    @IBOutlet weak var movieTagline: UILabel!
     @IBOutlet weak var moviePlot: UILabel!
     @IBOutlet weak var movieRating: UILabel!
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var btnFavorite: UIButton!
     @IBOutlet weak var favoriteView: UIView!
     @IBOutlet weak var scoreView: UIView!
+    @IBOutlet weak var roundedView: UIView!
+    
     let shapeLayer = CAShapeLayer()
     
     var movie : Movie? {
         
         didSet {
+            
+            LoadingView.sharedInstance.show(style: .dark)
             
             loadGenres()
             
@@ -64,12 +69,13 @@ class DetailsViewController: UIViewController {
         let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         shapeLayer.path = circularPath.cgPath
         shapeLayer.strokeColor = #colorLiteral(red: 0.8242291808, green: 0.8366972804, blue: 0.1931050718, alpha: 1)
-        shapeLayer.fillColor = #colorLiteral(red: 0.03029535897, green: 0.1094857976, blue: 0.1347175539, alpha: 1)
+        shapeLayer.fillColor = UIColor.clear.cgColor // #colorLiteral(red: 0.03029535897, green: 0.1094857976, blue: 0.1347175539, alpha: 1)
         shapeLayer.lineCap = CAShapeLayerLineCap.round
         shapeLayer.lineWidth = 5
         shapeLayer.strokeEnd = 0
         
         scoreView.layer.addSublayer(shapeLayer)
+        roundedView.layer.cornerRadius = roundedView.frame.width / 2
         
         perform(#selector(animateScore), with: nil, afterDelay: 0.5)
         
@@ -88,8 +94,6 @@ class DetailsViewController: UIViewController {
         shapeLayer.add(basicAnimation, forKey: "urSoBasic")
         
     }
-    
-
     
     @IBAction func tappedGoBack(_ sender: UIButton) {
         
@@ -168,8 +172,29 @@ class DetailsViewController: UIViewController {
     
     private func setupCell() {
         
+        if let movieId = movie?.id {
+            NetworkingService.sharedInstance.getMovieDetails(movieId: movieId) { [weak self] result in
+                
+                switch result {
+                case .success(let movieDetails):
+                    
+                    DispatchQueue.main.async {
+                        self?.movieTagline.text = movieDetails.tagline ?? ""
+                        self?.movieRating.text = "\(movieDetails.voteAverage ?? 0.0)℅".replacingOccurrences(of: ".", with: "")
+                    }
+                    
+                    LoadingView.sharedInstance.hide()
+                case .failure(let error):
+                    print(error)
+                }
+                
+            }
+            
+        }
+        
         mainScrollView.contentInsetAdjustmentBehavior = .never
         
+        ///Make a circle for the score View
         favoriteView.layer.cornerRadius = favoriteView.frame.width / 2
         
         //self.setFavButtonStatus()
@@ -193,7 +218,6 @@ class DetailsViewController: UIViewController {
         moviePlot.text = movie?.overview
         movieGenre.text = setGenres(idArray: movie?.genreIDS ?? [])
         
-        movieRating.text = "\(movie?.voteCount ?? 0)"
         setScore(rating: movie?.voteCount ?? 50)
         
     }

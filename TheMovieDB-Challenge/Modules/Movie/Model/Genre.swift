@@ -9,20 +9,20 @@
 import Foundation
 import RealmSwift
 
-// MARK: - Genre
-struct Genre: Codable {
-    let genres: [GenreElement]
-}
-
-// MARK: - GenreElement
-struct GenreElement: Codable {
-    let id: Int
-    let name: String
-}
-
+//// MARK: - Genre
+//struct Genre: Codable {
+//    let genres: [GenreElement]
+//}
+//
+//// MARK: - GenreElement
+//struct GenreElement: Codable {
+//    let id: Int
+//    let name: String
+//}
+//
 class Item: Object {
-    
+
    @objc dynamic var id: Int = 0
    @objc dynamic var name: String = ""
-    
+
 }

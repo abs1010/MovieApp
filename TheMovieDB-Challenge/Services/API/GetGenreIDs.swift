@@ -14,7 +14,7 @@ extension NetworkingService {
      
      func getGenreIds(completion: @escaping(Genre) -> Void) {
          
-         let resourceURL = "\(Constants.API.baseURL)\(Constants.category.Genre.rawValue)/movie/list?api_key=\(Constants.API.privateKey)&language=\(language)"
+        let resourceURL = "https:xxx/movie/list?api_key=&language="
          
          guard let url = URL(string: resourceURL) else { return }
          

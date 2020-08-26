@@ -100,7 +100,7 @@ extension HomePresenter: HomeInteractorToPresenterProtocol {
         
     }
     
-    func problemOnFetchingData(error: Constants.errorTypes) {
+    func problemOnFetchingData(error: errorTypes) {
         
         view?.problemOnFetchingData(error: error)
         

@@ -188,7 +188,7 @@ extension HomeViewController: HomePresenterToViewProtocol {
         
     }
     
-    func problemOnFetchingData(error: Constants.errorTypes) {
+    func problemOnFetchingData(error: errorTypes) {
         
         ///Show Alert with problem
         

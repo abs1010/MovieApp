@@ -50,25 +50,18 @@ class CustomImageView: UIImageView {
         }).resume()
     }
     
-    enum imageType {
-        case banner
-        case cover
-    }
-    
     func loadUrlImageFromSDWeb(urlString: String, type: imageType, done: @escaping(Bool) -> Void) {
         
         DispatchQueue.main.async {
             
-            let string = type == .banner ? "\(Constants.API.imageURLBanner)\(urlString)" : "\(Constants.API.imageURLCover)\(urlString)"
+            let url = NetworkingService.sharedInstance.getUrl(str: urlString, type: type)
             
-            self.sd_setImage(with: URL(string: string), placeholderImage: UIImage(named: "portrait-placeholde"), options: .continueInBackground, progress: .none) { (image, error, cache, url) in
+            self.sd_setImage(with: url, placeholderImage: UIImage(named: "portrait-placeholder"), options: .continueInBackground, progress: .none) { (image, error, cache, url) in
                 
                 done(true)
                 
             }
-            
-            //self.sd_setImage(with: URL(string: string), placeholderImage: UIImage(named: "portrait-placeholder"))
-            
+
         }
         
     }

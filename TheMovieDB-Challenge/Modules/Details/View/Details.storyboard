@@ -27,17 +27,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page4" translatesAutoresizingMaskIntoConstraints="NO" id="dsH-6E-OLV" userLabel="backgroundImage" customClass="CustomImageView" customModule="The_MovieDB" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avengers" translatesAutoresizingMaskIntoConstraints="NO" id="dsH-6E-OLV" userLabel="backgroundImage" customClass="CustomImageView" customModule="The_MovieDB" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x16-5u-dzE">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nP-4p-kLn" userLabel="MainView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1212"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1217"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jm-Th-qoY" userLabel="maskView">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1212"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1217"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avengers: Infinity War (2018)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGC-1U-5Tv">
                                                         <rect key="frame" x="40" y="250" width="240" height="50"/>
@@ -46,27 +46,37 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="| 12 | • 05/05/2016 (BR)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-r4-EvB">
-                                                        <rect key="frame" x="20" y="556.5" width="280" height="12"/>
+                                                        <rect key="frame" x="20" y="561.5" width="280" height="12"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBQ-Ba-DqH" userLabel="scoreView">
-                                                        <rect key="frame" x="10" y="321" width="75" height="75"/>
+                                                        <rect key="frame" x="10" y="326" width="75" height="75"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dd-Lt-ZDg">
+                                                                <rect key="frame" x="2.5" y="2.5" width="70" height="70"/>
+                                                                <color key="backgroundColor" red="0.030295358969999998" green="0.1094857976" blue="0.13471755390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="70" id="GOj-wL-nOH"/>
+                                                                    <constraint firstAttribute="height" constant="70" id="tve-kb-wsA"/>
+                                                                </constraints>
+                                                            </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSd-6v-71q">
                                                                 <rect key="frame" x="37.5" y="37.5" width="0.0" height="0.0"/>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="0Dd-Lt-ZDg" firstAttribute="centerX" secondItem="VBQ-Ba-DqH" secondAttribute="centerX" id="Kyf-eK-f0o"/>
                                                             <constraint firstAttribute="width" constant="75" id="SkD-mG-SPd"/>
                                                             <constraint firstItem="wSd-6v-71q" firstAttribute="centerX" secondItem="VBQ-Ba-DqH" secondAttribute="centerX" id="Y9i-vv-ig9"/>
                                                             <constraint firstItem="wSd-6v-71q" firstAttribute="centerY" secondItem="VBQ-Ba-DqH" secondAttribute="centerY" id="kH0-m4-zBh"/>
                                                             <constraint firstAttribute="height" constant="75" id="nbJ-kK-P8o"/>
+                                                            <constraint firstItem="0Dd-Lt-ZDg" firstAttribute="centerY" secondItem="VBQ-Ba-DqH" secondAttribute="centerY" id="ylO-Yq-vFm"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRE-0e-6Kb" userLabel="favoriteView">
@@ -97,30 +107,30 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Devided we fall" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d06-2g-JLg">
                                                         <rect key="frame" x="10" y="308" width="300" height="13"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="13"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" red="0.7481074929" green="0.76848608259999995" blue="0.78100866079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-HU-ydH">
-                                                        <rect key="frame" x="20" y="396" width="280" height="20.5"/>
+                                                        <rect key="frame" x="20" y="401" width="280" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hP-eB-LKy">
-                                                        <rect key="frame" x="20" y="426.5" width="280" height="105"/>
+                                                        <rect key="frame" x="20" y="431.5" width="280" height="105"/>
                                                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adventure, Action, Science Fiction • 2h 27m" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0M-ke-84N">
-                                                        <rect key="frame" x="20" y="588.5" width="280" height="12"/>
+                                                        <rect key="frame" x="20" y="593.5" width="280" height="12"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="ZYN-yy-zve">
-                                                        <rect key="frame" x="20" y="620.5" width="280" height="38"/>
+                                                        <rect key="frame" x="20" y="625.5" width="280" height="38"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="ZAV-z7-50g">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="38"/>
@@ -176,7 +186,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-B6-Yug">
-                                                        <rect key="frame" x="20" y="678.5" width="280" height="38"/>
+                                                        <rect key="frame" x="20" y="683.5" width="280" height="38"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="JIw-wn-6Cr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="38"/>
@@ -232,7 +242,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8vP-IK-td8" userLabel="castCollectionView">
-                                                        <rect key="frame" x="0.0" y="763" width="320" height="100"/>
+                                                        <rect key="frame" x="0.0" y="768" width="320" height="100"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="100" id="nX9-Hx-GOi"/>
@@ -257,7 +267,7 @@
                                                         </cells>
                                                     </collectionView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuB-Rh-dwP" userLabel="videoPlayerView">
-                                                        <rect key="frame" x="0.0" y="923" width="320" height="200"/>
+                                                        <rect key="frame" x="0.0" y="928" width="320" height="200"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ptd-mw-oU8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -289,7 +299,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2020 TMDB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcU-Q7-Mfn">
-                                                        <rect key="frame" x="0.0" y="1173" width="320" height="17"/>
+                                                        <rect key="frame" x="0.0" y="1178" width="320" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -304,7 +314,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="QuB-Rh-dwP" secondAttribute="trailing" id="9cq-hw-2e4"/>
                                                     <constraint firstItem="6hP-eB-LKy" firstAttribute="top" secondItem="WzY-HU-ydH" secondAttribute="bottom" constant="10" id="Aaf-KN-82D"/>
                                                     <constraint firstAttribute="trailing" secondItem="CGC-1U-5Tv" secondAttribute="trailing" constant="40" id="CCE-7v-XV5"/>
-                                                    <constraint firstItem="WzY-HU-ydH" firstAttribute="top" secondItem="d06-2g-JLg" secondAttribute="bottom" constant="75" id="E6e-1j-2KK"/>
+                                                    <constraint firstItem="WzY-HU-ydH" firstAttribute="top" secondItem="d06-2g-JLg" secondAttribute="bottom" constant="80" id="E6e-1j-2KK"/>
                                                     <constraint firstAttribute="trailing" secondItem="WzY-HU-ydH" secondAttribute="trailing" constant="20" id="FoU-qE-NLN"/>
                                                     <constraint firstItem="qRE-0e-6Kb" firstAttribute="top" secondItem="d06-2g-JLg" secondAttribute="bottom" constant="16" id="GY5-aO-naj"/>
                                                     <constraint firstItem="6hP-eB-LKy" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" constant="20" id="HFp-vZ-ztL"/>
@@ -330,7 +340,7 @@
                                                     <constraint firstItem="QuB-Rh-dwP" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" id="hP2-R6-VOE"/>
                                                     <constraint firstItem="JcU-Q7-Mfn" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" id="nUd-1B-0hk"/>
                                                     <constraint firstItem="ZYN-yy-zve" firstAttribute="top" secondItem="P0M-ke-84N" secondAttribute="bottom" constant="20" id="pCX-kb-6OY"/>
-                                                    <constraint firstItem="VBQ-Ba-DqH" firstAttribute="top" secondItem="d06-2g-JLg" secondAttribute="bottom" id="rI0-2k-Mct"/>
+                                                    <constraint firstItem="VBQ-Ba-DqH" firstAttribute="top" secondItem="d06-2g-JLg" secondAttribute="bottom" constant="5" id="rI0-2k-Mct"/>
                                                     <constraint firstItem="WzY-HU-ydH" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" constant="20" id="rT3-JC-BQA"/>
                                                     <constraint firstAttribute="trailing" secondItem="d06-2g-JLg" secondAttribute="trailing" constant="10" id="t5g-cH-rGs"/>
                                                     <constraint firstItem="8vP-IK-td8" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" id="tFB-lS-CCG"/>
@@ -396,6 +406,8 @@
                         <outlet property="movieName" destination="CGC-1U-5Tv" id="hgH-M1-sVq"/>
                         <outlet property="moviePlot" destination="6hP-eB-LKy" id="sIl-gt-Nis"/>
                         <outlet property="movieRating" destination="wSd-6v-71q" id="doE-0I-JUp"/>
+                        <outlet property="movieTagline" destination="d06-2g-JLg" id="gbr-8o-qjW"/>
+                        <outlet property="roundedView" destination="0Dd-Lt-ZDg" id="U0l-Gc-qZv"/>
                         <outlet property="scoreView" destination="VBQ-Ba-DqH" id="Ue4-Ze-EqO"/>
                     </connections>
                 </viewController>
@@ -405,9 +417,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="avengers" width="1280" height="1920"/>
         <image name="emptyHeart_icon" width="22" height="21"/>
         <image name="icon_voltar" width="9" height="15"/>
-        <image name="page4" width="2128" height="1416"/>
         <image name="play.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

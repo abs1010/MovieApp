@@ -10,16 +10,16 @@ import Foundation
 
 extension NetworkingService {
     
-    func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection, completion : @escaping GenericResponse<MovieHeader>) {
+    func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection, completion : @escaping (Result<MovieHeader, errorTypes>) -> Void) {
         
-        let resourceString = URL(string: "\(Endpoints.getMovies.url)\(movieSelection.rawValue)?api_key=\(Constants.API.privateKey)&language=\(language.rawValue)&page=\(page)")
+        let resourceString = URL(string: "\(Endpoints.getMovies(selection: movieSelection).url)&page=\(page)")
         
         guard let resourceURL = resourceString else {fatalError("Problema ao obter os dados")}
         
         let dataTask = URLSession.shared.dataTask(with: resourceURL) { (data, res, err) in
             
             guard let jsonData = data else {
-                completion(nil, false, .NoDataAvailable)
+                completion(.failure(.NoDataAvailable))
                 return
             }
             
@@ -28,7 +28,7 @@ extension NetworkingService {
                 var movieHeader = try decoder.decode(MovieHeader.self, from: jsonData)
                     
                 movieHeader.categoryType = movieSelection
-                    completion(movieHeader, true, .NoError)
+                completion(.success(movieHeader))
                     
                     if page == 1 {
                         
@@ -43,7 +43,7 @@ extension NetworkingService {
 
             }catch {
                 
-                completion(nil, false, .CanNotProccessData)
+                completion(.failure(.CanNotProccessData))
                 
             }
             

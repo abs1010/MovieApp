@@ -28,13 +28,13 @@ protocol HomePresenterToInteractorProtocol: class {
 
 protocol HomeInteractorToPresenterProtocol: class {
     func returnMovieResults(movieHeader: MovieHeader)
-    func problemOnFetchingData(error: Constants.errorTypes)
+    func problemOnFetchingData(error: errorTypes)
 }
 
 protocol HomePresenterToViewProtocol: class {
     var presenter: HomeViewToPresenterProtocol? { get set }
     func showMovieResults()
-    func problemOnFetchingData(error: Constants.errorTypes)
+    func problemOnFetchingData(error: errorTypes)
 }
 
 protocol HomePresenterToRouterProtocol: class {
