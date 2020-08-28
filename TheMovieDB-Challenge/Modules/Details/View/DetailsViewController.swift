@@ -15,7 +15,7 @@ import AVFoundation
 
 //import Hero
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let realm = try! Realm()
     var genreIDS : Results<Item>?
@@ -27,13 +27,14 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var backgroundImage: CustomImageView!
     @IBOutlet weak var movieName: UILabel!
     @IBOutlet weak var movieTagline: UILabel!
-    @IBOutlet weak var moviePlot: UILabel!
-    @IBOutlet weak var movieRating: UILabel!
-    @IBOutlet weak var movieGenre: UILabel!
-    @IBOutlet weak var btnFavorite: UIButton!
-    @IBOutlet weak var favoriteView: UIView!
     @IBOutlet weak var scoreView: UIView!
+    @IBOutlet weak var movieRating: UILabel!
     @IBOutlet weak var roundedView: UIView!
+    @IBOutlet weak var favoriteView: UIView!
+    @IBOutlet weak var btnFavorite: UIButton!
+    @IBOutlet weak var moviePlot: UILabel!
+    @IBOutlet weak var movieGenre: UILabel!
+    @IBOutlet weak var castCollectionView: UICollectionView!
     
     let shapeLayer = CAShapeLayer()
     
@@ -60,9 +61,47 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupCell()
+        setUpCollection()
         
     }
     
+    private func setUpCollection() {
+        
+        castCollectionView.delegate = self
+        castCollectionView.dataSource = self
+        
+        castCollectionView.register(CastCollectionViewCell.self, forCellWithReuseIdentifier: "CastCollectionViewCellID")
+        castCollectionView.showsHorizontalScrollIndicator = false
+    }
+    
+    //MARK: - Collection View methods
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+                                  
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCellID", for: indexPath) as! CastCollectionViewCell
+        
+        let castElement = CastElement(castID: 111, character: "Art", creditID: "5cec34a1c3a3685a161f83f7", gender: 2, id: 134, name: "Jamie Foxx", order: 0, profilePath: "/hPwCMEq6jLAidsXAX5BfoYgIfg2.jpg")
+        
+        cell.setupCell(cast: castElement)
+        
+        return cell
+    }
+    
+    //func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+      
+    //}
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return .init(width: view.frame.width / 3.4, height: castCollectionView.frame.height)
+        
+    }
+    
+    //MARK: - General Methods
     private func setScore(rating: Int) {
         
         let center = CGPoint(x: 38.0, y: 38.0)

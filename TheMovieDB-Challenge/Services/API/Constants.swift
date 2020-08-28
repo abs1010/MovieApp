@@ -9,6 +9,11 @@
 import Foundation
 
 enum Constants {
+
+    enum imageType {
+        case banner
+        case cover
+    }
     
     enum category : String {
         case Movie = "movie"
@@ -26,9 +31,4 @@ enum Constants {
         case NoSelection
     }
     
-}
-
-public enum imageType {
-    case banner
-    case cover
 }

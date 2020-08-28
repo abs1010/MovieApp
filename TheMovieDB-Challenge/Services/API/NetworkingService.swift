@@ -20,12 +20,11 @@ struct NetworkingService {
     
     static let sharedInstance = NetworkingService()
     
-    private var appLanguage: language = .English //Replace by UserDefaults
-    
     private enum API {
         static let baseURL = "https://api.themoviedb.org/3"
         static let imageURLBanner = "https://image.tmdb.org/t/p/w1280"
         static let imageURLCover = "https://image.tmdb.org/t/p/original"
+        static let faceImage = "https://image.tmdb.org/t/p/w276_and_h350_face//hPwCMEq6jLAidsXAX5BfoYgIfg2.jpg"
         static let publicKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         static let privateKey = "132dfc8e68a337152fd3e36d63c77677"
     }
@@ -58,21 +57,28 @@ struct NetworkingService {
     }
     
     enum Endpoints {
+        
         case getMovies(selection: Constants.MovieSelection)
         case getSeries
         case getGenres
         case getMovieID(id: Int)
+        case getMovieCast(id: Int)
         
         var url: String {
+            
+            let appLanguage = language.Portuguese.rawValue //Replace by UserDefaults
+            
             switch self {
             case .getMovies(let movieSelection):
-                return "\(API.baseURL)/movie/\(movieSelection.rawValue)?api_key=\(API.privateKey)&language=\(NetworkingService.sharedInstance.appLanguage)"
+                return "\(API.baseURL)/movie/\(movieSelection.rawValue)?api_key=\(API.privateKey)&language=\(appLanguage)"
             case .getSeries:
                 return "\(API.baseURL)/series/"
             case .getGenres:
                 return "\(API.baseURL)/genre/"
             case .getMovieID(let id):
-                return "\(API.baseURL)/movie/\(id)?api_key=\(API.privateKey)&language=\(NetworkingService.sharedInstance.appLanguage)"
+                return "\(API.baseURL)/movie/\(id)?api_key=\(API.privateKey)&language=\(appLanguage)"
+            case .getMovieCast(let id):
+                return "\(API.baseURL)/movie/\(id)/credits?api_key=\(API.privateKey)&language=\(appLanguage)"
             }
             
         }
@@ -81,7 +87,7 @@ struct NetworkingService {
     
     //MARK: - Exposed Methods
     
-    func getUrl(str: String, type: imageType) -> URL {
+    func getUrl(str: String, type: Constants.imageType) -> URL {
         
         let urlString = type == .banner ? "\(API.imageURLBanner)\(str)" : "\(API.imageURLCover)\(str)"
         

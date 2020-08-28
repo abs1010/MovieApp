@@ -50,7 +50,7 @@ class CustomImageView: UIImageView {
         }).resume()
     }
     
-    func loadUrlImageFromSDWeb(urlString: String, type: imageType, done: @escaping(Bool) -> Void) {
+    func loadUrlImageFromSDWeb(urlString: String, type: Constants.imageType, done: @escaping(Bool) -> Void) {
         
         DispatchQueue.main.async {
             
