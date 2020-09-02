@@ -11,8 +11,10 @@ target 'TheMovieDB-Challenge' do
   pod 'RealmSwift', '~> 5.0.3'
   pod 'SwiftLint'
   pod 'lottie-ios'
-  #pod 'Hero'
+  pod 'Hero'
+  pod 'YouTubePlayer', '~> 0.7'
   pod 'SwiftVideoBackground'
+  pod 'ObjectMapper', '~> 4.2'
   
   #Firebase
   pod 'Firebase/Analytics'

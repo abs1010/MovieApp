@@ -36,6 +36,8 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var castCollectionView: UICollectionView!
     
+    var castArray: [CastElement]?
+    
     let shapeLayer = CAShapeLayer()
     
     var movie : Movie? {
@@ -60,7 +62,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupCell()
+        setupCell()
         setUpCollection()
         
     }
@@ -77,27 +79,43 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     //MARK: - Collection View methods
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        
+        let nCells = castArray?.count ?? 0
+        
+        if nCells > 8 {
+            return 9
+        }
+        
+        return nCells
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                                  
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCellID", for: indexPath) as! CastCollectionViewCell
         
-        let castElement = CastElement(castID: 111, character: "Art", creditID: "5cec34a1c3a3685a161f83f7", gender: 2, id: 134, name: "Jamie Foxx", order: 0, profilePath: "/hPwCMEq6jLAidsXAX5BfoYgIfg2.jpg")
-        
-        cell.setupCell(cast: castElement)
+        if let castElement = castArray?[indexPath.item] {
+                
+            cell.setupCell(cast: castElement, item: indexPath.item)
+                
+        }
         
         return cell
     }
     
-    //func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-      
-    //}
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return .init(8.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return .init(width: view.frame.width / 3.4, height: castCollectionView.frame.height)
+        return .init(width: view.frame.width / 3.6, height: castCollectionView.frame.height - 16)
         
     }
     
@@ -108,7 +126,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         shapeLayer.path = circularPath.cgPath
         shapeLayer.strokeColor = #colorLiteral(red: 0.8242291808, green: 0.8366972804, blue: 0.1931050718, alpha: 1)
-        shapeLayer.fillColor = UIColor.clear.cgColor // #colorLiteral(red: 0.03029535897, green: 0.1094857976, blue: 0.1347175539, alpha: 1)
+        shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = CAShapeLayerLineCap.round
         shapeLayer.lineWidth = 5
         shapeLayer.strokeEnd = 0
@@ -211,15 +229,26 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     
     private func setupCell() {
         
+        //self.setFavButtonStatus()
+        
+        LoadingView.sharedInstance.show()
+        
+        let group = DispatchGroup()
+        
         if let movieId = movie?.id {
+            
+            group.enter()
             NetworkingService.sharedInstance.getMovieDetails(movieId: movieId) { [weak self] result in
                 
                 switch result {
                 case .success(let movieDetails):
-                    
+                    print("Terminou de carregar task 1")
                     DispatchQueue.main.async {
                         self?.movieTagline.text = movieDetails.tagline ?? ""
                         self?.movieRating.text = "\(movieDetails.voteAverage ?? 0.0)℅".replacingOccurrences(of: ".", with: "")
+                        
+                        //self.castArray = movieDetails
+                        self?.castCollectionView.reloadData()
                     }
                     
                     LoadingView.sharedInstance.hide()
@@ -227,6 +256,32 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
                     print(error)
                 }
                 
+                group.leave()
+                
+            }
+            
+            group.enter()
+            NetworkingService.sharedInstance.getMovieCast(movieId: movieId) { [weak self] result in
+                
+                switch result {
+                    
+                case .success(let cast):
+                    print("Terminou de carregar task 2")
+                    DispatchQueue.main.async {
+                        self?.castArray = cast.cast
+                        self?.castCollectionView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                
+                group.leave()
+                
+            }
+            
+            group.notify(queue: .main) {
+                print("Terminou de carregar TUDO")
+                LoadingView.sharedInstance.hide()
             }
             
         }
@@ -235,8 +290,6 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         
         ///Make a circle for the score View
         favoriteView.layer.cornerRadius = favoriteView.frame.width / 2
-        
-        //self.setFavButtonStatus()
         
         if let urlString = self.movie?.backdropPath {
             self.backgroundImage.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { isLoadFinished in
@@ -253,7 +306,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
             self.backgroundImage.image = UIImage(named: "placeholder")
         }
         
-        movieName.text = movie?.title
+        movieName.text = movie?.title ?? "" + " (2018)"
         moviePlot.text = movie?.overview
         movieGenre.text = setGenres(idArray: movie?.genreIDS ?? [])
         

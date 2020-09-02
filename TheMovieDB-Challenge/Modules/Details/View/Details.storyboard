@@ -33,10 +33,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nP-4p-kLn" userLabel="MainView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1251.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1263.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jm-Th-qoY" userLabel="maskView">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1251.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1263.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avengers: Infinity War (2018)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGC-1U-5Tv">
                                                         <rect key="frame" x="40" y="250" width="240" height="58.5"/>
@@ -45,7 +45,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="| 12 | • 05/05/2016 (BR)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-r4-EvB">
-                                                        <rect key="frame" x="20" y="572.5" width="280" height="14"/>
+                                                        <rect key="frame" x="20" y="582.5" width="280" height="14"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -110,26 +110,26 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-HU-ydH">
-                                                        <rect key="frame" x="20" y="412" width="280" height="20.5"/>
+                                                        <rect key="frame" x="20" y="422" width="280" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hP-eB-LKy">
-                                                        <rect key="frame" x="20" y="442.5" width="280" height="105"/>
+                                                        <rect key="frame" x="20" y="452.5" width="280" height="105"/>
                                                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adventure, Action, Science Fiction • 2h 27m" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0M-ke-84N">
-                                                        <rect key="frame" x="20" y="606.5" width="280" height="14"/>
+                                                        <rect key="frame" x="20" y="616.5" width="280" height="14"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="ZYN-yy-zve">
-                                                        <rect key="frame" x="20" y="640.5" width="280" height="42"/>
+                                                        <rect key="frame" x="20" y="650.5" width="280" height="42"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="ZAV-z7-50g">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="42"/>
@@ -185,7 +185,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-B6-Yug">
-                                                        <rect key="frame" x="20" y="702.5" width="280" height="42"/>
+                                                        <rect key="frame" x="20" y="712.5" width="280" height="42"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="JIw-wn-6Cr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="42"/>
@@ -241,12 +241,12 @@
                                                         </subviews>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8vP-IK-td8" userLabel="castCollectionView">
-                                                        <rect key="frame" x="0.0" y="754.5" width="320" height="200"/>
+                                                        <rect key="frame" x="0.0" y="774.5" width="320" height="180"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="200" id="nX9-Hx-GOi" userLabel="height = 160"/>
+                                                            <constraint firstAttribute="height" constant="180" id="nX9-Hx-GOi" userLabel="height = 160"/>
                                                         </constraints>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FKg-bI-A6V">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="FKg-bI-A6V">
                                                             <size key="itemSize" width="128" height="199"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -255,7 +255,7 @@
                                                         <cells/>
                                                     </collectionView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuB-Rh-dwP" userLabel="videoPlayerView">
-                                                        <rect key="frame" x="0.0" y="962.5" width="320" height="200"/>
+                                                        <rect key="frame" x="0.0" y="974.5" width="320" height="200"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ptd-mw-oU8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -287,7 +287,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2020 TMDB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcU-Q7-Mfn">
-                                                        <rect key="frame" x="0.0" y="1212.5" width="320" height="17"/>
+                                                        <rect key="frame" x="0.0" y="1224.5" width="320" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -302,15 +302,14 @@
                                                     <constraint firstAttribute="trailing" secondItem="QuB-Rh-dwP" secondAttribute="trailing" id="9cq-hw-2e4"/>
                                                     <constraint firstItem="6hP-eB-LKy" firstAttribute="top" secondItem="WzY-HU-ydH" secondAttribute="bottom" constant="10" id="Aaf-KN-82D"/>
                                                     <constraint firstAttribute="trailing" secondItem="CGC-1U-5Tv" secondAttribute="trailing" constant="40" id="CCE-7v-XV5"/>
-                                                    <constraint firstItem="WzY-HU-ydH" firstAttribute="top" secondItem="d06-2g-JLg" secondAttribute="bottom" constant="80" id="E6e-1j-2KK"/>
                                                     <constraint firstAttribute="trailing" secondItem="WzY-HU-ydH" secondAttribute="trailing" constant="20" id="FoU-qE-NLN"/>
                                                     <constraint firstItem="qRE-0e-6Kb" firstAttribute="top" secondItem="d06-2g-JLg" secondAttribute="bottom" constant="16" id="GY5-aO-naj"/>
                                                     <constraint firstItem="6hP-eB-LKy" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" constant="20" id="HFp-vZ-ztL"/>
                                                     <constraint firstAttribute="trailing" secondItem="6hP-eB-LKy" secondAttribute="trailing" constant="20" id="HmQ-ii-ILh"/>
                                                     <constraint firstAttribute="trailing" secondItem="P0M-ke-84N" secondAttribute="trailing" constant="20" id="JTh-U0-zTf"/>
-                                                    <constraint firstItem="8vP-IK-td8" firstAttribute="top" secondItem="fUS-B6-Yug" secondAttribute="bottom" constant="10" id="MxT-3a-P6I"/>
+                                                    <constraint firstItem="8vP-IK-td8" firstAttribute="top" secondItem="fUS-B6-Yug" secondAttribute="bottom" constant="20" id="MxT-3a-P6I"/>
                                                     <constraint firstItem="fUS-B6-Yug" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" constant="20" id="Nbp-bu-aOp"/>
-                                                    <constraint firstItem="QuB-Rh-dwP" firstAttribute="top" secondItem="8vP-IK-td8" secondAttribute="bottom" constant="8" id="OQG-uN-X4x"/>
+                                                    <constraint firstItem="QuB-Rh-dwP" firstAttribute="top" secondItem="8vP-IK-td8" secondAttribute="bottom" constant="20" id="OQG-uN-X4x"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZYN-yy-zve" secondAttribute="trailing" constant="20" id="UWp-0e-BHn"/>
                                                     <constraint firstItem="CGC-1U-5Tv" firstAttribute="top" secondItem="1jm-Th-qoY" secondAttribute="top" constant="250" id="WlJ-yC-ZS1"/>
                                                     <constraint firstItem="JcU-Q7-Mfn" firstAttribute="top" secondItem="QuB-Rh-dwP" secondAttribute="bottom" constant="50" id="Wqd-Ku-ChT"/>
@@ -324,6 +323,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="qRE-0e-6Kb" secondAttribute="trailing" constant="10" id="cAo-w6-kCa"/>
                                                     <constraint firstAttribute="trailing" secondItem="EQb-r4-EvB" secondAttribute="trailing" constant="20" id="dJ1-1q-lQn"/>
                                                     <constraint firstAttribute="bottom" secondItem="JcU-Q7-Mfn" secondAttribute="bottom" constant="22" id="dzc-J9-7oe"/>
+                                                    <constraint firstItem="WzY-HU-ydH" firstAttribute="top" secondItem="VBQ-Ba-DqH" secondAttribute="bottom" constant="10" id="fCa-xs-B8h"/>
                                                     <constraint firstAttribute="trailing" secondItem="fUS-B6-Yug" secondAttribute="trailing" constant="20" id="hIa-jd-jSj"/>
                                                     <constraint firstItem="QuB-Rh-dwP" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" id="hP2-R6-VOE"/>
                                                     <constraint firstItem="JcU-Q7-Mfn" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" id="nUd-1B-0hk"/>

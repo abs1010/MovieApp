@@ -10,9 +10,15 @@ import Foundation
 
 // MARK: - Cast
 struct Cast: Codable {
-    let id: Int?
+    let movieID: Int?
     let cast: [CastElement]?
     let crew: [Crew]?
+    
+    enum CodingKeys: String, CodingKey {
+        case movieID = "id"
+        case cast
+        case crew
+    }
 }
 
 // MARK: - CastElement
