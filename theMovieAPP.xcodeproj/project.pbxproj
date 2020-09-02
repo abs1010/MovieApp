@@ -76,6 +76,8 @@
 		BCD3BD5224F8875800E0358C /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD3BD5124F8875800E0358C /* Cast.swift */; };
 		BCD3BD5424F8884700E0358C /* GetMovieCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD3BD5324F8884600E0358C /* GetMovieCast.swift */; };
 		BCD3BD5724F88CFE00E0358C /* CastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD3BD5624F88CFE00E0358C /* CastCollectionViewCell.swift */; };
+		BCD3BD5924FF2F7400E0358C /* GetMovieTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD3BD5824FF2F7400E0358C /* GetMovieTrailer.swift */; };
+		BCD3BD5B24FF32BF00E0358C /* MovieTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD3BD5A24FF32BF00E0358C /* MovieTrailer.swift */; };
 		BCE370C524A0129F0017BC27 /* presentingVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BCE370C424A012700017BC27 /* presentingVideo.mp4 */; };
 		BCE370CF24A428AA0017BC27 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE370CE24A428AA0017BC27 /* HomeRouter.swift */; };
 		BCE370D324A42A1E0017BC27 /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE370D224A42A1E0017BC27 /* HomeWireframe.swift */; };
@@ -157,6 +159,8 @@
 		BCD3BD5124F8875800E0358C /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		BCD3BD5324F8884600E0358C /* GetMovieCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMovieCast.swift; sourceTree = "<group>"; };
 		BCD3BD5624F88CFE00E0358C /* CastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCollectionViewCell.swift; sourceTree = "<group>"; };
+		BCD3BD5824FF2F7400E0358C /* GetMovieTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMovieTrailer.swift; sourceTree = "<group>"; };
+		BCD3BD5A24FF32BF00E0358C /* MovieTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrailer.swift; sourceTree = "<group>"; };
 		BCE370BE24A004690017BC27 /* myVideo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = myVideo.mov; sourceTree = "<group>"; };
 		BCE370C424A012700017BC27 /* presentingVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = presentingVideo.mp4; sourceTree = "<group>"; };
 		BCE370CE24A428AA0017BC27 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 			children = (
 				BC522FCB24F5E34C005A86A8 /* MovieDetails.swift */,
 				BCD3BD5124F8875800E0358C /* Cast.swift */,
+				BCD3BD5A24FF32BF00E0358C /* MovieTrailer.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				BC3C00F924F5B8AA00758D21 /* GetMovieDetails.swift */,
 				BC3C00FD24F5B94200758D21 /* GetGenreIDs.swift */,
 				BCD3BD5324F8884600E0358C /* GetMovieCast.swift */,
+				BCD3BD5824FF2F7400E0358C /* GetMovieTrailer.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1019,6 +1025,8 @@
 				BCD3BD5724F88CFE00E0358C /* CastCollectionViewCell.swift in Sources */,
 				BC366B6623E08C51009ABFD6 /* AppDelegate.swift in Sources */,
 				BC28143E2498414700A71447 /* LoginPresenter.swift in Sources */,
+				BCD3BD5924FF2F7400E0358C /* GetMovieTrailer.swift in Sources */,
+				BCD3BD5B24FF32BF00E0358C /* MovieTrailer.swift in Sources */,
 				BC3C00FE24F5B94200758D21 /* GetGenreIDs.swift in Sources */,
 				BCC988472495B43C00504891 /* Page.swift in Sources */,
 				BC7EC0D323E3911900B06B0D /* FavoriteMovie.swift in Sources */,
@@ -1200,7 +1208,7 @@
 				PRODUCT_NAME = "The MovieDB";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1223,7 +1231,7 @@
 				PRODUCT_NAME = "The MovieDB";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

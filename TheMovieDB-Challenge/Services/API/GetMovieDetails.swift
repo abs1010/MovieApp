@@ -26,8 +26,6 @@ extension NetworkingService {
                 return
             }
             
-            //print(String(data: data, encoding: .utf8)!)
-            
             do {
                 let decodedObj = try JSONDecoder().decode(MovieDetails.self, from: data)
                 completion(.success(decodedObj))

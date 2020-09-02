@@ -63,10 +63,11 @@ struct NetworkingService {
         case getGenres
         case getMovieID(id: Int)
         case getMovieCast(id: Int)
+        case getMovieTrailer(id: Int)
         
         var url: String {
             
-            let appLanguage = language.Portuguese.rawValue //Replace by UserDefaults
+            let appLanguage = language.English.rawValue ///Replace by UserDefaults later
             
             switch self {
             case .getMovies(let movieSelection):
@@ -79,6 +80,8 @@ struct NetworkingService {
                 return "\(API.baseURL)/movie/\(id)?api_key=\(API.privateKey)&language=\(appLanguage)"
             case .getMovieCast(let id):
                 return "\(API.baseURL)/movie/\(id)/credits?api_key=\(API.privateKey)&language=\(appLanguage)"
+            case .getMovieTrailer(let id):
+                return "\(API.baseURL)/movie/\(id)/videos?api_key=\(API.privateKey)&language=\(appLanguage)"
             }
             
         }

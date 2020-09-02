@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dtf-ND-H8k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dtf-ND-H8k">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -267,7 +267,7 @@
                                                             <constraint firstItem="ptd-mw-oU8" firstAttribute="leading" secondItem="QuB-Rh-dwP" secondAttribute="leading" id="4H7-u6-243"/>
                                                             <constraint firstAttribute="trailing" secondItem="ptd-mw-oU8" secondAttribute="trailing" id="D7I-vs-Qr5"/>
                                                             <constraint firstAttribute="bottom" secondItem="ptd-mw-oU8" secondAttribute="bottom" id="aP6-lL-NiQ"/>
-                                                            <constraint firstAttribute="height" constant="200" id="csk-dY-eoe"/>
+                                                            <constraint firstAttribute="height" priority="750" constant="200" id="csk-dY-eoe"/>
                                                             <constraint firstItem="ptd-mw-oU8" firstAttribute="top" secondItem="QuB-Rh-dwP" secondAttribute="top" id="hT4-fp-bGp"/>
                                                         </constraints>
                                                     </view>
@@ -277,19 +277,6 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mc-9n-6vd">
-                                                        <rect key="frame" x="147.5" y="1159" width="25" height="24"/>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" image="play.circle" catalog="system">
-                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                                        </state>
-                                                        <state key="highlighted">
-                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="playVideo:" destination="Dtf-ND-H8k" eventType="touchUpInside" id="x47-2r-pfE"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.39904399198644303" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -308,14 +295,12 @@
                                                     <constraint firstItem="8vP-IK-td8" firstAttribute="top" secondItem="fUS-B6-Yug" secondAttribute="bottom" constant="20" id="MxT-3a-P6I"/>
                                                     <constraint firstItem="fUS-B6-Yug" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" constant="20" id="Nbp-bu-aOp"/>
                                                     <constraint firstItem="QuB-Rh-dwP" firstAttribute="top" secondItem="8vP-IK-td8" secondAttribute="bottom" constant="20" id="OQG-uN-X4x"/>
-                                                    <constraint firstItem="9Mc-9n-6vd" firstAttribute="top" secondItem="QuB-Rh-dwP" secondAttribute="bottom" constant="7.5" id="SJQ-Eb-QWv"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZYN-yy-zve" secondAttribute="trailing" constant="20" id="UWp-0e-BHn"/>
                                                     <constraint firstItem="CGC-1U-5Tv" firstAttribute="top" secondItem="1jm-Th-qoY" secondAttribute="top" constant="250" id="WlJ-yC-ZS1"/>
                                                     <constraint firstItem="JcU-Q7-Mfn" firstAttribute="top" secondItem="QuB-Rh-dwP" secondAttribute="bottom" constant="50" id="Wqd-Ku-ChT"/>
                                                     <constraint firstItem="CGC-1U-5Tv" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" constant="40" id="X3v-yM-1QW"/>
                                                     <constraint firstItem="P0M-ke-84N" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" constant="20" id="XGz-dc-oXW"/>
                                                     <constraint firstItem="EQb-r4-EvB" firstAttribute="top" secondItem="6hP-eB-LKy" secondAttribute="bottom" constant="25" id="Zxh-xO-m8g"/>
-                                                    <constraint firstItem="9Mc-9n-6vd" firstAttribute="centerX" secondItem="1jm-Th-qoY" secondAttribute="centerX" id="aZZ-GA-CUc"/>
                                                     <constraint firstItem="P0M-ke-84N" firstAttribute="top" secondItem="EQb-r4-EvB" secondAttribute="bottom" constant="20" id="bRL-KY-lEW"/>
                                                     <constraint firstItem="VBQ-Ba-DqH" firstAttribute="leading" secondItem="d06-2g-JLg" secondAttribute="leading" id="bez-eI-q3t"/>
                                                     <constraint firstItem="d06-2g-JLg" firstAttribute="leading" secondItem="1jm-Th-qoY" secondAttribute="leading" constant="10" id="blM-aO-6ST"/>
@@ -399,6 +384,7 @@
                         <outlet property="roundedView" destination="0Dd-Lt-ZDg" id="U0l-Gc-qZv"/>
                         <outlet property="scoreView" destination="VBQ-Ba-DqH" id="Ue4-Ze-EqO"/>
                         <outlet property="videoPlayer" destination="QuB-Rh-dwP" id="Old-2L-bKs"/>
+                        <outlet property="videoPlayerViewHeightConstraint" destination="csk-dY-eoe" id="iFI-ex-DFu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcf-rw-zBm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -410,6 +396,5 @@
         <image name="avengers" width="1280" height="1920"/>
         <image name="emptyHeart_icon" width="22" height="21"/>
         <image name="icon_voltar" width="9" height="15"/>
-        <image name="play.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

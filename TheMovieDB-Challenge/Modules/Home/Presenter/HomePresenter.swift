@@ -95,7 +95,7 @@ extension HomePresenter: HomeInteractorToPresenterProtocol {
         }()
         
         sectionNames.append(sectionName)
-        moviesArray.append(movieHeader.movies ?? [])
+        moviesArray.append(movieHeader.movies?.shuffled() ?? [])
         view?.showMovieResults()
         
     }

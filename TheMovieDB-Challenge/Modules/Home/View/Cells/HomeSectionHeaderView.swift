@@ -30,7 +30,7 @@ class HomeSectionHeaderView : UICollectionReusableView {
     let seeDetailsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white//.label
-        label.text = "See more details..."
+        label.text = "See more..."
         label.font = UIFont.italicSystemFont(ofSize: 14) //boldSystemFont(ofSize: 14)
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false

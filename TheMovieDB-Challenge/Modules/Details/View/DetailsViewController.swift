@@ -10,19 +10,9 @@ import UIKit
 import SDWebImage
 import RealmSwift
 import FirebaseCrashlytics
-import AVKit
-import AVFoundation
 import YouTubePlayer
 
-//import Hero
-
-class DetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    let realm = try! Realm()
-    var genreIDS : Results<Item>?
-    
-    var player = AVPlayer()
-    var playerViewController = AVPlayerViewController()
+class DetailsViewController: UIViewController {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var backgroundImage: CustomImageView!
@@ -37,22 +27,12 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var castCollectionView: UICollectionView!
     @IBOutlet weak var videoPlayer: YouTubePlayerView!
+    @IBOutlet weak var videoPlayerViewHeightConstraint: NSLayoutConstraint!
     
+    let realm = try! Realm()
     var castArray: [CastElement]?
-    
     let shapeLayer = CAShapeLayer()
-    
-    var movie : Movie? {
-        
-        didSet {
-            
-            LoadingView.sharedInstance.show(style: .dark)
-            
-            loadGenres()
-            
-        }
-        
-    }
+    var movie : Movie?
     
     //MARK: - Sets the StatusBar as white
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -64,8 +44,15 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCell()
         setUpCollection()
+        setupCell()
+        setupVideoDelegate()
+        
+    }
+    
+    @IBAction func tappedGoBack(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -78,159 +65,11 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         castCollectionView.showsHorizontalScrollIndicator = false
     }
     
-    //MARK: - Collection View methods
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    private func setupVideoDelegate() {
         
-        let nCells = castArray?.count ?? 0
-        
-        if nCells > 8 {
-            return 9
-        }
-        
-        return nCells
-    
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCellID", for: indexPath) as! CastCollectionViewCell
-        
-        if let castElement = castArray?[indexPath.item] {
-                
-            cell.setupCell(cast: castElement, item: indexPath.item)
-                
-        }
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return .init(8.0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        videoPlayer.delegate = self
         
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return .init(width: view.frame.width / 3.6, height: castCollectionView.frame.height - 16)
-        
-    }
-    
-    //MARK: - General Methods
-    private func setScore(rating: Int) {
-        
-        let center = CGPoint(x: 38.0, y: 38.0)
-        let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
-        shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor = #colorLiteral(red: 0.8242291808, green: 0.8366972804, blue: 0.1931050718, alpha: 1)
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineCap = CAShapeLayerLineCap.round
-        shapeLayer.lineWidth = 5
-        shapeLayer.strokeEnd = 0
-        
-        scoreView.layer.addSublayer(shapeLayer)
-        roundedView.layer.cornerRadius = roundedView.frame.width / 2
-        
-        perform(#selector(animateScore), with: nil, afterDelay: 0.5)
-        
-    }
-    
-    @objc private func animateScore() {
-        
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        
-        basicAnimation.toValue = 1
-        basicAnimation.duration = 1.5
-        
-        basicAnimation.fillMode = .forwards
-        basicAnimation.isRemovedOnCompletion = false
-        
-        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
-        
-    }
-    
-    @IBAction func tappedGoBack(_ sender: UIButton) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    @IBAction func playVideo(_ sender: UIButton) {
-  
-        videoPlayer.loadVideoID("xw1vQgVaYNQ")
-        videoPlayer.play()
-        
-//        let selectedVideo = Bundle.main.path(forResource: "presentingVideo", ofType: "mp4")
-//
-//        let videoPath = URL(fileURLWithPath: selectedVideo ?? "")
-//
-//        player = AVPlayer(url: videoPath)
-//        playerViewController.player = player
-//
-//        self.present(playerViewController, animated: true, completion: {
-//            self.player.play()
-//        })
-        
-    }
-    
-    private func loadGenres() {
-        
-        genreIDS = realm.objects(Item.self)
-        
-    }
-    
-    private func setGenres(idArray: [Int]?) -> String {
-        
-        if let id = idArray {
-            
-            if id.count != 0 {
-                
-                var genresByName = ""
-                
-                //percorre os IDS
-                for genreCodes in id {
-                    //Percorre o Movie em busca do ID
-                    if let categoryForDeletion = self.genreIDS {
-                        
-                        for search in categoryForDeletion {
-                            
-                            if search.id == genreCodes {
-                                genresByName.append(search.name + ", ")
-                            }
-                            
-                        }
-                    }
-                    
-                }
-                
-                //let size = (genresByName.count - 2)
-                //let str = genresByName[0..<size] + "."
-                
-                return genresByName
-                
-            }
-            
-        }
-        
-        return "Não foi possivel identificar generos."
-    }
-    
-    //    func setFavButtonStatus(){
-    //        if let resp = self.controller?.isFavorite(id: movie?.id ?? 0) {
-    //
-    //            if resp == true {
-    //                self.btnFavorite.setImage(#imageLiteral(resourceName: "filledHeart_icon") , for: .normal)
-    //            }
-    //            else{
-    //                self.btnFavorite.setImage(#imageLiteral(resourceName: "emptyHeart_icon") , for: .normal)
-    //            }
-    //        }
-    //    }
     
     private func setupCell() {
         
@@ -284,8 +123,39 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
                 
             }
             
+            group.enter()
+            NetworkingService.sharedInstance.getMovieTrailer(movieId: movieId) { [weak self] result in
+                
+                switch result {
+                case .success(let trailer):
+                    print("Terminou de carregar task 3")
+                    
+                    DispatchQueue.main.async {
+                        
+                        guard let videoID = trailer.results?.first?.key else {
+                            
+                            UIView.animate(withDuration: 0.5) {
+                                self?.videoPlayerViewHeightConstraint.constant = 0
+                                self?.videoPlayer.alpha = 0
+                            }
+                            
+                            return
+                            
+                        }
+                        
+                        self?.videoPlayer.loadVideoID(videoID)
+                        
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                
+                group.leave()
+                
+            }
+            
             group.notify(queue: .main) {
-                print("Terminou de carregar TUDO")
+                print("Terminou de executar todas tasks")
                 LoadingView.sharedInstance.hide()
             }
             
@@ -313,11 +183,55 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         
         movieName.text = movie?.title ?? "" + " (2018)"
         moviePlot.text = movie?.overview
-        movieGenre.text = setGenres(idArray: movie?.genreIDS ?? [])
+        //movieGenre.text = setGenres(idArray: movie?.genreIDS ?? [])
         
         setScore(rating: movie?.voteCount ?? 50)
         
     }
+    
+    private func setScore(rating: Int) {
+        
+        let center = CGPoint(x: 38.0, y: 38.0)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        shapeLayer.path = circularPath.cgPath
+        shapeLayer.strokeColor = #colorLiteral(red: 0.8242291808, green: 0.8366972804, blue: 0.1931050718, alpha: 1)
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        shapeLayer.lineWidth = 5
+        shapeLayer.strokeEnd = 0
+        
+        scoreView.layer.addSublayer(shapeLayer)
+        roundedView.layer.cornerRadius = roundedView.frame.width / 2
+        
+        perform(#selector(animateScore), with: nil, afterDelay: 0.5)
+        
+    }
+    
+    @objc private func animateScore() {
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        
+        basicAnimation.toValue = 1
+        basicAnimation.duration = 1.5
+        
+        basicAnimation.fillMode = .forwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+        
+    }
+    
+    //    func setFavButtonStatus(){
+    //        if let resp = self.controller?.isFavorite(id: movie?.id ?? 0) {
+    //
+    //            if resp == true {
+    //                self.btnFavorite.setImage(#imageLiteral(resourceName: "filledHeart_icon") , for: .normal)
+    //            }
+    //            else{
+    //                self.btnFavorite.setImage(#imageLiteral(resourceName: "emptyHeart_icon") , for: .normal)
+    //            }
+    //        }
+    //    }
     
     //    @IBAction func btnFavoriteTapped(_ sender: UIButton) {
     //
@@ -359,5 +273,70 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     //        }
     //
     //    }
+    
+}
+
+extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    //MARK: - Collection View methods
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        let nCells = castArray?.count ?? 0
+        
+        if nCells > 8 {
+            return 9
+        }
+        
+        return nCells
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCellID", for: indexPath) as! CastCollectionViewCell
+        
+        if let castElement = castArray?[indexPath.item] {
+            
+            cell.setupCell(cast: castElement, item: indexPath.item)
+            
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return .init(8.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return .init(width: view.frame.width / 3.6, height: castCollectionView.frame.height - 16)
+        
+    }
+    
+}
+
+extension DetailsViewController: YouTubePlayerDelegate {
+    
+    //self?.videoPlayer.play()
+    
+    func playerReady(videoPlayer: YouTubePlayerView) {
+        print("TERMINOU DE CARREGAR VIDEO 1")
+    }
+    
+    func playerStateChanged(videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
+        print("TERMINOU DE CARREGAR VIDEO 2")
+    }
+    
+    func playerQualityChanged(videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
+        print("TERMINOU DE CARREGAR VIDEO 3")
+    }
     
 }
