@@ -12,6 +12,7 @@ import RealmSwift
 import FirebaseCrashlytics
 import AVKit
 import AVFoundation
+import YouTubePlayer
 
 //import Hero
 
@@ -35,6 +36,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var moviePlot: UILabel!
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var castCollectionView: UICollectionView!
+    @IBOutlet weak var videoPlayer: YouTubePlayerView!
     
     var castArray: [CastElement]?
     
@@ -159,17 +161,20 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     @IBAction func playVideo(_ sender: UIButton) {
+  
+        videoPlayer.loadVideoID("xw1vQgVaYNQ")
+        videoPlayer.play()
         
-        let selectedVideo = Bundle.main.path(forResource: "presentingVideo", ofType: "mp4")
-        
-        let videoPath = URL(fileURLWithPath: selectedVideo ?? "")
-        
-        player = AVPlayer(url: videoPath)
-        playerViewController.player = player
-        
-        self.present(playerViewController, animated: true, completion: {
-            self.player.play()
-        })
+//        let selectedVideo = Bundle.main.path(forResource: "presentingVideo", ofType: "mp4")
+//
+//        let videoPath = URL(fileURLWithPath: selectedVideo ?? "")
+//
+//        player = AVPlayer(url: videoPath)
+//        playerViewController.player = player
+//
+//        self.present(playerViewController, animated: true, completion: {
+//            self.player.play()
+//        })
         
     }
     
