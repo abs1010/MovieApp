@@ -223,7 +223,6 @@
 				BC366B7323E08C56009ABFD6 /* Info.plist */,
 				BCD2C0C6246D72B30046910F /* AppDelegate */,
 				BCA4110D2465DC9800C570CD /* Modules */,
-				BCA06A5F24AEC11B00E98425 /* Alerts */,
 				BC611FA924A6CD2400CD123F /* Services */,
 				BCD2C0C8246D733A0046910F /* Resources */,
 			);
@@ -266,6 +265,7 @@
 		BC611FA924A6CD2400CD123F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BCA06A5F24AEC11B00E98425 /* Alerts */,
 				BC7D6FEC23E2207500639A19 /* API */,
 			);
 			path = Services;

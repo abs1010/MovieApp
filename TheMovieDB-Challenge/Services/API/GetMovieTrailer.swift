@@ -39,6 +39,8 @@ extension NetworkingService {
                 completionHandler(.success(decodedObj))
             }
             
+            self.showApiLog(url.absoluteString)
+            
         }.resume()
         
     }

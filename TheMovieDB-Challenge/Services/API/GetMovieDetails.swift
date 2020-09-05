@@ -33,7 +33,9 @@ extension NetworkingService {
             }catch {
                 completion(.failure(.CanNotProccessData))
             }
-                
+            
+            self.showApiLog(url.absoluteString)
+            
             semaphore.signal()
         
         }

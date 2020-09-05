@@ -35,6 +35,8 @@ extension NetworkingService {
                 completionHandler(.failure(.CanNotProccessData))
             }
             
+            self.showApiLog(url.absoluteString)
+            
         }.resume()
         
     }

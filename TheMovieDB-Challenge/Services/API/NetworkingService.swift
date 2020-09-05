@@ -11,7 +11,6 @@ import Foundation
 typealias GenericResponse<T> = (_ value: T?, _ success: Bool, _ error : errorTypes?) -> Void
 
 enum errorTypes: Error {
-    case NoError
     case NoDataAvailable
     case CanNotProccessData
 }
@@ -96,6 +95,12 @@ struct NetworkingService {
         
         return URL(string: urlString)!
         
+    }
+    
+    func showApiLog(_ url: String) {
+        print(String.init(repeating: "-", count: 56) + "API LOG" + String.init(repeating: "-", count: 57))
+        print("URL: #\(url)")
+        print(String.init(repeating: "-", count: 120));print("")
     }
     
 }

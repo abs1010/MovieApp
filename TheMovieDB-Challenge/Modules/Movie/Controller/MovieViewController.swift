@@ -234,55 +234,55 @@ extension MovieViewController : UISearchBarDelegate {
     
 }
 
-//extension MovieViewController : MovieControllerDelegate {
-//
-//    func limitOfPagesReached() {
-//
-//        guard noticeNoMoreData == false else { return }
-//
-//        noticeNoMoreData = true
-//
-//        DispatchQueue.main.async {
-//
-//            let alerta = UIAlertController(title: "Alerta", message: "Você chegou até o final", preferredStyle: .alert)
-//            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
-//
-//            alerta.addAction(btnOk)
-//
-//            self.present(alerta, animated: true)
-//
-//        }
-//
-//    }
-//
-//    func successOnLoading() {
-//
-//        DispatchQueue.main.async {
-//            self.movieCollectionView.reloadData()
-//            self.loadingMoreActivityIndicator.stopAnimating()
-//        }
-//
-//    }
-//
-//    func errorOnLoading(error: Error?) {
-//
-//        if !error!.localizedDescription.isEmpty {
-//
-//            DispatchQueue.main.async {
-//
-//                print("Problema ao carregar os dados de Filmes")
-//
-//                let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados dos Filmes", preferredStyle: .alert)
-//                let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
-//
-//                alerta.addAction(btnOk)
-//
-//                self.present(alerta, animated: true)
-//
-//            }
-//
-//        }
-//
-//    }
-//
-//}
+extension MovieViewController : MovieControllerDelegate {
+
+    func limitOfPagesReached() {
+
+        guard noticeNoMoreData == false else { return }
+
+        noticeNoMoreData = true
+
+        DispatchQueue.main.async {
+
+            let alerta = UIAlertController(title: "Alerta", message: "Você chegou até o final", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+
+            alerta.addAction(btnOk)
+
+            self.present(alerta, animated: true)
+
+        }
+
+    }
+
+    func successOnLoading() {
+
+        DispatchQueue.main.async {
+            self.movieCollectionView.reloadData()
+            self.loadingMoreActivityIndicator.stopAnimating()
+        }
+
+    }
+
+    func errorOnLoading(error: Error?) {
+
+        if !error!.localizedDescription.isEmpty {
+
+            DispatchQueue.main.async {
+
+                print("Problema ao carregar os dados de Filmes")
+
+                let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados dos Filmes", preferredStyle: .alert)
+                let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+
+                alerta.addAction(btnOk)
+
+                self.present(alerta, animated: true)
+
+            }
+
+        }
+
+    }
+
+}
