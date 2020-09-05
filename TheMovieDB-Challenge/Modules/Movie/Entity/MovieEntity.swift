@@ -7,6 +7,25 @@
 //
 
 import Foundation
+import RealmSwift
+
+//// MARK: - Genre
+//struct Genre: Codable {
+//    let genres: [GenreElement]
+//}
+//
+//// MARK: - GenreElement
+//struct GenreElement: Codable {
+//    let id: Int
+//    let name: String
+//}
+//
+class Item: Object {
+
+   @objc dynamic var id: Int = 0
+   @objc dynamic var name: String = ""
+
+}
 
 // MARK: - Movie
 struct MovieHeader: Codable {
@@ -53,4 +72,9 @@ struct Movie: Codable {
         case overview
         case releaseDate = "release_date"
     }
+}
+
+struct IdentifierObject {
+    var selection: Constants.MovieSelection
+    var section: Int
 }

@@ -9,11 +9,6 @@
 import UIKit
 import FirebaseCrashlytics
 
-struct IdentifierObject {
-    var selection: Constants.MovieSelection
-    var section: Int
-}
-
 class MovieViewController: UIViewController {
     
     weak var presenter: HomeViewToPresenterProtocol?
@@ -27,6 +22,8 @@ class MovieViewController: UIViewController {
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var searchBarHight: NSLayoutConstraint!
     @IBOutlet weak var loadingMoreActivityIndicator: UIActivityIndicatorView!
+    
+    //weak var presenter: LoginViewToPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -285,4 +282,8 @@ extension MovieViewController : MovieControllerDelegate {
 
     }
 
+}
+
+extension MovieViewController: MoviePresenterToViewProtocol {
+    
 }
