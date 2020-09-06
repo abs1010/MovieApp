@@ -44,10 +44,10 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="| 12 | • 05/05/2016 (BR)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-r4-EvB">
-                                                        <rect key="frame" x="20" y="571.5" width="280" height="12"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Devided we fall" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d06-2g-JLg">
+                                                        <rect key="frame" x="10" y="308" width="300" height="13"/>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="13"/>
+                                                        <color key="textColor" red="0.7481074929" green="0.76848608259999995" blue="0.78100866079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBQ-Ba-DqH" userLabel="scoreView">
@@ -103,12 +103,6 @@
                                                             <constraint firstAttribute="width" constant="40" id="YGS-Ji-7HZ"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Devided we fall" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d06-2g-JLg">
-                                                        <rect key="frame" x="10" y="308" width="300" height="13"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="13"/>
-                                                        <color key="textColor" red="0.7481074929" green="0.76848608259999995" blue="0.78100866079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-HU-ydH">
                                                         <rect key="frame" x="20" y="411" width="280" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="17"/>
@@ -119,6 +113,12 @@
                                                         <rect key="frame" x="20" y="441.5" width="280" height="105"/>
                                                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="| 12 | • 05/05/2016 (BR)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-r4-EvB">
+                                                        <rect key="frame" x="20" y="571.5" width="280" height="12"/>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -374,9 +374,10 @@
                         <outlet property="backgroundImage" destination="dsH-6E-OLV" id="gFj-Pl-CPC"/>
                         <outlet property="btnFavorite" destination="qrM-Tc-Sg7" id="KLb-Fh-zX4"/>
                         <outlet property="castCollectionView" destination="8vP-IK-td8" id="lNi-qB-fDU"/>
+                        <outlet property="classificationAndDate" destination="EQb-r4-EvB" id="56p-es-Fmj"/>
                         <outlet property="favoriteView" destination="qRE-0e-6Kb" id="NxR-WP-kmt"/>
                         <outlet property="mainScrollView" destination="x16-5u-dzE" id="b9y-PL-4Rn"/>
-                        <outlet property="movieGenre" destination="EQb-r4-EvB" id="v3I-mp-qIl"/>
+                        <outlet property="movieGenre" destination="P0M-ke-84N" id="a7X-rM-uOG"/>
                         <outlet property="movieName" destination="CGC-1U-5Tv" id="hgH-M1-sVq"/>
                         <outlet property="moviePlot" destination="6hP-eB-LKy" id="sIl-gt-Nis"/>
                         <outlet property="movieRating" destination="wSd-6v-71q" id="doE-0I-JUp"/>

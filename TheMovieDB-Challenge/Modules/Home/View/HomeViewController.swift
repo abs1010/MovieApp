@@ -217,12 +217,6 @@ extension HomeViewController: MainCollectionViewCellDelegate {
     
     func didTapToSeeDetails(_ section: Int) {
         
-        let movieStoryboard = UIStoryboard.init(name: "Movies", bundle: Bundle.main)
-        
-        let vc = movieStoryboard.instantiateViewController(withIdentifier: "MoviesList") as! MovieViewController
-        
-        vc.presenter = presenter
-        
         var selection: Constants.MovieSelection {
 
             if section == 0 {
@@ -237,9 +231,9 @@ extension HomeViewController: MainCollectionViewCellDelegate {
 
         }
         
-        vc.identifierObject = IdentifierObject(selection: selection, section: section)
+        let vc = MovieListRouter.createModule(as: .fullScreen)
         
-        //vc.movieSelection = selection
+        //vc.identifierObject = IdentifierObject(selection: selection, section: section)
         
         self.present(vc, animated: true, completion: nil)
         

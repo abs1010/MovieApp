@@ -9,26 +9,27 @@
 import UIKit
 import FirebaseCrashlytics
 
-class MovieViewController: UIViewController {
+class MovieListViewController: UIViewController {
     
-    weak var presenter: HomeViewToPresenterProtocol?
+    var presenter: MovieListViewToPresenterProtocol?
     var refreshControl: UIRefreshControl?
     var fetchingMore = false
-    var noticeNoMoreData = false
     var movieSelection: Constants.MovieSelection?
     var identifierObject: IdentifierObject?
+    var noticeNoMoreData = false ///Indicates whether the page limit has reached the end
     
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var searchBarHight: NSLayoutConstraint!
     @IBOutlet weak var loadingMoreActivityIndicator: UIActivityIndicatorView!
     
-    //weak var presenter: LoginViewToPresenterProtocol?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        
+        movieSelection = .Popular
+        presenter?.getMovies(category: .Movie, movieSelection: movieSelection!)
         
     }
     
@@ -48,7 +49,22 @@ class MovieViewController: UIViewController {
         movieCollectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: identifier)
         
     }
+    
+    private func showAlertOfLimit() {
         
+        DispatchQueue.main.async {
+            
+            let alerta = UIAlertController(title: "Alerta", message: "Você chegou até o final", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+            
+            alerta.addAction(btnOk)
+            
+            self.present(alerta, animated: true)
+            
+        }
+        
+    }
+    
     private func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
@@ -60,10 +76,15 @@ class MovieViewController: UIViewController {
     
     @objc func refreshList() {
         
+        if noticeNoMoreData {
+            showAlertOfLimit()
+            return
+        }
+        
         refreshControl?.endRefreshing()
-        presenter?.getMovies(page: 0, category: .Movie, movieSelection: movieSelection!)
+        //presenter?.getMovies(category: .Movie, movieSelection: movieSelection!)
         movieCollectionView.reloadData()
-    
+        
     }
     
     //MARK: - GoBack
@@ -90,7 +111,7 @@ class MovieViewController: UIViewController {
     
 }
 
-extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -115,7 +136,7 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
         if let movie = presenter?.loadMovieWithIndexPath(indexPath: index) {
             cell.setupCell(movie: movie)
         }
-                
+        
         return cell
         
     }
@@ -177,15 +198,15 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
-         let identifier = "DetailsViewControllerID"
-         
-         let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! DetailsViewController
-         
+        let identifier = "DetailsViewControllerID"
+        
+        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! DetailsViewController
+        
         let index = IndexPath(row: indexPath.row, section: identifierObject?.section ?? 0)
         
-         vc.movie = presenter?.loadMovieWithIndexPath(indexPath: index)
-         
-         present(vc, animated: true, completion: nil)
+        vc.movie = presenter?.loadMovieWithIndexPath(indexPath: index)
+        
+        present(vc, animated: true, completion: nil)
         
     }
     
@@ -193,7 +214,7 @@ extension MovieViewController : UICollectionViewDelegate, UICollectionViewDataSo
 
 //MARK: - UISearchBar Delegate methods
 
-extension MovieViewController : UISearchBarDelegate {
+extension MovieListViewController : UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
@@ -231,59 +252,41 @@ extension MovieViewController : UISearchBarDelegate {
     
 }
 
-extension MovieViewController : MovieControllerDelegate {
-
-    func limitOfPagesReached() {
-
-        guard noticeNoMoreData == false else { return }
-
-        noticeNoMoreData = true
-
-        DispatchQueue.main.async {
-
-            let alerta = UIAlertController(title: "Alerta", message: "Você chegou até o final", preferredStyle: .alert)
-            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
-
-            alerta.addAction(btnOk)
-
-            self.present(alerta, animated: true)
-
-        }
-
-    }
-
-    func successOnLoading() {
-
+extension MovieListViewController: MovieListPresenterToViewProtocol {
+    
+    func showMovieResults() {
+        
         DispatchQueue.main.async {
             self.movieCollectionView.reloadData()
             self.loadingMoreActivityIndicator.stopAnimating()
         }
-
+        
     }
-
-    func errorOnLoading(error: Error?) {
-
-        if !error!.localizedDescription.isEmpty {
-
-            DispatchQueue.main.async {
-
-                print("Problema ao carregar os dados de Filmes")
-
-                let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados dos Filmes", preferredStyle: .alert)
-                let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
-
-                alerta.addAction(btnOk)
-
-                self.present(alerta, animated: true)
-
-            }
-
+    
+    func problemOnFetchingData(error: errorTypes) {
+        
+        DispatchQueue.main.async {
+            
+            print("Problema ao carregar os dados de Filmes")
+            
+            let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados dos Filmes", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+            alerta.addAction(btnOk)
+            
+            self.present(alerta, animated: true)
+            
         }
-
+        
     }
-
-}
-
-extension MovieViewController: MoviePresenterToViewProtocol {
+    
+    func limitOfPagesReached() {
+        
+        guard noticeNoMoreData == false else { return }
+        
+        noticeNoMoreData = true
+        
+        showAlertOfLimit()
+        
+    }
     
 }

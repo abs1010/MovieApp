@@ -1,59 +1,99 @@
 //
-//  MovieController.swift
+//  MoviePresenter.swift
 //  TheMovieDB-Challenge
 //
-//  Created by Alan Silva on 29/01/20.
+//  Created by Alan Silva on 04/09/20.
 //  Copyright © 2020 Alan Silva. All rights reserved.
 //
 
 import Foundation
-import RealmSwift
+
+class MovieListPresenter: MovieListViewToPresenterProtocol {
+    
+    weak var view: MovieListPresenterToViewProtocol?
+    var interactor: MovieListPresenterToInteractorProtocol?
+    weak var router: MovieListPresenterToRouterProtocol?
+    
+    private var movieSelection: Constants.MovieSelection?
+    ///Initial value for pagination
+    private var page = 1
+    private  var totalPages = 1
+    
+    private var moviesArray : [Movie] = [] // Create another object that holds the page # as well
+    private var notFilteredArray : [Movie] = []
+    
+    private var favoriteMoviesArray : [Movie] = []
+    private var notFilteredFavoriteMoviesArray : [Movie] = []
+    
+    var provider = NetworkingService.sharedInstance
+    
+    private var isFetchingItems: Bool = false
+    private var totalItemsAvailable: Int = 3000
+    
+    func getMovies(category: Constants.category, movieSelection: Constants.MovieSelection) {
+        interactor?.getMovies(page: page, category: category, movieSelection: movieSelection)
+    }
+    
+    func numberOfSections() -> Int {
+        return moviesArray.count
+    }
+    
+    func getNumberOfRowsInSection(section: Int) -> Int {
+        return moviesArray.count
+    }
+
+    func loadMovieWithIndexPath(indexPath: IndexPath) -> Movie {
+        return moviesArray[indexPath.row]
+    }
+    
+}
+
+extension MovieListPresenter: MovieListInteractorToPresenterProtocol {
+    
+    func returnMovieResults(movieHeader: MovieHeader) {
+        
+//        let sectionName = { () -> String in
+//
+//            switch movieHeader.categoryType?.rawValue ?? "" {
+//
+//            case "popular":
+//                return "Popular"
+//            case "now_playing":
+//                return "Now Playing"
+//            case "upcoming":
+//                return "Upcoming"
+//            case "top_rated":
+//                return "Top Rated"
+//            default:
+//                return ""
+//            }
+//
+//        }()
+        
+        moviesArray += movieHeader.movies ?? []
+        view?.showMovieResults()
+        
+    }
+    
+    func problemOnFetchingData(error: errorTypes) {
+        
+        view?.problemOnFetchingData(error: error)
+        
+    }
+    
+}
+
+/*
+ 
 
 protocol MovieControllerDelegate : class {
 
-    func successOnLoading()
-    func errorOnLoading(error: Error?)
-    func limitOfPagesReached()
-}
+     func successOnLoading()
+     func errorOnLoading(error: Error?)
+     func limitOfPagesReached()
+ }
 
-class MovieController {
-
-    ///Initial value for pagination
-    var page = 1
-    var totalPages = 1
-
-    var movieSelection: Constants.MovieSelection?
-    var didGetGenres = false
-
-    let realm = try! Realm()
-
-    weak var delegate: MovieControllerDelegate?
-
-    private var moviesArray : [Movie] = []
-    private var notFilteredArray : [Movie] = []
-
-    private var favoriteMoviesArray : [Movie] = []
-    private var notFilteredFavoriteMoviesArray : [Movie] = []
-
-    //private var genresArray : [GenreElement] = []
-
-    var provider = NetworkingService.sharedInstance
-
-    private var isFetchingItems: Bool = false
-    private var totalItemsAvailable: Int = 3000
-
-    private func setupController() {
-
-        //self.provider = MovieDataProvider(page: self.page, category: .Movie, movieSelection: movieSelection ?? Constants.MovieSelection.Popular)
-        //self.provider.delegate = self
-
-        //self.removeAll()
-
-        //self.saveGenresIntoRealm()
-
-    }
-
-    func setMovieSelection(_  chosenMovieSelection: Constants.MovieSelection) {
+func setMovieSelection(_  chosenMovieSelection: Constants.MovieSelection) {
 
         self.movieSelection = chosenMovieSelection
 
@@ -332,3 +372,4 @@ class MovieController {
 //    }
 //
 //}
+*/

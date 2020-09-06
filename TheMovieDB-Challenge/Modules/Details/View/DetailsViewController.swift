@@ -24,6 +24,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var favoriteView: UIView!
     @IBOutlet weak var btnFavorite: UIButton!
     @IBOutlet weak var moviePlot: UILabel!
+    @IBOutlet weak var classificationAndDate: UILabel!
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var castCollectionView: UICollectionView!
     @IBOutlet weak var videoPlayer: YouTubePlayerView!
@@ -88,10 +89,17 @@ class DetailsViewController: UIViewController {
                 case .success(let movieDetails):
                     print("Terminou de carregar task 1")
                     DispatchQueue.main.async {
+                        
+                        //Refactor, create a method to handle the properties properly
                         self?.movieTagline.text = movieDetails.tagline ?? ""
                         self?.movieRating.text = "\(movieDetails.voteAverage ?? 0.0)℅".replacingOccurrences(of: ".", with: "")
+                        self?.classificationAndDate.text = "12" + movieDetails.releaseDate!
                         
-                        //self.castArray = movieDetails
+                        //Movie duration in minutes / 60 min = movieDetails.runtime
+                        if let genres = movieDetails.genres {
+                            self?.movieGenre.text = self?.setGenres(genres: genres)
+                        }
+                        
                         self?.castCollectionView.reloadData()
                     }
                     
@@ -186,6 +194,23 @@ class DetailsViewController: UIViewController {
         //movieGenre.text = setGenres(idArray: movie?.genreIDS ?? [])
         
         setScore(rating: movie?.voteCount ?? 50)
+        
+    }
+    
+    private func setGenres(genres: [Genre]) -> String {
+        
+        var genresByName = ""
+        
+        for i in genres {
+            
+            genresByName.append(i.name ?? "" + ", ")
+            
+        }
+    
+        let size = (genresByName.count - 2)
+        let str = genresByName[0..<size] + "."
+        
+        return str
         
     }
     

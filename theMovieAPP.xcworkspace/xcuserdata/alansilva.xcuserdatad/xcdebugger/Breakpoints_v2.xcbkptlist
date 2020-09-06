@@ -14,8 +14,8 @@
             filePath = "TheMovieDB-Challenge/Modules/Details/View/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
             landmarkName = "playerReady(videoPlayer:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "TheMovieDB-Challenge/Modules/Details/View/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
             landmarkName = "playerStateChanged(videoPlayer:playerState:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "TheMovieDB-Challenge/Modules/Details/View/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "playerQualityChanged(videoPlayer:playbackQuality:)"
             landmarkType = "7">
          </BreakpointContent>

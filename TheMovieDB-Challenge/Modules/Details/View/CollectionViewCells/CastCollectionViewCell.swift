@@ -75,7 +75,11 @@ class CastCollectionViewCell: UICollectionViewCell {
             
         }
         
-        profilePic.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/w200/\(cast.profilePath ?? "")"), placeholderImage: UIImage(named: "placeholder"), completed: nil)
+        if let path = cast.profilePath {
+            profilePic.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/w200/\(path)"), placeholderImage: UIImage(named: "movie-placeholder"), completed: nil)
+        }else {
+            profilePic.image = UIImage(named: "movie-placeholder")
+        }
         
         //nameLabel.text = cast.name
         //characterLabel.text = cast.character
