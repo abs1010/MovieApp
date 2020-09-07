@@ -30,6 +30,19 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var videoPlayer: YouTubePlayerView!
     @IBOutlet weak var videoPlayerViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var crew1Dir: UILabel!
+    @IBOutlet weak var crew1Role: UILabel!
+    @IBOutlet weak var crew2Dir: UILabel!
+    @IBOutlet weak var crew2Role: UILabel!
+    @IBOutlet weak var crew3Dir: UILabel!
+    @IBOutlet weak var crew3Role: UILabel!
+    @IBOutlet weak var crew4Dir: UILabel!
+    @IBOutlet weak var crew4Role: UILabel!
+    @IBOutlet weak var crew5Dir: UILabel!
+    @IBOutlet weak var crew5Role: UILabel!
+    @IBOutlet weak var crew6Dir: UILabel!
+    @IBOutlet weak var crew6Role: UILabel!
+    
     let realm = try! Realm()
     var castArray: [CastElement]?
     let shapeLayer = CAShapeLayer()
@@ -47,11 +60,16 @@ class DetailsViewController: UIViewController {
         
         setUpCollection()
         setupCell()
-        setupVideoDelegate()
+        
+    }
+
+    @IBAction func tappedGoBack(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
         
     }
     
-    @IBAction func tappedGoBack(_ sender: UIButton) {
+    @objc func didSwipeFromLeft(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
         
@@ -66,17 +84,22 @@ class DetailsViewController: UIViewController {
         castCollectionView.showsHorizontalScrollIndicator = false
     }
     
-    private func setupVideoDelegate() {
-        
-        videoPlayer.delegate = self
-        
-    }
-    
     private func setupCell() {
         
-        //self.setFavButtonStatus()
-        
         LoadingView.sharedInstance.show()
+        
+        ///Pins the view the content area of the scroll view.
+        mainScrollView.contentInsetAdjustmentBehavior = .never
+        
+        ///Set Player Delegate
+        videoPlayer.delegate = self
+        
+        ///Adding Swipe gesture
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeFromLeft(_:)))
+        view.addGestureRecognizer(gesture)
+        
+        ///Make a circle for the score View
+        favoriteView.layer.cornerRadius = favoriteView.frame.width / 2
         
         let group = DispatchGroup()
         
@@ -87,23 +110,12 @@ class DetailsViewController: UIViewController {
                 
                 switch result {
                 case .success(let movieDetails):
-                    print("Terminou de carregar task 1")
+                    print("Terminou task 1")
                     DispatchQueue.main.async {
-                        
-                        //Refactor, create a method to handle the properties properly
-                        self?.movieTagline.text = movieDetails.tagline ?? ""
-                        self?.movieRating.text = "\(movieDetails.voteAverage ?? 0.0)℅".replacingOccurrences(of: ".", with: "")
-                        self?.classificationAndDate.text = "12" + movieDetails.releaseDate!
-                        
-                        //Movie duration in minutes / 60 min = movieDetails.runtime
-                        if let genres = movieDetails.genres {
-                            self?.movieGenre.text = self?.setGenres(genres: genres)
-                        }
-                        
+                        self?.fillMovieInfo(movieDetails)
                         self?.castCollectionView.reloadData()
+                        LoadingView.sharedInstance.hide()
                     }
-                    
-                    LoadingView.sharedInstance.hide()
                 case .failure(let error):
                     print(error)
                 }
@@ -118,7 +130,7 @@ class DetailsViewController: UIViewController {
                 switch result {
                     
                 case .success(let cast):
-                    print("Terminou de carregar task 2")
+                    print("Terminou task 2")
                     DispatchQueue.main.async {
                         self?.castArray = cast.cast
                         self?.castCollectionView.reloadData()
@@ -136,7 +148,7 @@ class DetailsViewController: UIViewController {
                 
                 switch result {
                 case .success(let trailer):
-                    print("Terminou de carregar task 3")
+                    print("Terminou task 3")
                     
                     DispatchQueue.main.async {
                         
@@ -169,55 +181,27 @@ class DetailsViewController: UIViewController {
             
         }
         
-        mainScrollView.contentInsetAdjustmentBehavior = .never
-        
-        ///Make a circle for the score View
-        favoriteView.layer.cornerRadius = favoriteView.frame.width / 2
-        
-        if let urlString = self.movie?.backdropPath {
-            self.backgroundImage.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { isLoadFinished in
-                
-                if isLoadFinished {
-                    
-                    //self?.imgLoadActivityIndicator.stopAnimating()
-                    
-                }
-                
-            })
-            
-        }else {
-            self.backgroundImage.image = UIImage(named: "placeholder")
-        }
-        
-        movieName.text = movie?.title ?? "" + " (2018)"
-        moviePlot.text = movie?.overview
-        //movieGenre.text = setGenres(idArray: movie?.genreIDS ?? [])
-        
-        setScore(rating: movie?.voteCount ?? 50)
-        
     }
     
-    private func setGenres(genres: [Genre]) -> String {
+    private func setScore(rating: Double) {
         
-        var genresByName = ""
-        
-        for i in genres {
-            
-            genresByName.append(i.name ?? "" + ", ")
-            
-        }
-    
-        let size = (genresByName.count - 2)
-        let str = genresByName[0..<size] + "."
-        
-        return str
-        
-    }
-    
-    private func setScore(rating: Int) {
-        
+        let backLayer = CAShapeLayer()
         let center = CGPoint(x: 38.0, y: 38.0)
-        let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPathA = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        
+        backLayer.path = circularPathA.cgPath
+        backLayer.strokeColor = #colorLiteral(red: 0.2550989985, green: 0.2339877486, blue: 0.05938784778, alpha: 1)
+        backLayer.fillColor = UIColor.clear.cgColor
+        backLayer.lineCap = CAShapeLayerLineCap.round
+        backLayer.lineWidth = 5
+        backLayer.strokeEnd = 1
+        
+        scoreView.layer.addSublayer(backLayer)
+        
+        let startAngle = -CGFloat.pi / 2
+        let endAngle = (2 * ((CGFloat.pi / 100.0) * CGFloat(rating * 10)) + startAngle)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        
         shapeLayer.path = circularPath.cgPath
         shapeLayer.strokeColor = #colorLiteral(red: 0.8242291808, green: 0.8366972804, blue: 0.1931050718, alpha: 1)
         shapeLayer.fillColor = UIColor.clear.cgColor
@@ -227,6 +211,14 @@ class DetailsViewController: UIViewController {
         
         scoreView.layer.addSublayer(shapeLayer)
         roundedView.layer.cornerRadius = roundedView.frame.width / 2
+        
+        //Animate counter
+//        for counter in 1...(Int(rating * 10)) {
+//            DispatchQueue.main.async {
+//                print(counter, "%")
+//                //self.movieRating.text = "\(counter) %"
+//            }
+//        }
         
         perform(#selector(animateScore), with: nil, afterDelay: 0.5)
         
@@ -238,11 +230,107 @@ class DetailsViewController: UIViewController {
         
         basicAnimation.toValue = 1
         basicAnimation.duration = 1.5
+        basicAnimation.delegate = self
         
         basicAnimation.fillMode = .forwards
         basicAnimation.isRemovedOnCompletion = false
         
         shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+        
+    }
+    
+    private func fillMovieInfo(_ movieDetails: MovieDetails) {
+        
+        ///Background Image
+        if let urlString = self.movie?.backdropPath {
+            self.backgroundImage.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { _ in
+
+            })
+        }else {
+            self.backgroundImage.image = UIImage(named: "placeholder")
+        }
+        
+        self.moviePlot.text = movie?.overview
+        self.setScore(rating: movie?.voteAverage ?? 50.0)
+        
+        self.movieName.text = "\(movieDetails.title ?? "") (\(movieDetails.releaseDate?.prefix(4) ?? ""))"
+        self.movieTagline.text = movieDetails.tagline ?? ""
+        self.movieRating.text = "\(movieDetails.voteAverage ?? 0.0)%".replacingOccurrences(of: ".", with: "")
+        
+        ///Converts the String into date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: movieDetails.releaseDate ?? "")
+        ///Converts the date into a fommated String
+        let formatDate = DateFormatter()
+        formatDate.dateFormat = "dd/MM/yyyy"
+        let formattedDate = formatDate.string(from: date ?? Date())
+        
+        self.classificationAndDate.text = "[12] " + formattedDate
+        
+        ///Crew
+        /*
+        crew1Dir.text = movieDetails
+        crew1Role
+        crew2Dir
+        crew2Role
+        crew3Dir
+        crew3Role
+        crew4Dir
+        crew4Role
+        crew5Dir
+        rew5Role
+        crew6Dir
+        crew6Role
+        */
+        ///Genres
+        if let genres = movieDetails.genres, let duration = movieDetails.runtime {
+            
+            var genresByName = ""
+            
+            for i in genres {
+                
+                genresByName.append(i.name ?? "")
+                genresByName.append(", ")
+                
+            }
+   
+            let str = genresByName[0..<(genresByName.count - 2)] + " • " + setDurationAsString(duration)
+            
+            self.movieGenre.text = str
+        }
+        
+    }
+    
+    private func setDurationAsString(_ duration: Int) -> String {
+        
+        var formmatedDuration: String {
+            
+            if duration < 60 {
+                return "0h \(duration)m"
+            }
+            else if duration < 120 {
+                return "1h \(duration - 60)m"
+            }
+            else if duration < 180 {
+                return "2h \(duration - 60)m"
+            }
+            else if duration < 240 {
+                return "3h \(duration - 60)m"
+            }
+            else if duration < 300 {
+                return "4h \(duration - 60)m"
+            }
+            else if duration < 360 {
+                return "5h \(duration - 60)m"
+            }
+            else {
+                return "0h 0m"
+            }
+        
+        }
+        
+        return formmatedDuration
         
     }
     
@@ -350,8 +438,6 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
 
 extension DetailsViewController: YouTubePlayerDelegate {
     
-    //self?.videoPlayer.play()
-    
     func playerReady(videoPlayer: YouTubePlayerView) {
         print("TERMINOU DE CARREGAR VIDEO 1")
     }
@@ -362,6 +448,18 @@ extension DetailsViewController: YouTubePlayerDelegate {
     
     func playerQualityChanged(videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
         print("TERMINOU DE CARREGAR VIDEO 3")
+    }
+    
+}
+
+extension DetailsViewController : CAAnimationDelegate {
+
+    func animationDidStart(_ anim: CAAnimation) {
+        print("animation did start")
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        print("animation did finish")
     }
     
 }

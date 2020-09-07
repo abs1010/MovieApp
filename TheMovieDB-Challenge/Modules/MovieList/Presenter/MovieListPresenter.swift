@@ -16,8 +16,10 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
     
     private var movieSelection: Constants.MovieSelection?
     ///Initial value for pagination
+    
     private var page = 1
     private  var totalPages = 1
+    private var isFethingNewPage = false
     
     private var moviesArray : [Movie] = [] // Create another object that holds the page # as well
     private var notFilteredArray : [Movie] = []
@@ -71,6 +73,7 @@ extension MovieListPresenter: MovieListInteractorToPresenterProtocol {
 //        }()
         
         moviesArray += movieHeader.movies ?? []
+        page += 1
         view?.showMovieResults()
         
     }

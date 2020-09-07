@@ -11,9 +11,11 @@ import FirebaseCrashlytics
 
 class MovieListViewController: UIViewController {
     
+    var page = 1
+    
     var presenter: MovieListViewToPresenterProtocol?
     var refreshControl: UIRefreshControl?
-    var fetchingMore = false
+    var isFethingNewPage = false
     var movieSelection: Constants.MovieSelection?
     var identifierObject: IdentifierObject?
     var noticeNoMoreData = false ///Indicates whether the page limit has reached the end
@@ -97,15 +99,28 @@ class MovieListViewController: UIViewController {
     //MARK: - Fetch More Pages
     private func startFetchingNewPage() {
         
-        fetchingMore = true
-        print("beginBatchFetch!")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
-            self.loadingMoreActivityIndicator.startAnimating()
-            //self.controller?.loadAnotherPage()
-            self.fetchingMore = false
-            self.movieCollectionView.reloadData()
-        })
+        if isFethingNewPage {
+            print("Another request is already under way")
+        }else {
+            
+            isFethingNewPage = true
+            print("beginBatchFetch!")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+                self.loadingMoreActivityIndicator.startAnimating()
+                self.presenter?.getMovies(category: .Movie, movieSelection: .Popular)
+                self.isFethingNewPage = false
+                if self.page > 1 {
+                    let indices : [IndexPath] = [IndexPath(item: 20, section: 0), IndexPath(item: 21, section: 0), IndexPath(item: 22, section: 0), IndexPath(item: 23, section: 0), IndexPath(item: 24, section: 0), IndexPath(item: 25, section: 0), IndexPath(item: 26, section: 0), IndexPath(item: 27, section: 0)]
+                              self.movieCollectionView.reloadItems(at: indices)
+                        
+                }else {
+                self.movieCollectionView.reloadData()
+                }
+                self.page += 1
+            })
+            
+        }
         
     }
     
@@ -187,7 +202,7 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
         
         if offsetY > contentHeight - scrollFrameHeight * 2 { //1.5
             
-            if !fetchingMore {
+            if !isFethingNewPage {
                 startFetchingNewPage()
             }
             

@@ -375,6 +375,18 @@
                         <outlet property="btnFavorite" destination="qrM-Tc-Sg7" id="KLb-Fh-zX4"/>
                         <outlet property="castCollectionView" destination="8vP-IK-td8" id="lNi-qB-fDU"/>
                         <outlet property="classificationAndDate" destination="EQb-r4-EvB" id="56p-es-Fmj"/>
+                        <outlet property="crew1Dir" destination="zco-I8-qB5" id="VHx-dB-Pi1"/>
+                        <outlet property="crew1Role" destination="hPP-Jg-grp" id="8KH-Ga-bJ7"/>
+                        <outlet property="crew2Dir" destination="riY-ZH-GIJ" id="4RX-8N-8S0"/>
+                        <outlet property="crew2Role" destination="6kL-gz-UlF" id="b6A-GZ-I2c"/>
+                        <outlet property="crew3Dir" destination="iVA-pF-BKk" id="yIA-GO-Lf8"/>
+                        <outlet property="crew3Role" destination="edp-Bo-ek9" id="VyN-8O-rka"/>
+                        <outlet property="crew4Dir" destination="JHo-5o-mZ0" id="Jxd-gc-xhv"/>
+                        <outlet property="crew4Role" destination="BOd-cP-EP4" id="QMV-Ek-JHu"/>
+                        <outlet property="crew5Dir" destination="jjB-Xj-Cl1" id="fUF-LN-qP2"/>
+                        <outlet property="crew5Role" destination="vLY-TE-DcJ" id="Di8-Td-mqG"/>
+                        <outlet property="crew6Dir" destination="ZTJ-Wq-V47" id="g9o-KY-bYg"/>
+                        <outlet property="crew6Role" destination="KUQ-co-sGl" id="Edr-xd-LMB"/>
                         <outlet property="favoriteView" destination="qRE-0e-6Kb" id="NxR-WP-kmt"/>
                         <outlet property="mainScrollView" destination="x16-5u-dzE" id="b9y-PL-4Rn"/>
                         <outlet property="movieGenre" destination="P0M-ke-84N" id="a7X-rM-uOG"/>
