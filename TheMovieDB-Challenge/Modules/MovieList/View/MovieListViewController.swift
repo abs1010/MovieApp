@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import FirebaseCrashlytics
+import Hero
 
 class MovieListViewController: UIViewController {
     
-    var page = 1
-    
+    //var page = 1
     var presenter: MovieListViewToPresenterProtocol?
-    var refreshControl: UIRefreshControl?
     var isFethingNewPage = false
     var movieSelection: Constants.MovieSelection?
     var identifierObject: IdentifierObject?
@@ -30,20 +28,19 @@ class MovieListViewController: UIViewController {
         
         setupView()
         
-        movieSelection = .Popular
-        presenter?.getMovies(category: .Movie, movieSelection: movieSelection!)
-        
     }
     
     fileprivate func setupView() {
         
-        addRefreshingControl()
+        movieSelection = .Popular
+        presenter?.getMovies(category: .Movie, movieSelection: movieSelection!)
         
         movieSearchBar.searchTextField.textColor = UIColor.white
         
         ///Delegate and Datasource
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
+        movieSearchBar.delegate = self
         
         ///Registering Cells
         let nibName = "MovieCollectionViewCell"
@@ -56,7 +53,7 @@ class MovieListViewController: UIViewController {
         
         DispatchQueue.main.async {
             
-            let alerta = UIAlertController(title: "Alerta", message: "Você chegou até o final", preferredStyle: .alert)
+            let alerta = UIAlertController(title: "Alert", message: "You have reached the limit ;)", preferredStyle: .alert)
             let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
             
             alerta.addAction(btnOk)
@@ -64,28 +61,6 @@ class MovieListViewController: UIViewController {
             self.present(alerta, animated: true)
             
         }
-        
-    }
-    
-    private func addRefreshingControl() {
-        
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl?.tintColor = #colorLiteral(red: 0.01317793038, green: 0.1344225705, blue: 0.2308762968, alpha: 1)
-        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
-        self.movieCollectionView.addSubview(refreshControl!)
-        
-    }
-    
-    @objc func refreshList() {
-        
-        if noticeNoMoreData {
-            showAlertOfLimit()
-            return
-        }
-        
-        refreshControl?.endRefreshing()
-        //presenter?.getMovies(category: .Movie, movieSelection: movieSelection!)
-        movieCollectionView.reloadData()
         
     }
     
@@ -104,20 +79,20 @@ class MovieListViewController: UIViewController {
         }else {
             
             isFethingNewPage = true
-            print("beginBatchFetch!")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
                 self.loadingMoreActivityIndicator.startAnimating()
                 self.presenter?.getMovies(category: .Movie, movieSelection: .Popular)
                 self.isFethingNewPage = false
-                if self.page > 1 {
-                    let indices : [IndexPath] = [IndexPath(item: 20, section: 0), IndexPath(item: 21, section: 0), IndexPath(item: 22, section: 0), IndexPath(item: 23, section: 0), IndexPath(item: 24, section: 0), IndexPath(item: 25, section: 0), IndexPath(item: 26, section: 0), IndexPath(item: 27, section: 0)]
-                              self.movieCollectionView.reloadItems(at: indices)
-                        
-                }else {
+                //if self.page > 1 {
+                    #warning("refactor this ")
+//                    let indices : [IndexPath] = [IndexPath(item: 20, section: 0), IndexPath(item: 21, section: 0), IndexPath(item: 22, section: 0), IndexPath(item: 23, section: 0), IndexPath(item: 24, section: 0), IndexPath(item: 25, section: 0), IndexPath(item: 26, section: 0), IndexPath(item: 27, section: 0)]
+//                              self.movieCollectionView.reloadItems(at: indices)
+//
+//                }else {
                 self.movieCollectionView.reloadData()
-                }
-                self.page += 1
+                //}
+                //self.page += 1
             })
             
         }
@@ -149,7 +124,12 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
         let index = IndexPath(row: indexPath.row, section: identifierObject?.section ?? 0)
         
         if let movie = presenter?.loadMovieWithIndexPath(indexPath: index) {
+            
+            cell.hero.id = "\(movie.id ?? 0)"
+            Hero.shared.apply(modifiers: [.fade, .scale(1.5)], to: cell)
+            
             cell.setupCell(movie: movie)
+            
         }
         
         return cell
@@ -200,7 +180,7 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
         let contentHeight = scrollView.contentSize.height
         let scrollFrameHeight = scrollView.frame.height
         
-        if offsetY > contentHeight - scrollFrameHeight * 2 { //1.5
+        if offsetY > contentHeight - scrollFrameHeight * 1.5 { //1.5
             
             if !isFethingNewPage {
                 startFetchingNewPage()
@@ -237,7 +217,7 @@ extension MovieListViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                //self.controller?.updateArray()
+                self.presenter?.resetArray()
                 self.movieCollectionView.reloadData()
             }
             
@@ -251,15 +231,14 @@ extension MovieListViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                //self.controller?.updateArray()
+                self.presenter?.resetArray()
                 self.movieCollectionView.reloadData()
             }
             
         }
         else {
             
-            //self.controller?.searchByValue(searchText: searchText)
-            
+            self.presenter?.searchByValue(searchText: searchText)
             self.movieCollectionView.reloadData()
         }
         
@@ -282,8 +261,6 @@ extension MovieListViewController: MovieListPresenterToViewProtocol {
         
         DispatchQueue.main.async {
             
-            print("Problema ao carregar os dados de Filmes")
-            
             let alerta = UIAlertController(title: "Erro", message: "Problema ao carregar os dados dos Filmes", preferredStyle: .alert)
             let btnOk = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
             alerta.addAction(btnOk)
@@ -299,6 +276,8 @@ extension MovieListViewController: MovieListPresenterToViewProtocol {
         guard noticeNoMoreData == false else { return }
         
         noticeNoMoreData = true
+        
+        self.loadingMoreActivityIndicator.stopAnimating()
         
         showAlertOfLimit()
         

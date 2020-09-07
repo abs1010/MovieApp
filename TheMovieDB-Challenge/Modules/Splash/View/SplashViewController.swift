@@ -26,12 +26,12 @@ class SplashViewController: UIViewController {
     }
     
     private func startAnimation() {
-        lottieStartAnimation(on: animatedImageView, animationFileName: .movieLoading1)
+        lottieStartAnimation(on: animatedImageView, animationFileName: .movieLoading3)
     }
     
     private func startTimer() {
         
-        let timeInterval = 1.0//5.0
+        let timeInterval = 7.0
         
         timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(self.endAnimation), userInfo: nil, repeats: false)
         

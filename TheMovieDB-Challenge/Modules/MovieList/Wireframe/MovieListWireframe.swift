@@ -17,6 +17,8 @@ protocol MovieListViewToPresenterProtocol: class {
     func numberOfSections() -> Int
     func getNumberOfRowsInSection(section: Int) -> Int
     func loadMovieWithIndexPath(indexPath: IndexPath) -> Movie
+    func searchByValue(searchText: String)
+    func resetArray()
 }
 
 protocol MovieListPresenterToInteractorProtocol: class {

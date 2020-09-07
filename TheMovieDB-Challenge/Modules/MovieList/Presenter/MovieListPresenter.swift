@@ -18,7 +18,7 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
     ///Initial value for pagination
     
     private var page = 1
-    private  var totalPages = 1
+    private var totalPages = 1
     private var isFethingNewPage = false
     
     private var moviesArray : [Movie] = [] // Create another object that holds the page # as well
@@ -33,7 +33,14 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
     private var totalItemsAvailable: Int = 3000
     
     func getMovies(category: Constants.category, movieSelection: Constants.MovieSelection) {
+        
+        guard page <= totalPages || page == 1 else {
+            self.view?.limitOfPagesReached()
+            return
+        }
+        
         interactor?.getMovies(page: page, category: category, movieSelection: movieSelection)
+        
     }
     
     func numberOfSections() -> Int {
@@ -46,6 +53,25 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
 
     func loadMovieWithIndexPath(indexPath: IndexPath) -> Movie {
         return moviesArray[indexPath.row]
+    }
+    
+    func resetArray() {
+        
+        moviesArray = notFilteredArray
+        
+    }
+    
+    func searchByValue(searchText: String) {
+        
+        guard !searchText.isEmpty else {
+            resetArray()
+            return
+        }
+
+        moviesArray = notFilteredArray.filter({ (Movie) -> Bool in
+            (Movie.title?.lowercased().contains(searchText.lowercased()))!
+        })
+
     }
     
 }
@@ -73,7 +99,9 @@ extension MovieListPresenter: MovieListInteractorToPresenterProtocol {
 //        }()
         
         moviesArray += movieHeader.movies ?? []
+        notFilteredArray = moviesArray
         page += 1
+        totalPages = movieHeader.totalPages ?? 1
         view?.showMovieResults()
         
     }
@@ -87,131 +115,8 @@ extension MovieListPresenter: MovieListInteractorToPresenterProtocol {
 }
 
 /*
+    //Methods for Realm
  
-
-protocol MovieControllerDelegate : class {
-
-     func successOnLoading()
-     func errorOnLoading(error: Error?)
-     func limitOfPagesReached()
- }
-
-func setMovieSelection(_  chosenMovieSelection: Constants.MovieSelection) {
-
-        self.movieSelection = chosenMovieSelection
-
-    }
-
-    private func removeAll() {
-
-        let realm = try! Realm()
-        let allUploadingObjects = realm.objects(Item.self)
-
-        try! realm.write {
-            realm.delete(allUploadingObjects)
-        }
-    }
-
-//    private func saveGenresIntoRealm() {
-//
-//        //if !didGetGenres {
-//
-//            self.provider?.getGenreIds { (allGenres) in
-//
-//                for i in allGenres.genres {
-//
-//                    let realm = try! Realm()
-//
-//                    let item = Item()
-//                    item.id = i.id
-//                    item.name = i.name
-//
-//                    try! realm.write {
-//                        realm.add(item)
-//                    }
-//
-//                }
-//
-//            }
-//
-//
-//    }
-
-    func loadAnotherPage() {
-
-        page += 1
-
-        if page <= totalPages {
-
-            loadMovies(movieSelection: self.movieSelection ?? Constants.MovieSelection.Popular)
-
-        }else {
-
-            self.delegate?.limitOfPagesReached()
-
-        }
-
-    }
-
-    func loadMovies(movieSelection: Constants.MovieSelection) {
-
-        self.movieSelection = movieSelection
-
-        self.setupController()
-
-        //self.provider?.getMovies() //PopularMovies { result in
-
-    }
-
-    func numberOfRows() -> Int {
-
-        return self.moviesArray.count
-
-    }
-
-    func loadMovieWithIndexPath(indexPath: IndexPath, favorite: Bool = false) -> Movie {
-
-        if !favorite {
-            return (self.moviesArray[indexPath.row])
-        }
-        else {
-            return (self.favoriteMoviesArray[indexPath.row])
-        }
-
-    }
-
-    func searchByValue(searchText: String) {
-        guard !searchText.isEmpty else {
-            self.moviesArray = self.notFilteredArray
-            return
-        }
-
-        self.moviesArray = notFilteredArray.filter({ (Movie) -> Bool in
-            (Movie.title?.lowercased().contains(searchText.lowercased()))!
-        })
-
-    }
-
-    func searchFavoriteByValue(searchText: String) {
-        guard !searchText.isEmpty else {
-            self.favoriteMoviesArray = self.notFilteredFavoriteMoviesArray
-            return
-        }
-
-        self.favoriteMoviesArray = notFilteredFavoriteMoviesArray.filter({ (Movie) -> Bool in
-
-            (Movie.releaseDate?.lowercased().contains(searchText.lowercased()))! || (Movie.title?.lowercased().contains(searchText.lowercased()))!
-
-        })
-
-    }
-
-    func updateArray() {
-        self.moviesArray = self.notFilteredArray
-    }
-
-    //MARK: - Functions for DetailsVC
-
     func saveFavoriteMovie(movie: Movie?) {
 
         if let selectedMovie = movie {
@@ -334,45 +239,4 @@ func setMovieSelection(_  chosenMovieSelection: Constants.MovieSelection) {
 
     }
 
-    func updateFavoriteArray() {
-        self.favoriteMoviesArray = self.notFilteredFavoriteMoviesArray
-    }
-
-    func numberOfRowsForFavorites() -> Int {
-
-        return self.favoriteMoviesArray.count
-
-    }
-
-    func loadMovieWithIndexPathForFavorites(indexPath: IndexPath ) -> Movie {
-
-        return self.favoriteMoviesArray[indexPath.row]
-
-    }
-
-}
-
-//MARK:- EXT DO PROTOCOLO
-
-//extension MovieController : MovieDataProviderDelegate {
-//
-//    func getTotalPages(_ totalOfPages: Int) {
-//        self.totalPages = totalOfPages
-//    }
-//
-//    func successOnLoading(_ movies: [Movie]?, movieSelection: Constants.MovieSelection) {
-//
-//        if let newArray = movies {
-//
-//            self.moviesArray.append(contentsOf: newArray)
-//            self.notFilteredArray = self.moviesArray
-//        }
-//        self.delegate?.successOnLoading()
-//    }
-//
-//    func errorOnLoading(error: Error?) {
-//        self.delegate?.errorOnLoading(error: error)
-//    }
-//
-//}
 */

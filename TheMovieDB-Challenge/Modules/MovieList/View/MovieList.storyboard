@@ -109,6 +109,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="The Movie DB Challenge" largeTitleDisplayMode="always" id="RyT-5U-GRT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="loadingMoreActivityIndicator" destination="yxM-5d-li8" id="OwP-nY-5Fc"/>
                         <outlet property="movieCollectionView" destination="YEI-N7-Aaf" id="4Rc-7z-Im7"/>

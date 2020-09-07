@@ -124,6 +124,7 @@ extension UIViewController {
         case movieLoading1 = "1961-movie-loading"
         case movieLoading2 = "19404-video-playback"
         case movieLoading3 = "19117-movie-clapperboard"
+        case movieLoading4 = "31162-movie-engagement"
     }
     
     public func lottieStartAnimation(on uiview: AnimationView, animationFileName: animationFile) {

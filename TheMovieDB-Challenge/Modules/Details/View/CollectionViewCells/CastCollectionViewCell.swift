@@ -27,8 +27,8 @@ class CastCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
-        //label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.font = UIFont.boldSystemFont(ofSize: 12.0)
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 10.5)
         label.textAlignment = .center
         label.sizeToFit()
         
@@ -39,12 +39,19 @@ class CastCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondaryLabel
-        //label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.font = UIFont.systemFont(ofSize: 11.0, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 9.0, weight: .medium)
         label.textAlignment = .center
         label.sizeToFit()
         
         return label
+    }()
+    
+    let bottomView: UIView = {
+        let view = UIView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -58,22 +65,22 @@ class CastCollectionViewCell: UICollectionViewCell {
     
     func setupCell(cast: CastElement, item: Int) {
         
-        if item == 8 {
-            
-            nameLabel.text = "View More"
-            characterLabel.text = "⇢"
-            profilePic.image = nil
-            
-            NSLayoutConstraint.activate([
-                nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-                nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-                characterLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-                characterLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-            ])
-            
-            return
-            
-        }
+//        if item == 8 {
+//
+//            nameLabel.text = "View More"
+//            characterLabel.text = "⇢"
+//            profilePic.image = nil
+//
+//            NSLayoutConstraint.activate([
+//                nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+//                nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+//                characterLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+//                characterLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+//            ])
+//
+//            return
+//
+//        }
         
         if let path = cast.profilePath {
             profilePic.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/w200/\(path)"), placeholderImage: UIImage(named: "movie-placeholder"), completed: nil)
@@ -81,8 +88,8 @@ class CastCollectionViewCell: UICollectionViewCell {
             profilePic.image = UIImage(named: "movie-placeholder")
         }
         
-        //nameLabel.text = cast.name
-        //characterLabel.text = cast.character
+        nameLabel.text = cast.name
+        characterLabel.text = "\(cast.character ?? "")"
         
     }
     
@@ -101,21 +108,33 @@ class CastCollectionViewCell: UICollectionViewCell {
         profilePic.layer.cornerRadius = 6.0
         
         addSubview(profilePic)
-        addSubview(nameLabel)
-        addSubview(characterLabel)
+        profilePic.addSubview(bottomView)
+        bottomView.addSubview(nameLabel)
+        bottomView.addSubview(characterLabel)
         
         NSLayoutConstraint.activate([
-//            characterLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-//            characterLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-//
-//            nameLabel.bottomAnchor.constraint(equalTo: characterLabel.topAnchor, constant: -5),
-//            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
+            nameLabel.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 4),
+            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
+            //nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
+            characterLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2),
+            characterLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+            characterLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
+            
+            bottomView.heightAnchor.constraint(equalToConstant: 35),
+            bottomView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            bottomView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             
             profilePic.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             profilePic.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             profilePic.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             profilePic.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
-        ])
+            ])
+        
+        //let bottom = characterLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+        //bottom.isActive = true
+        //bottom.priority = UILayoutPriority(999.0)
         
     }
     

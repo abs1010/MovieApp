@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 import RealmSwift
-import FirebaseCrashlytics
+import Hero
 import YouTubePlayer
 
 class DetailsViewController: UIViewController {
@@ -29,7 +29,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var castCollectionView: UICollectionView!
     @IBOutlet weak var videoPlayer: YouTubePlayerView!
     @IBOutlet weak var videoPlayerViewHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var crew1Dir: UILabel!
     @IBOutlet weak var crew1Role: UILabel!
     @IBOutlet weak var crew2Dir: UILabel!
@@ -42,11 +41,22 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var crew5Role: UILabel!
     @IBOutlet weak var crew6Dir: UILabel!
     @IBOutlet weak var crew6Role: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var originalLanguageLabel: UILabel!
+    @IBOutlet weak var budgetLabel: UILabel!
+    @IBOutlet weak var revenueLabel: UILabel!
     
     let realm = try! Realm()
     var castArray: [CastElement]?
     let shapeLayer = CAShapeLayer()
-    var movie : Movie?
+    var movie : Movie? {
+        
+        didSet {
+            view.hero.id = "\(movie?.id ?? 0)"
+            backgroundImage.hero.modifiers = [.arc(), .scale(1.5)]
+        }
+        
+    }
     
     //MARK: - Sets the StatusBar as white
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -299,6 +309,12 @@ class DetailsViewController: UIViewController {
             
             self.movieGenre.text = str
         }
+        
+        ///Other information
+        statusLabel.text = movieDetails.status
+        originalLanguageLabel.text = movieDetails.originalLanguage
+        budgetLabel.text = "$\(movieDetails.budget ?? 0)"
+        revenueLabel.text = "$\(movieDetails.revenue ?? 0)"
         
     }
     

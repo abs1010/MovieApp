@@ -50,6 +50,7 @@
 		BC910BBF249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB7249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf */; };
 		BC910BC0249EFD3D00CD5A1A /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB8249EFD3D00CD5A1A /* Inter-Bold.ttf */; };
 		BC910BC1249EFD3D00CD5A1A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC910BB9249EFD3D00CD5A1A /* Roboto-Regular.ttf */; };
+		BC915ED72506E8D1000832EC /* 31162-movie-engagement.json in Resources */ = {isa = PBXBuildFile; fileRef = BC915ED62506E8D0000832EC /* 31162-movie-engagement.json */; };
 		BC94C7F423E2A2D900E225E1 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94C7F323E2A2D900E225E1 /* FavoritesViewController.swift */; };
 		BCA06A6E24B3BAD500E98425 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCA06A6D24B3BAD400E98425 /* GoogleService-Info.plist */; };
 		BCA4110A2465D46700C570CD /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA411082465D46700C570CD /* MovieCollectionViewCell.swift */; };
@@ -135,6 +136,7 @@
 		BC910BB7249EFD3D00CD5A1A /* Gotham-Rounded-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Rounded-Book.otf"; sourceTree = "<group>"; };
 		BC910BB8249EFD3D00CD5A1A /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		BC910BB9249EFD3D00CD5A1A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		BC915ED62506E8D0000832EC /* 31162-movie-engagement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "31162-movie-engagement.json"; sourceTree = "<group>"; };
 		BC94C7F323E2A2D900E225E1 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		BCA06A6D24B3BAD400E98425 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCA411082465D46700C570CD /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				BC366B7023E08C56009ABFD6 /* LaunchScreen.storyboard */,
+				BC915ED62506E8D0000832EC /* 31162-movie-engagement.json */,
 				BCA411262465E83E00C570CD /* 1961-movie-loading.json */,
 				BC611FA724A67E7200CD123F /* 19404-video-playback.json */,
 				BCA411252465E83E00C570CD /* 19117-movie-clapperboard.json */,
@@ -904,6 +907,7 @@
 				BC910BBB249EFD3D00CD5A1A /* Gotham-Rounded-Bold.ttf in Resources */,
 				BC910BBC249EFD3D00CD5A1A /* Inter-Regular.ttf in Resources */,
 				BC611FA824A67E7200CD123F /* 19404-video-playback.json in Resources */,
+				BC915ED72506E8D1000832EC /* 31162-movie-engagement.json in Resources */,
 				BC366B7223E08C56009ABFD6 /* LaunchScreen.storyboard in Resources */,
 				BCA411212465E47C00C570CD /* Details.storyboard in Resources */,
 				BC2814422498665100A71447 /* Login.storyboard in Resources */,

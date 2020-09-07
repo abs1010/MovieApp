@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 protocol MainCollectionViewCellDelegate : class {
     func didTapToSeeDetails(_ section: Int)
@@ -75,6 +76,7 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
         
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
+        cell.hero.id = "\(self.categorizedArray[indexPath.row].id ?? 0)"
         cell.setupCell(movie: self.categorizedArray[indexPath.row])
         
         return cell
