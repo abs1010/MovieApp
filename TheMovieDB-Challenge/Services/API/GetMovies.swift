@@ -30,13 +30,6 @@ extension NetworkingService {
                 movieHeader.categoryType = movieSelection
                 completion(.success(movieHeader))
                     
-                    if page == 1 {
-                        
-                        //Pass the number of Pages
-                        //self.delegate?.getTotalPages(movieHeader.totalPages ?? 0)
-                        
-                    }
-                    
                     print(String.init(repeating: "-", count: 56) + "API LOG" + String.init(repeating: "-", count: 57))
                     print("Page#\(page) \(resourceURL)")
                     print(String.init(repeating: "-", count: 120));print("")

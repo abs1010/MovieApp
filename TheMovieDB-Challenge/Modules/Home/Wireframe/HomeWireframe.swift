@@ -18,6 +18,7 @@ protocol HomeViewToPresenterProtocol: class {
     func loadMovieArrayWithIndexPath(indexPath: IndexPath) -> [Movie]
     func loadMovieWithIndexPath(indexPath: IndexPath) -> Movie
     func getCategoryName(section: Int) -> String
+    func getSelectionWithSection(section: Int) -> Constants.MovieSelection
     func requestFirstCallOfMovies()
 }
 

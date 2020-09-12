@@ -16,7 +16,7 @@ class MovieListRouter: MovieListPresenterToRouterProtocol {
         return UIStoryboard(name: name, bundle: Bundle.main)
     }
     
-    static func createModule(as presentationStyle: UIModalPresentationStyle) -> UIViewController {
+    static func createModule(as presentationStyle: UIModalPresentationStyle, selection: Constants.MovieSelection) -> UIViewController {
         
         let withIdentifier = "MoviesListIdentifier"
         
@@ -39,7 +39,13 @@ class MovieListRouter: MovieListPresenterToRouterProtocol {
         presenter.interactor = interactor
         interactor.presenter = presenter
         
+        view.movieSelection = selection
+        
         return view
+        
+    }
+    
+    func showMovieList() {
         
     }
 

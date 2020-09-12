@@ -32,7 +32,7 @@ class MovieListViewController: UIViewController {
     
     fileprivate func setupView() {
         
-        movieSelection = .Popular
+        //movieSelection = .Popular
         presenter?.getMovies(category: .Movie, movieSelection: movieSelection!)
         
         movieSearchBar.searchTextField.textColor = UIColor.white
@@ -82,17 +82,12 @@ class MovieListViewController: UIViewController {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
                 self.loadingMoreActivityIndicator.startAnimating()
-                self.presenter?.getMovies(category: .Movie, movieSelection: .Popular)
+                
+                guard let select = self.movieSelection else { return }
+                
+                self.presenter?.getMovies(category: .Movie, movieSelection: select)
                 self.isFethingNewPage = false
-                //if self.page > 1 {
-                    #warning("refactor this ")
-//                    let indices : [IndexPath] = [IndexPath(item: 20, section: 0), IndexPath(item: 21, section: 0), IndexPath(item: 22, section: 0), IndexPath(item: 23, section: 0), IndexPath(item: 24, section: 0), IndexPath(item: 25, section: 0), IndexPath(item: 26, section: 0), IndexPath(item: 27, section: 0)]
-//                              self.movieCollectionView.reloadItems(at: indices)
-//
-//                }else {
-                self.movieCollectionView.reloadData()
-                //}
-                //self.page += 1
+                
             })
             
         }
@@ -249,6 +244,16 @@ extension MovieListViewController : UISearchBarDelegate {
 extension MovieListViewController: MovieListPresenterToViewProtocol {
     
     func showMovieResults() {
+        
+//        if self.page > 1 {
+//            #warning("refactor this ")
+//            let indices : [IndexPath] = [IndexPath(item: 20, section: 0), IndexPath(item: 21, section: 0), IndexPath(item: 22, section: 0), IndexPath(item: 23, section: 0), IndexPath(item: 24, section: 0), IndexPath(item: 25, section: 0), IndexPath(item: 26, section: 0), IndexPath(item: 27, section: 0)]
+//            self.movieCollectionView.reloadItems(at: indices)
+//            
+//        }else {
+//            self.movieCollectionView.reloadData()
+//        }
+//        self.page += 1
         
         DispatchQueue.main.async {
             self.movieCollectionView.reloadData()

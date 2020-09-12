@@ -14,23 +14,13 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
     var interactor: MovieListPresenterToInteractorProtocol?
     weak var router: MovieListPresenterToRouterProtocol?
     
-    private var movieSelection: Constants.MovieSelection?
-    ///Initial value for pagination
-    
     private var page = 1
     private var totalPages = 1
-    private var isFethingNewPage = false
     
     private var moviesArray : [Movie] = [] // Create another object that holds the page # as well
     private var notFilteredArray : [Movie] = []
-    
     private var favoriteMoviesArray : [Movie] = []
     private var notFilteredFavoriteMoviesArray : [Movie] = []
-    
-    var provider = NetworkingService.sharedInstance
-    
-    private var isFetchingItems: Bool = false
-    private var totalItemsAvailable: Int = 3000
     
     func getMovies(category: Constants.category, movieSelection: Constants.MovieSelection) {
         
@@ -79,24 +69,6 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
 extension MovieListPresenter: MovieListInteractorToPresenterProtocol {
     
     func returnMovieResults(movieHeader: MovieHeader) {
-        
-//        let sectionName = { () -> String in
-//
-//            switch movieHeader.categoryType?.rawValue ?? "" {
-//
-//            case "popular":
-//                return "Popular"
-//            case "now_playing":
-//                return "Now Playing"
-//            case "upcoming":
-//                return "Upcoming"
-//            case "top_rated":
-//                return "Top Rated"
-//            default:
-//                return ""
-//            }
-//
-//        }()
         
         moviesArray += movieHeader.movies ?? []
         notFilteredArray = moviesArray

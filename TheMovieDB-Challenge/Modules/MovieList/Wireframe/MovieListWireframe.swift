@@ -40,5 +40,5 @@ protocol MovieListPresenterToViewProtocol: class {
 
 protocol MovieListPresenterToRouterProtocol: class {
     static var mainstoryboard: UIStoryboard { get }
-    static func createModule(as presentationStyle: UIModalPresentationStyle) -> UIViewController
+    static func createModule(as presentationStyle: UIModalPresentationStyle, selection: Constants.MovieSelection) -> UIViewController
 }

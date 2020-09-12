@@ -19,6 +19,8 @@ struct NetworkingService {
     
     static let sharedInstance = NetworkingService()
     
+    private init() {}
+    
     private enum API {
         static let baseURL = "https://api.themoviedb.org/3"
         static let imageURLBanner = "https://image.tmdb.org/t/p/w1280"

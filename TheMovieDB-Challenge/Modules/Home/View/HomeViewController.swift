@@ -201,7 +201,7 @@ extension HomeViewController: HomePresenterToViewProtocol {
 extension HomeViewController: MainCollectionViewCellDelegate {
     
     func didSelectItemAt(section: Int, row: Int) {
-    
+        
         let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
         let identifier = "DetailsViewControllerID"
         
@@ -217,26 +217,13 @@ extension HomeViewController: MainCollectionViewCellDelegate {
     
     func didTapToSeeDetails(_ section: Int) {
         
-        var selection: Constants.MovieSelection {
-
-            if section == 0 {
-                return .Popular
-            }else if section == 1 {
-                return .NowPlaying
-            }else if section == 2 {
-                return .TopRated
-            }else {
-                return .Upcoming
-            }
-
+        if let selection = presenter?.getSelectionWithSection(section: section) {
+            
+            let vc = MovieListRouter.createModule(as: .fullScreen, selection: selection)
+            self.present(vc, animated: true, completion: nil)
+            
         }
         
-        let vc = MovieListRouter.createModule(as: .fullScreen)
-        
-        //vc.identifierObject = IdentifierObject(selection: selection, section: section)
-        
-        self.present(vc, animated: true, completion: nil)
-        
     }
-        
+    
 }

@@ -480,7 +480,7 @@
 		BCA411142465DD7C00C570CD /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				BCE370CD24A4285A0017BC27 /* Protocols */,
+				BCE370CD24A4285A0017BC27 /* Wireframe */,
 				BCE370CC24A428500017BC27 /* Entity */,
 				BCA411172465DD9E00C570CD /* Router */,
 				BCA411162465DD9C00C570CD /* Interactor */,
@@ -779,12 +779,12 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		BCE370CD24A4285A0017BC27 /* Protocols */ = {
+		BCE370CD24A4285A0017BC27 /* Wireframe */ = {
 			isa = PBXGroup;
 			children = (
 				BCE370D224A42A1E0017BC27 /* HomeWireframe.swift */,
 			);
-			path = Protocols;
+			path = Wireframe;
 			sourceTree = "<group>";
 		};
 		BCE370D024A429670017BC27 /* View */ = {
