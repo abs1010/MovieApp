@@ -313,8 +313,18 @@ class DetailsViewController: UIViewController {
         ///Other information
         statusLabel.text = movieDetails.status
         originalLanguageLabel.text = movieDetails.originalLanguage
-        budgetLabel.text = "$\(movieDetails.budget ?? 0)"
-        revenueLabel.text = "$\(movieDetails.revenue ?? 0)"
+        budgetLabel.text = convertIntToCurrencyString(value: movieDetails.budget ?? 0)
+        revenueLabel.text = convertIntToCurrencyString(value: movieDetails.revenue ?? 0)
+        
+    }
+    
+    private func convertIntToCurrencyString(value: Int) -> String {
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currencyISOCode
+        numberFormatter.locale = Locale(identifier: "en_US_POSIX")//pt_BR
+        
+        return numberFormatter.string(from: NSNumber(value: value)) ?? "0"
         
     }
     

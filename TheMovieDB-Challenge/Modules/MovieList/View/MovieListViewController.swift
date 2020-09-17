@@ -11,7 +11,7 @@ import Hero
 
 class MovieListViewController: UIViewController {
     
-    //var page = 1
+    var page = 1
     var presenter: MovieListViewToPresenterProtocol?
     var isFethingNewPage = false
     var movieSelection: Constants.MovieSelection?
@@ -94,6 +94,36 @@ class MovieListViewController: UIViewController {
         
     }
     
+    private func setHideOrShowOnSearchBar(_ scrollView : UIScrollView) {
+        
+        let safeAreaTop = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
+        
+        let magicalSafeAreaTop: CGFloat = safeAreaTop + (navigationController?.navigationBar.frame.height ?? 0)
+        
+        let offset = scrollView.contentOffset.y + magicalSafeAreaTop
+        
+        DispatchQueue.main.async {
+            
+            if offset > 44 {
+                
+                UIScrollView.animate(withDuration: 0.5) {
+                    self.searchBarHight.constant = 0
+                    self.movieSearchBar.transform = .init(translationX: 0, y: min(0, -offset))
+                }
+                
+            }else {
+                
+                UIScrollView.animate(withDuration: 0.5) {
+                    self.searchBarHight.constant = 44.00
+                    self.movieSearchBar.transform = .init(translationX: 0, y: min(0, offset))
+                }
+                
+            }
+            
+        }
+        
+    }
+    
 }
 
 extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -145,37 +175,15 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let safeAreaTop = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
+        self.setHideOrShowOnSearchBar(scrollView)
         
-        let magicalSafeAreaTop: CGFloat = safeAreaTop + (navigationController?.navigationBar.frame.height ?? 0)
-        
-        let offset = scrollView.contentOffset.y + magicalSafeAreaTop
-        
-        DispatchQueue.main.async {
-            
-            if offset > 44 {
-                
-                UIScrollView.animate(withDuration: 0.5) {
-                    self.searchBarHight.constant = 0
-                    self.movieSearchBar.transform = .init(translationX: 0, y: min(0, -offset))
-                }
-                
-            }else {
-                
-                UIScrollView.animate(withDuration: 0.5) {
-                    self.searchBarHight.constant = 44.00
-                    self.movieSearchBar.transform = .init(translationX: 0, y: min(0, offset))
-                }
-                
-            }
-            
-        }
+        guard scrollView.isDragging else {return}
         
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let scrollFrameHeight = scrollView.frame.height
         
-        if offsetY > contentHeight - scrollFrameHeight * 1.5 { //1.5
+        if offsetY > (contentHeight - scrollFrameHeight) { //1.5
             
             if !isFethingNewPage {
                 startFetchingNewPage()
@@ -245,19 +253,29 @@ extension MovieListViewController: MovieListPresenterToViewProtocol {
     
     func showMovieResults() {
         
-//        if self.page > 1 {
-//            #warning("refactor this ")
-//            let indices : [IndexPath] = [IndexPath(item: 20, section: 0), IndexPath(item: 21, section: 0), IndexPath(item: 22, section: 0), IndexPath(item: 23, section: 0), IndexPath(item: 24, section: 0), IndexPath(item: 25, section: 0), IndexPath(item: 26, section: 0), IndexPath(item: 27, section: 0)]
-//            self.movieCollectionView.reloadItems(at: indices)
-//            
-//        }else {
-//            self.movieCollectionView.reloadData()
-//        }
-//        self.page += 1
-        
         DispatchQueue.main.async {
-            self.movieCollectionView.reloadData()
+            
+            if self.page > 1 {
+                
+                var indices = [IndexPath]()
+                let initial = ((self.page - 1) * 20)
+                let final = ((self.page) * 20) - 1
+                let seq = [Int](initial...final)
+
+                for (_, index ) in seq.enumerated() {
+                    indices.append(IndexPath(item: index, section: 0))
+                }
+                #warning("Refactor")
+                //self.movieCollectionView.reloadData()
+                self.movieCollectionView.insertItems(at: indices)
+                indices.removeAll()
+            }else {
+                self.movieCollectionView.reloadData()
+            }
+            
+            self.page += 1
             self.loadingMoreActivityIndicator.stopAnimating()
+
         }
         
     }
