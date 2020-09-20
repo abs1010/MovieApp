@@ -265,8 +265,6 @@ extension MovieListViewController: MovieListPresenterToViewProtocol {
                 for (_, index ) in seq.enumerated() {
                     indices.append(IndexPath(item: index, section: 0))
                 }
-                #warning("Refactor")
-                //self.movieCollectionView.reloadData()
                 self.movieCollectionView.insertItems(at: indices)
                 indices.removeAll()
             }else {

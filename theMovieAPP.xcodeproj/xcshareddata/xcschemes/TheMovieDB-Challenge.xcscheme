@@ -17,7 +17,7 @@
                BlueprintIdentifier = "BC366B6123E08C51009ABFD6"
                BuildableName = "The MovieDB.app"
                BlueprintName = "TheMovieDB-Challenge"
-               ReferencedContainer = "container:theMovieAPP.xcodeproj">
+               ReferencedContainer = "container:TheMovieApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,17 @@
                BlueprintIdentifier = "BC20C00023E76A1C008CC191"
                BuildableName = "TheMovieDB-ChallengeTests.xctest"
                BlueprintName = "TheMovieDB-ChallengeTests"
-               ReferencedContainer = "container:theMovieAPP.xcodeproj">
+               ReferencedContainer = "container:TheMovieApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BC11ABE02515A32400067D4D"
+               BuildableName = "The MovieDBTests.xctest"
+               BlueprintName = "The MovieDBTests"
+               ReferencedContainer = "container:TheMovieApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,7 +67,7 @@
             BlueprintIdentifier = "BC366B6123E08C51009ABFD6"
             BuildableName = "The MovieDB.app"
             BlueprintName = "TheMovieDB-Challenge"
-            ReferencedContainer = "container:theMovieAPP.xcodeproj">
+            ReferencedContainer = "container:TheMovieApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -74,7 +84,7 @@
             BlueprintIdentifier = "BC366B6123E08C51009ABFD6"
             BuildableName = "The MovieDB.app"
             BlueprintName = "TheMovieDB-Challenge"
-            ReferencedContainer = "container:theMovieAPP.xcodeproj">
+            ReferencedContainer = "container:TheMovieApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
