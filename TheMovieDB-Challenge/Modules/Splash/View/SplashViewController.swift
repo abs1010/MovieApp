@@ -13,6 +13,7 @@ class SplashViewController: UIViewController {
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var animatedImageView: AnimationView!
+    @IBOutlet weak var versionLabel: UILabel!
     
     var timer: Timer!
     
@@ -22,7 +23,12 @@ class SplashViewController: UIViewController {
         
         startTimer()
         startAnimation()
+        setVersionLabel()
         
+    }
+    
+    private func setVersionLabel() {
+        versionLabel.text = "Versão \(Bundle.main.releaseVersionNumber ?? "-")"
     }
     
     private func startAnimation() {
