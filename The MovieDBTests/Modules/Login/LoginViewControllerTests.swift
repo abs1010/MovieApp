@@ -7,19 +7,17 @@
 //
 
 import XCTest
-
 @testable import The_MovieDB
 
-class The_MovieDBTests: XCTestCase {
+class LoginViewControllerTests: XCTestCase {
 
-    func test_Something() {
+    func test_returnAppVersion() {
         
-        let sut = LoginViewController()
+        //let sut = LoginRouter.createModule(as: .automatic) as! LoginViewController
         
-        //sut.returnAppVersion(
+        //let value1 = sut.returnAppVersion(")
         
-        XCTAssertNotNil(sut)
-        //XCTAssertEqual(sut, 10)
+        //XCTAssertEqual(value1, )
         
     }
     

@@ -395,11 +395,67 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		BC0E801E251A3DD50006C5D1 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		BC0E801F251A3DE50006C5D1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		BC0E8020251A3DEE0006C5D1 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		BC0E8021251A3DFA0006C5D1 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
+		BC0E8022251A3E250006C5D1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BC0E8023251A3E2C0006C5D1 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		BC0E8024251A3E390006C5D1 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		BC0E8025251A3E410006C5D1 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
 		BC11ABE22515A32400067D4D /* The MovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
-				BC0E7F75251972810006C5D1 /* Modules */,
 				BC11ABE52515A32400067D4D /* Info.plist */,
+				BC0E7F75251972810006C5D1 /* Modules */,
 			);
 			path = "The MovieDBTests";
 			sourceTree = "<group>";
@@ -528,10 +584,10 @@
 		BC6E876B247DA002004D71F6 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				BCE370C924A427B20017BC27 /* Wireframe */,
-				BCE370C824A427AF0017BC27 /* Entity */,
-				BCE370C724A427AC0017BC27 /* Router */,
-				BC6E876D247DA027004D71F6 /* Interactor */,
+				BC0E8021251A3DFA0006C5D1 /* Wireframe */,
+				BC0E8020251A3DEE0006C5D1 /* Router */,
+				BC0E801F251A3DE50006C5D1 /* Entity */,
+				BC0E801E251A3DD50006C5D1 /* Interactor */,
 				BC6E876E247DA030004D71F6 /* Presenter */,
 				BC6E876C247DA022004D71F6 /* View */,
 			);
@@ -544,13 +600,6 @@
 				BC6E876F247DA07E004D71F6 /* Settings.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		BC6E876D247DA027004D71F6 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		BC6E876E247DA030004D71F6 /* Presenter */ = {
@@ -649,20 +698,23 @@
 		BCA4110F2465DCB600C570CD /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				BCA411112465DD1D00C570CD /* Model */,
-				BCA411132465DD2E00C570CD /* ViewModel */,
+				BC0E8025251A3E410006C5D1 /* Wireframe */,
+				BC0E8024251A3E390006C5D1 /* Router */,
+				BCA411112465DD1D00C570CD /* Entity */,
+				BC0E8023251A3E2C0006C5D1 /* Interactor */,
+				BC0E8022251A3E250006C5D1 /* Presenter */,
 				BCA411122465DD2800C570CD /* View */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
 		};
-		BCA411112465DD1D00C570CD /* Model */ = {
+		BCA411112465DD1D00C570CD /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				BC7EC0D223E3911900B06B0D /* FavoriteMovie.swift */,
 				BC5A6C7023E6100B00C99597 /* GenreID.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		BCA411122465DD2800C570CD /* View */ = {
@@ -672,13 +724,6 @@
 				BCA4111A2465E01E00C570CD /* Favorites.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		BCA411132465DD2E00C570CD /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BCA411142465DD7C00C570CD /* Home */ = {
@@ -955,27 +1000,6 @@
 			path = Movie;
 			sourceTree = "<group>";
 		};
-		BCE370C724A427AC0017BC27 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		BCE370C824A427AF0017BC27 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
-		BCE370C924A427B20017BC27 /* Wireframe */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Wireframe;
-			sourceTree = "<group>";
-		};
 		BCE370CC24A428500017BC27 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,7 +1144,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BC366B5D23E08C51009ABFD6 /* Build configuration list for PBXProject "TheMovieApp" */;
+			buildConfigurationList = BC366B5D23E08C51009ABFD6 /* Build configuration list for PBXProject "theMovieAPP" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1869,7 +1893,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BC366B5D23E08C51009ABFD6 /* Build configuration list for PBXProject "TheMovieApp" */ = {
+		BC366B5D23E08C51009ABFD6 /* Build configuration list for PBXProject "theMovieAPP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BC366B7423E08C56009ABFD6 /* Debug */,

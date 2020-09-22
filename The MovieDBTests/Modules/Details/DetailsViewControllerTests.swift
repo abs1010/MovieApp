@@ -81,18 +81,22 @@ class DetailsViewControllerTests: XCTestCase {
         
     }
     
-    func test_fillMovieInfo() {
-        /*
+    func test_convertIntToCurrencyString() {
+        
         let sut = DetailsViewController()
+
+        let formattedValue = sut.convertIntToCurrencyString(value: 999)
+
+        XCTAssertEqual(formattedValue, "USD 999.00")
+
+        let formattedValue2 = sut.convertIntToCurrencyString(value: 1785)
+
+        XCTAssertEqual(formattedValue2, "USD 1785.00")
+
+        let formattedValue3 = sut.convertIntToCurrencyString(value: 4856956)
+
+        XCTAssertEqual(formattedValue3, "USD 4856956.00")
         
-        sut.viewDidLoad()
-        
-        let movieDetails = MovieDetails(adult: true, backdropPath: nil, belongsToCollection: nil, budget: nil, genres: nil, homepage: nil, id: nil, imdbID: nil, originalLanguage: nil, originalTitle: nil, overview: nil, popularity: nil, posterPath: nil, productionCompanies: nil, productionCountries: nil, releaseDate: nil, revenue: nil, runtime: nil, spokenLanguages: nil, status: nil, tagline: nil, title: "Teste", video: nil, voteAverage: nil, voteCount: nil)
-        
-        sut.fillMovieInfo(movieDetails)
-        
-        XCTAssertEqual(movieDetails.title, sut.movieName.text)
-        */
     }
     
 }

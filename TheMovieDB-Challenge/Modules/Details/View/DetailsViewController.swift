@@ -310,7 +310,7 @@ final class DetailsViewController: UIViewController {
         
     }
     
-    private func convertIntToCurrencyString(value: Int) -> String {
+    func convertIntToCurrencyString(value: Int) -> String {
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currencyISOCode
