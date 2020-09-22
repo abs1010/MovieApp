@@ -43,7 +43,7 @@ class SplashViewController: UIViewController {
         
     }
     
-    @objc func endAnimation() {
+    @objc private func endAnimation() {
         
         lottieStopAnimation(on: animatedImageView)
         timer.invalidate()

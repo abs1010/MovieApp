@@ -12,7 +12,7 @@ import RealmSwift
 import Hero
 import YouTubePlayer
 
-class DetailsViewController: UIViewController {
+final class DetailsViewController: UIViewController {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var backgroundImage: CustomImageView!
@@ -72,7 +72,7 @@ class DetailsViewController: UIViewController {
         setupCell()
         
     }
-
+    
     @IBAction func tappedGoBack(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
@@ -138,7 +138,7 @@ class DetailsViewController: UIViewController {
             NetworkingService.sharedInstance.getMovieCast(movieId: movieId) { [weak self] result in
                 
                 switch result {
-                    
+                
                 case .success(let cast):
                     print("Terminou task 2")
                     DispatchQueue.main.async {
@@ -222,14 +222,6 @@ class DetailsViewController: UIViewController {
         scoreView.layer.addSublayer(shapeLayer)
         roundedView.layer.cornerRadius = roundedView.frame.width / 2
         
-        //Animate counter
-//        for counter in 1...(Int(rating * 10)) {
-//            DispatchQueue.main.async {
-//                print(counter, "%")
-//                //self.movieRating.text = "\(counter) %"
-//            }
-//        }
-        
         perform(#selector(animateScore), with: nil, afterDelay: 0.5)
         
     }
@@ -249,15 +241,15 @@ class DetailsViewController: UIViewController {
         
     }
     
-    private func fillMovieInfo(_ movieDetails: MovieDetails) {
+    func fillMovieInfo(_ movieDetails: MovieDetails) {
         
         ///Background Image
         if let urlString = self.movie?.backdropPath {
             self.backgroundImage.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { _ in
-
+                
             })
         }else {
-            self.backgroundImage.image = UIImage(named: "placeholder")
+            self.backgroundImage.image = UIImage(named: "movie-placeholder")
         }
         
         self.moviePlot.text = movie?.overview
@@ -280,19 +272,19 @@ class DetailsViewController: UIViewController {
         
         ///Crew
         /*
-        crew1Dir.text = movieDetails
-        crew1Role
-        crew2Dir
-        crew2Role
-        crew3Dir
-        crew3Role
-        crew4Dir
-        crew4Role
-        crew5Dir
-        rew5Role
-        crew6Dir
-        crew6Role
-        */
+         crew1Dir.text = movieDetails
+         crew1Role
+         crew2Dir
+         crew2Role
+         crew3Dir
+         crew3Role
+         crew4Dir
+         crew4Role
+         crew5Dir
+         rew5Role
+         crew6Dir
+         crew6Role
+         */
         ///Genres
         if let genres = movieDetails.genres, let duration = movieDetails.runtime {
             
@@ -304,7 +296,7 @@ class DetailsViewController: UIViewController {
                 genresByName.append(", ")
                 
             }
-   
+            
             let str = genresByName[0..<(genresByName.count - 2)] + " • " + setDurationAsString(duration)
             
             self.movieGenre.text = str
@@ -328,32 +320,35 @@ class DetailsViewController: UIViewController {
         
     }
     
-    private func setDurationAsString(_ duration: Int) -> String {
+    func setDurationAsString(_ duration: Int) -> String {
         
         var formmatedDuration: String {
             
             if duration < 60 {
-                return "0h \(duration)m"
+                return "\(duration)m"
             }
             else if duration < 120 {
                 return "1h \(duration - 60)m"
             }
             else if duration < 180 {
-                return "2h \(duration - 60)m"
+                return "2h \(duration - 120)m"
             }
             else if duration < 240 {
-                return "3h \(duration - 60)m"
+                return "3h \(duration - 180)m"
             }
             else if duration < 300 {
-                return "4h \(duration - 60)m"
+                return "4h \(duration - 240)m"
             }
             else if duration < 360 {
-                return "5h \(duration - 60)m"
+                return "5h \(duration - 300)m"
+            }
+            else if duration < 420 {
+                return "6h \(duration - 360)m"
             }
             else {
                 return "0h 0m"
             }
-        
+            
         }
         
         return formmatedDuration
@@ -479,7 +474,7 @@ extension DetailsViewController: YouTubePlayerDelegate {
 }
 
 extension DetailsViewController : CAAnimationDelegate {
-
+    
     func animationDidStart(_ anim: CAAnimation) {
         print("animation did start")
     }
