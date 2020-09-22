@@ -25,14 +25,6 @@ extension NetworkingService {
                 completionHandler(.failure(.NoDataAvailable))
                 return
             }
-  
-//            do {
-//                let decodecObject = try JSONDecoder().decode(MovieTrailer.self, from: jsonData)
-//
-//                completionHandler(.success(decodecObject))
-//            }catch {
-//                completionHandler(.failure(.CanNotProccessData))
-//            }
             
             if let JSONString = String(data: jsonData, encoding: .utf8) {
                 guard let decodedObj = MovieTrailer(JSONString: JSONString) else { return }

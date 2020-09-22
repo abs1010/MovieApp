@@ -8,7 +8,6 @@
 
 import UIKit
 import SDWebImage
-import RealmSwift
 import Hero
 import YouTubePlayer
 
@@ -46,7 +45,7 @@ final class DetailsViewController: UIViewController {
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var revenueLabel: UILabel!
     
-    let realm = try! Realm()
+    var presenter: DetailsViewToPresenterProtocol?
     var castArray: [CastElement]?
     let shapeLayer = CAShapeLayer()
     var movie : Movie? {
@@ -481,6 +480,15 @@ extension DetailsViewController : CAAnimationDelegate {
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         print("animation did finish")
+    }
+    
+}
+
+//VIPER ==
+extension DetailsViewController: DetailsPresenterToViewProtocol {
+    
+    func DoSomething(_ version: String) {
+        //Do something
     }
     
 }

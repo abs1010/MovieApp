@@ -42,22 +42,5 @@ class HomeRouter: HomePresenterToRouterProtocol {
         return view
         
     }
-
-    /*
-    static func initModule(from view: HomeViewController) {
-        
-        view.modalPresentationStyle = .fullScreen
-        
-        let presenter: HomeViewToPresenterProtocol & HomeInteractorToPresenterProtocol = HomePresenter()
-        let interactor: HomePresenterToInteractorProtocol = HomeInteractor()
-        let router: HomePresenterToRouterProtocol = HomeRouter()
-        
-        view.presenter = presenter
-        presenter.view = view
-        presenter.router = router
-        presenter.interactor = interactor
-        interactor.presenter = presenter
-        
-    }
-    */
+    
 }
