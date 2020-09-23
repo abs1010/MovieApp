@@ -72,8 +72,10 @@ final class DetailsViewController: UIViewController {
     
     @IBAction func DidTapToSaveAsFavorite(_ sender: Any) {
         
-        if let movieID = movie?.id {
-            presenter?.saveAsFavorite(movieID: movieID)
+        //presenter?.isFavorite
+        
+        if let movie = self.movie {
+            presenter?.saveAsFavorite(movie: movie)
         }
         
     }

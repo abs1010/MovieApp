@@ -40,8 +40,8 @@
 		BC0E804A251A9AB70006C5D1 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E803F251A9A960006C5D1 /* DetailsPresenter.swift */; };
 		BC0E804E251A9ABD0006C5D1 /* DetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E8037251A9A320006C5D1 /* DetailsRouter.swift */; };
 		BC0E8052251A9AC20006C5D1 /* DetailsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E802F251A99E80006C5D1 /* DetailsWireframe.swift */; };
-		BC0E805F251AA8470006C5D1 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E805E251AA8470006C5D1 /* RealmManager.swift */; };
-		BC0E8060251AA8470006C5D1 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E805E251AA8470006C5D1 /* RealmManager.swift */; };
+		BC0E805F251AA8470006C5D1 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E805E251AA8470006C5D1 /* DataManager.swift */; };
+		BC0E8060251AA8470006C5D1 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E805E251AA8470006C5D1 /* DataManager.swift */; };
 		BC11ABE42515A32400067D4D /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11ABE32515A32400067D4D /* LoginViewControllerTests.swift */; };
 		BC2814372496B30300A71447 /* LoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2814352496B30300A71447 /* LoginCollectionViewCell.swift */; };
 		BC2814382496B30300A71447 /* LoginCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC2814362496B30300A71447 /* LoginCollectionViewCell.xib */; };
@@ -228,7 +228,7 @@
 		BC0E8037251A9A320006C5D1 /* DetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRouter.swift; sourceTree = "<group>"; };
 		BC0E803F251A9A960006C5D1 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 		BC0E8044251A9AB10006C5D1 /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
-		BC0E805E251AA8470006C5D1 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		BC0E805E251AA8470006C5D1 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		BC11ABE12515A32400067D4D /* The MovieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The MovieDBTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC11ABE32515A32400067D4D /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		BC11ABE52515A32400067D4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -475,12 +475,12 @@
 			path = Cast;
 			sourceTree = "<group>";
 		};
-		BC0E805D251AA8200006C5D1 /* RealmManager */ = {
+		BC0E805D251AA8200006C5D1 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				BC0E805E251AA8470006C5D1 /* RealmManager.swift */,
+				BC0E805E251AA8470006C5D1 /* DataManager.swift */,
 			);
-			path = RealmManager;
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 		BC11ABE22515A32400067D4D /* The MovieDBTests */ = {
@@ -576,7 +576,7 @@
 				BCA06A5F24AEC11B00E98425 /* Alerts */,
 				BC7D6FEC23E2207500639A19 /* API */,
 				BCB20C1524741F72009E0175 /* Loading */,
-				BC0E805D251AA8200006C5D1 /* RealmManager */,
+				BC0E805D251AA8200006C5D1 /* DataManager */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -648,12 +648,12 @@
 			isa = PBXGroup;
 			children = (
 				BCD2C0C9246D7E2E0046910F /* Constants.swift */,
-				BC366B8223E0A13C009ABFD6 /* NetworkingService.swift */,
-				BC3C00FB24F5B8DD00758D21 /* GetMovies.swift */,
-				BC3C00F924F5B8AA00758D21 /* GetMovieDetails.swift */,
 				BC3C00FD24F5B94200758D21 /* GetGenreIDs.swift */,
 				BCD3BD5324F8884600E0358C /* GetMovieCast.swift */,
+				BC3C00F924F5B8AA00758D21 /* GetMovieDetails.swift */,
+				BC3C00FB24F5B8DD00758D21 /* GetMovies.swift */,
 				BCD3BD5824FF2F7400E0358C /* GetMovieTrailer.swift */,
+				BC366B8223E0A13C009ABFD6 /* NetworkingService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -896,6 +896,7 @@
 		BCA4113124698B9100C570CD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BCA411402469D5EA00C570CD /* OnbordViewController.swift */,
 				BCA4113E2469D58200C570CD /* Onboarding.storyboard */,
 			);
 			path = View;
@@ -912,7 +913,6 @@
 		BCA4113424698BB700C570CD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BCA411402469D5EA00C570CD /* OnbordViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1535,7 +1535,7 @@
 				BC0E8040251A9A960006C5D1 /* DetailsPresenter.swift in Sources */,
 				BCC988512495C3DB00504891 /* OnboardingViewCell.swift in Sources */,
 				BC910BA3249B0A5C00CD5A1A /* LoginRouter.swift in Sources */,
-				BC0E805F251AA8470006C5D1 /* RealmManager.swift in Sources */,
+				BC0E805F251AA8470006C5D1 /* DataManager.swift in Sources */,
 				BC366B8323E0A13C009ABFD6 /* NetworkingService.swift in Sources */,
 				BC910BA9249C364E00CD5A1A /* SettingsPresenter.swift in Sources */,
 				BC32E37324B538F10011A1DB /* HomeSectionHeaderView.swift in Sources */,
@@ -1603,7 +1603,7 @@
 				BC78E291251948F8002958DD /* LoginCollectionViewCell.swift in Sources */,
 				BC78E292251948F8002958DD /* SceneDelegate.swift in Sources */,
 				BC78E293251948F8002958DD /* OnboardingViewCell.swift in Sources */,
-				BC0E8060251AA8470006C5D1 /* RealmManager.swift in Sources */,
+				BC0E8060251AA8470006C5D1 /* DataManager.swift in Sources */,
 				BC78E294251948F8002958DD /* LoginRouter.swift in Sources */,
 				BC78E295251948F8002958DD /* NetworkingService.swift in Sources */,
 				BC78E296251948F8002958DD /* SettingsPresenter.swift in Sources */,

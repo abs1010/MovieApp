@@ -7,15 +7,12 @@
 //
 
 import Foundation
-import RealmSwift
 
 class DetailsPresenter: DetailsViewToPresenterProtocol {
     
     var view: DetailsPresenterToViewProtocol?
     var interactor: DetailsPresenterToInteractorProtocol?
     var router: DetailsPresenterToRouterProtocol?
-    
-    let realm = try! Realm()
     
     func getMovieInfo(for movieId: Int) {
         
@@ -25,53 +22,22 @@ class DetailsPresenter: DetailsViewToPresenterProtocol {
     
     func isFavorite(_ movieID: Int, completion: @escaping (Bool) -> Void) {
         
-        completion(true)
-        
-//            @IBAction func btnFavoriteTapped(_ sender: UIButton) {
-//
-//                //verifica status fav / percorre o array e verifica se existe
-//
-//                if (self.controller?.isFavorite(id: self.movie?.id ?? 0))! {
-//
-//                    let alerta = UIAlertController(title: "Aviso", message: "Filme removido dos favoritos.", preferredStyle: .alert)
-//                    let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
-//
-//                    alerta.addAction(btnOk)
-//
-//                    self.present(alerta, animated: true)
-//
-//                    if let removeId = self.movie?.id {
-//
-//                        self.controller?.removeFavoriteMovie(id: removeId)
-//
-//                    }
-//
-//                    self.setFavButtonStatus()
-//
-//                }
-//                else {
-//
-//                    let alerta = UIAlertController(title: "Salvo", message: "Filme \(self.movie?.title ?? "") salvo nos favoritos.", preferredStyle: .alert)
-//                    let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
-//
-//                    alerta.addAction(btnOk)
-//
-//                    self.present(alerta, animated: true)
-//
-//                    if let selectedMovie = self.movie {
-//                        self.controller?.saveFavoriteMovie(movie: selectedMovie)
-//                    }
-//
-//                    self.setFavButtonStatus()
-//
-//                }
-//
-//            }
+        completion(DataManager.sharedInstance.isFavorite(movieID: movieID))
         
     }
     
-    func saveAsFavorite(movieID: Int) {
-        print("Movie: \(movieID) saved as favorite")
+    func saveAsFavorite(movie: Movie?) {
+        
+        DataManager.sharedInstance.saveFavoriteMovie(movie: movie)
+        
+    }
+    
+    func removeFromFavorites(_ movieID: Int, completion: @escaping (Bool) -> Void) -> Void {
+        
+        DataManager.sharedInstance.removeFavoriteMovie(id: movieID)
+        
+        completion(true)
+        
     }
     
 }
@@ -83,4 +49,3 @@ extension DetailsPresenter: DetailsInteractorToPresenterProtocol {
     }
     
 }
-

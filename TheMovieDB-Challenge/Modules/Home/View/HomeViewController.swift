@@ -41,13 +41,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        guard let signIn = GIDSignIn.sharedInstance() else { return }
-        
-        if !signIn.hasPreviousSignIn() {
-            
-            perform(#selector(shouldShowOnboarding), with: self, afterDelay: 2.5)
-            
-        }
+        //guard let signIn = GIDSignIn.sharedInstance() else { return }
+        #warning("Refactor this")
+//        if !signIn.hasPreviousSignIn() {
+//
+//            perform(#selector(shouldShowOnboarding), with: self, afterDelay: 2.5)
+//
+//        }
         
     }
     
@@ -200,18 +200,9 @@ extension HomeViewController: HomePresenterToViewProtocol {
 
 extension HomeViewController: MainCollectionViewCellDelegate {
     
-    func didSelectItemAt(section: Int, row: Int) {
-        
-        let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
-        let identifier = "DetailsViewControllerID"
-        
-        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! DetailsViewController
-        
-        let indexPath = IndexPath(row: row, section: section)
-        
-        vc.movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath)
-        
-        present(vc, animated: true, completion: nil)
+    func didSelectItemAt(indexPath: IndexPath) {
+  
+        presenter?.showMovie(indexPath: indexPath)
         
     }
     

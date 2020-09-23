@@ -14,8 +14,9 @@ protocol DetailsViewToPresenterProtocol: class {
     var interactor: DetailsPresenterToInteractorProtocol? { get set }
     var router: DetailsPresenterToRouterProtocol? { get set }
     func getMovieInfo(for movieId: Int)
-    func isFavorite(_ movieID: Int, completion: @escaping(Bool) -> Void) -> Void
-    func saveAsFavorite(movieID: Int)
+    func isFavorite(_ movieID: Int, completion: @escaping (Bool) -> Void) -> Void
+    func saveAsFavorite(movie: Movie?)
+    func removeFromFavorites(_ movieID: Int, completion: @escaping (Bool) -> Void) -> Void
 }
 
 protocol DetailsPresenterToInteractorProtocol: class {

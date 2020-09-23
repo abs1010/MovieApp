@@ -20,6 +20,7 @@ protocol HomeViewToPresenterProtocol: class {
     func getCategoryName(section: Int) -> String
     func getSelectionWithSection(section: Int) -> Constants.MovieSelection
     func requestFirstCallOfMovies()
+    func showMovie(indexPath: IndexPath)
 }
 
 protocol HomePresenterToInteractorProtocol: class {
@@ -41,4 +42,5 @@ protocol HomePresenterToViewProtocol: class {
 protocol HomePresenterToRouterProtocol: class {
     static var mainstoryboard: UIStoryboard { get }
     static func createModule(as presentationStyle: UIModalPresentationStyle) -> UIViewController
+    func goToMovieDetailsViewController(movie: Movie, for view: UIViewController)
 }

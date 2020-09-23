@@ -11,8 +11,6 @@ import RealmSwift
 
 class HomePresenter: HomeViewToPresenterProtocol {
     
-    //let realm = try! Realm()
-    
     ///Layer instances
     var view: HomePresenterToViewProtocol?
     var interactor: HomePresenterToInteractorProtocol?
@@ -73,6 +71,14 @@ class HomePresenter: HomeViewToPresenterProtocol {
         [.Popular, .NowPlaying, .TopRated, .Upcoming].forEach({
             interactor?.getMovies(page: 1, category: .Movie, movieSelection: $0)
         })
+        
+    }
+    
+    func showMovie(indexPath: IndexPath) {
+        
+        let movie = moviesArray[indexPath.section][indexPath.row]
+        
+        router?.goToMovieDetailsViewController(movie: movie, for: view as! HomeViewController)
         
     }
     

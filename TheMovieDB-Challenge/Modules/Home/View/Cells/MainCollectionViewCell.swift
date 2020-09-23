@@ -11,7 +11,7 @@ import Hero
 
 protocol MainCollectionViewCellDelegate : class {
     func didTapToSeeDetails(_ section: Int)
-    func didSelectItemAt(section: Int, row: Int)
+    func didSelectItemAt(indexPath: IndexPath)
 }
 
 class CategorySectionsCollectionViewCell: UICollectionViewCell {
@@ -98,8 +98,10 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if let section = selectedSection {
-        
-            delegate?.didSelectItemAt(section: section, row: indexPath.row)
+            
+            let index = IndexPath(row: indexPath.row, section: section)
+            
+            delegate?.didSelectItemAt(indexPath: index)
         
         }
         
