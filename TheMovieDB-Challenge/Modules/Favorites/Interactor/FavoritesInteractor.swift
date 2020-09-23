@@ -1,5 +1,5 @@
 //
-//  SettingsPresenter.swift
+//  FavoritesInteractor.swift
 //  TheMovieApp
 //
 //  Created by Alan Silva on 23/09/20.

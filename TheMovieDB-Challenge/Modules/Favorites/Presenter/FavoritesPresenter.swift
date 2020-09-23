@@ -1,5 +1,5 @@
 //
-//  SettingsPresenter.swift
+//  FavoritesPresenter.swift
 //  TheMovieApp
 //
 //  Created by Alan Silva on 23/09/20.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class FavoritesPresenter {
+    
+}

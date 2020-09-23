@@ -72,10 +72,24 @@ final class DetailsViewController: UIViewController {
     
     @IBAction func DidTapToSaveAsFavorite(_ sender: Any) {
         
-        //presenter?.isFavorite
-        
-        if let movie = self.movie {
-            presenter?.saveAsFavorite(movie: movie)
+        if let movie = self.movie, let id = movie.id {
+            
+            presenter?.isFavorite(id, completion: { isFavorite in
+                
+                if isFavorite {
+                    
+                    self.presenter?.removeFromFavorites(id, completion: { _ in
+                        
+                    })
+                } else {
+                    self.presenter?.saveAsFavorite(movie: movie)
+                }
+                
+                let imgName = !isFavorite ? "iconStarFilled" : "iconStar"
+                self.btnFavorite.setImage(UIImage(named: imgName), for: .normal)
+                
+            })
+            
         }
         
     }

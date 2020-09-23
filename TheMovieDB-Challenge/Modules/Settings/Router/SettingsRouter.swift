@@ -1,5 +1,5 @@
 //
-//  SettingsPresenter.swift
+//  SettingsRouter.swift
 //  TheMovieApp
 //
 //  Created by Alan Silva on 23/09/20.

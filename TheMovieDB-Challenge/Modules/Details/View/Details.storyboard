@@ -35,25 +35,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1400"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nP-4p-kLn" userLabel="MainView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1400"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1431"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jm-Th-qoY" userLabel="maskView">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1400"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1431"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avengers: Infinity War (2018)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGC-1U-5Tv">
-                                                        <rect key="frame" x="40" y="250" width="240" height="50"/>
+                                                        <rect key="frame" x="40" y="250" width="240" height="58.5"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="25"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Devided we fall" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d06-2g-JLg">
-                                                        <rect key="frame" x="10" y="308" width="300" height="13"/>
+                                                        <rect key="frame" x="10" y="316.5" width="300" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="13"/>
                                                         <color key="textColor" red="0.7481074929" green="0.76848608259999995" blue="0.78100866079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBQ-Ba-DqH" userLabel="scoreView">
-                                                        <rect key="frame" x="10" y="326" width="75" height="75"/>
+                                                        <rect key="frame" x="10" y="337" width="75" height="75"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dd-Lt-ZDg">
                                                                 <rect key="frame" x="2.5" y="2.5" width="70" height="70"/>
@@ -81,7 +81,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRE-0e-6Kb" userLabel="favoriteView">
-                                                        <rect key="frame" x="270" y="337" width="40" height="40"/>
+                                                        <rect key="frame" x="270" y="348" width="40" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrM-Tc-Sg7">
                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -107,44 +107,44 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-HU-ydH">
-                                                        <rect key="frame" x="20" y="411" width="280" height="20.5"/>
+                                                        <rect key="frame" x="20" y="422" width="280" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hP-eB-LKy">
-                                                        <rect key="frame" x="20" y="441.5" width="280" height="105"/>
+                                                        <rect key="frame" x="20" y="452.5" width="280" height="105"/>
                                                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="| 12 | • 05/05/2016 (BR)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-r4-EvB">
-                                                        <rect key="frame" x="20" y="571.5" width="280" height="12"/>
+                                                        <rect key="frame" x="20" y="582.5" width="280" height="14"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adventure, Action, Science Fiction • 2h 27m" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0M-ke-84N">
-                                                        <rect key="frame" x="20" y="603.5" width="280" height="12"/>
+                                                        <rect key="frame" x="20" y="616.5" width="280" height="14"/>
                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="ZYN-yy-zve">
-                                                        <rect key="frame" x="20" y="635.5" width="280" height="38"/>
+                                                        <rect key="frame" x="20" y="650.5" width="280" height="42"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="ZAV-z7-50g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="38"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Simon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zco-I8-qB5">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPP-Jg-grp">
-                                                                        <rect key="frame" x="0.0" y="26" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -152,16 +152,16 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="ufi-x8-cJ2">
-                                                                <rect key="frame" x="108" y="0.0" width="64" height="38"/>
+                                                                <rect key="frame" x="108" y="0.0" width="64" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Simon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riY-ZH-GIJ">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-gz-UlF">
-                                                                        <rect key="frame" x="0.0" y="26" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -169,16 +169,16 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="9k7-R7-asR">
-                                                                <rect key="frame" x="216" y="0.0" width="64" height="38"/>
+                                                                <rect key="frame" x="216" y="0.0" width="64" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Simon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVA-pF-BKk">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edp-Bo-ek9">
-                                                                        <rect key="frame" x="0.0" y="26" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -188,19 +188,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-B6-Yug">
-                                                        <rect key="frame" x="20" y="693.5" width="280" height="38"/>
+                                                        <rect key="frame" x="20" y="712.5" width="280" height="42"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="JIw-wn-6Cr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="38"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Simon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHo-5o-mZ0">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOd-cP-EP4">
-                                                                        <rect key="frame" x="0.0" y="26" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -208,16 +208,16 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="RXP-dF-v2w">
-                                                                <rect key="frame" x="108" y="0.0" width="64" height="38"/>
+                                                                <rect key="frame" x="108" y="0.0" width="64" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Simon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjB-Xj-Cl1">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLY-TE-DcJ">
-                                                                        <rect key="frame" x="0.0" y="26" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -225,16 +225,16 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="ZMM-hC-Oeq">
-                                                                <rect key="frame" x="216" y="0.0" width="64" height="38"/>
+                                                                <rect key="frame" x="216" y="0.0" width="64" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Simon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTJ-Wq-V47">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUQ-co-sGl">
-                                                                        <rect key="frame" x="0.0" y="26" width="64" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="64" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -244,7 +244,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8vP-IK-td8" userLabel="castCollectionView">
-                                                        <rect key="frame" x="0.0" y="751.5" width="320" height="180"/>
+                                                        <rect key="frame" x="0.0" y="774.5" width="320" height="180"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="180" id="nX9-Hx-GOi" userLabel="height = 160"/>
@@ -258,7 +258,7 @@
                                                         <cells/>
                                                     </collectionView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuB-Rh-dwP" userLabel="videoPlayerView" customClass="YouTubePlayerView" customModule="YouTubePlayer">
-                                                        <rect key="frame" x="0.0" y="951.5" width="320" height="200"/>
+                                                        <rect key="frame" x="0.0" y="974.5" width="320" height="200"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ptd-mw-oU8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -275,31 +275,31 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other info" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUQ-TW-ZxO" userLabel="otherInfoHeader">
-                                                        <rect key="frame" x="20" y="1171.5" width="280" height="20.5"/>
+                                                        <rect key="frame" x="20" y="1194.5" width="280" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2020 TMDB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcU-Q7-Mfn">
-                                                        <rect key="frame" x="0.0" y="1361" width="320" height="17"/>
+                                                        <rect key="frame" x="0.0" y="1392" width="320" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="1z7-FX-fJe" userLabel="otherInfo">
-                                                        <rect key="frame" x="20" y="1212" width="280" height="38"/>
+                                                        <rect key="frame" x="20" y="1235" width="280" height="42"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="ZHr-iS-Vcy">
-                                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="38"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4X-gL-VQF">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Released" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yu-kd-te6">
-                                                                        <rect key="frame" x="0.0" y="26" width="127.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="127.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -307,16 +307,16 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="xAn-Cv-5ls">
-                                                                <rect key="frame" x="152.5" y="0.0" width="127.5" height="38"/>
+                                                                <rect key="frame" x="152.5" y="0.0" width="127.5" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original Language" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXU-O5-TUz">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZC-S6-s6Z">
-                                                                        <rect key="frame" x="0.0" y="26" width="127.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="127.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -326,19 +326,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="VSH-V2-vdq" userLabel="otherInfo2">
-                                                        <rect key="frame" x="20" y="1270" width="280" height="38"/>
+                                                        <rect key="frame" x="20" y="1297" width="280" height="42"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="I2W-b0-0Kg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="38"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budget" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGq-dq-Zc7">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$356,000,000.00" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wU1-Pf-oda">
-                                                                        <rect key="frame" x="0.0" y="26" width="127.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="127.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -346,16 +346,16 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="i8V-GX-oAz">
-                                                                <rect key="frame" x="152.5" y="0.0" width="127.5" height="38"/>
+                                                                <rect key="frame" x="152.5" y="0.0" width="127.5" height="42"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Revenue" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxM-Iz-Gac">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2,797,800,564.00" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ves-cE-BJE">
-                                                                        <rect key="frame" x="0.0" y="26" width="127.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="127.5" height="14"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="12"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
