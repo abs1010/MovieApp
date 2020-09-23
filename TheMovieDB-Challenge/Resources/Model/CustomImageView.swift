@@ -56,7 +56,7 @@ class CustomImageView: UIImageView {
             
             let url = NetworkingService.sharedInstance.getUrl(str: urlString, type: type)
             
-            self.sd_setImage(with: url, placeholderImage: UIImage(named: "portrait-placeholder"), options: .continueInBackground, progress: .none) { (image, error, cache, url) in
+            self.sd_setImage(with: url, placeholderImage: nil, options: .continueInBackground, progress: .none) { (image, error, cache, url) in
                 
                 done(true)
                 

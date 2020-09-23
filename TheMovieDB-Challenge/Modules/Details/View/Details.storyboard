@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dtf-ND-H8k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dtf-ND-H8k">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -21,12 +23,12 @@
         <!--Details View Controller-->
         <scene sceneID="lcA-ag-KTU">
             <objects>
-                <viewController storyboardIdentifier="DetailsViewControllerID" extendedLayoutIncludesOpaqueBars="YES" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="Dtf-ND-H8k" customClass="DetailsViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailsViewControllerID" extendedLayoutIncludesOpaqueBars="YES" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="Dtf-ND-H8k" customClass="DetailsViewController" customModule="TheMovieDB_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z9E-4t-Duj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dsH-6E-OLV" userLabel="backgroundImage" customClass="CustomImageView" customModule="The_MovieDB" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dsH-6E-OLV" userLabel="backgroundImage" customClass="CustomImageView" customModule="TheMovieDB_Dev" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1400"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x16-5u-dzE">
@@ -87,11 +89,12 @@
                                                                     <constraint firstAttribute="height" constant="40" id="3hj-yd-qVh"/>
                                                                     <constraint firstAttribute="width" constant="40" id="XuB-pn-fXb"/>
                                                                 </constraints>
-                                                                <state key="normal" image="emptyHeart_icon">
+                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" image="iconStar">
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="btnFavoriteTapped:" destination="Dtf-ND-H8k" eventType="touchUpInside" id="f2o-bc-fZ7"/>
+                                                                    <action selector="DidTapToSaveAsFavorite:" destination="Dtf-ND-H8k" eventType="touchUpInside" id="ZH0-3s-Trd"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -262,7 +265,7 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="ptd-mw-oU8" firstAttribute="leading" secondItem="QuB-Rh-dwP" secondAttribute="leading" id="4H7-u6-243"/>
                                                             <constraint firstAttribute="trailing" secondItem="ptd-mw-oU8" secondAttribute="trailing" id="D7I-vs-Qr5"/>
@@ -448,6 +451,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="FcS-PI-Twc"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dsH-6E-OLV" firstAttribute="trailing" secondItem="FcS-PI-Twc" secondAttribute="trailing" id="DT7-Mp-CfX"/>
@@ -459,7 +463,6 @@
                             <constraint firstAttribute="bottom" secondItem="dsH-6E-OLV" secondAttribute="bottom" id="spC-Us-XYv"/>
                             <constraint firstItem="x16-5u-dzE" firstAttribute="trailing" secondItem="FcS-PI-Twc" secondAttribute="trailing" id="zh1-IQ-rH6"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="FcS-PI-Twc"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="lzE-5N-0Lj"/>
                     <size key="freeformSize" width="320" height="1400"/>
@@ -506,7 +509,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="emptyHeart_icon" width="22" height="21"/>
+        <image name="iconStar" width="30" height="30"/>
         <image name="icon_voltar" width="9" height="15"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -48,27 +48,19 @@ final class DetailsViewController: UIViewController {
     var presenter: DetailsViewToPresenterProtocol?
     var castArray: [CastElement]?
     let shapeLayer = CAShapeLayer()
-    var movie : Movie? {
-        
-        didSet {
-            view.hero.id = "\(movie?.id ?? 0)"
-            backgroundImage.hero.modifiers = [.arc(), .scale(1.5)]
-        }
-        
-    }
+    var movie : Movie?
     
     //MARK: - Sets the StatusBar as white
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        
         return UIStatusBarStyle.lightContent
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpCollection()
-        setupCell()
+        configureHero()
+        setUp()
+        requestMovieInfo()
         
     }
     
@@ -78,30 +70,40 @@ final class DetailsViewController: UIViewController {
         
     }
     
+    @IBAction func DidTapToSaveAsFavorite(_ sender: Any) {
+        
+        if let movieID = movie?.id {
+            presenter?.saveAsFavorite(movieID: movieID)
+        }
+        
+    }
+    
     @objc func didSwipeFromLeft(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
-    private func setUpCollection() {
+    private func configureHero() {
+        
+        view.hero.id = "\(movie?.id ?? 0)"
+        backgroundImage.hero.modifiers = [.arc(), .scale(1.5)]
+        
+    }
+    
+    private func setUp() {
         
         castCollectionView.delegate = self
         castCollectionView.dataSource = self
         
         castCollectionView.register(CastCollectionViewCell.self, forCellWithReuseIdentifier: "CastCollectionViewCellID")
         castCollectionView.showsHorizontalScrollIndicator = false
-    }
-    
-    private func setupCell() {
-        
-        LoadingView.sharedInstance.show()
         
         ///Pins the view the content area of the scroll view.
         mainScrollView.contentInsetAdjustmentBehavior = .never
         
         ///Set Player Delegate
-        videoPlayer.delegate = self
+        //videoPlayer.delegate = self
         
         ///Adding Swipe gesture
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeFromLeft(_:)))
@@ -109,86 +111,24 @@ final class DetailsViewController: UIViewController {
         
         ///Make a circle for the score View
         favoriteView.layer.cornerRadius = favoriteView.frame.width / 2
-        
-        let group = DispatchGroup()
-        
-        if let movieId = movie?.id {
+        if let movieID = movie?.id {
+            presenter?.isFavorite(movieID, completion: { favourite in
             
-            group.enter()
-            NetworkingService.sharedInstance.getMovieDetails(movieId: movieId) { [weak self] result in
+                let imgName = favourite ? "iconStarFilled" : "iconStar"
+                self.btnFavorite.setImage(UIImage(named: imgName), for: .normal)
                 
-                switch result {
-                case .success(let movieDetails):
-                    print("Terminou task 1")
-                    DispatchQueue.main.async {
-                        self?.fillMovieInfo(movieDetails)
-                        self?.castCollectionView.reloadData()
-                        LoadingView.sharedInstance.hide()
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-                
-                group.leave()
-                
-            }
-            
-            group.enter()
-            NetworkingService.sharedInstance.getMovieCast(movieId: movieId) { [weak self] result in
-                
-                switch result {
-                
-                case .success(let cast):
-                    print("Terminou task 2")
-                    DispatchQueue.main.async {
-                        self?.castArray = cast.cast
-                        self?.castCollectionView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-                
-                group.leave()
-                
-            }
-            
-            group.enter()
-            NetworkingService.sharedInstance.getMovieTrailer(movieId: movieId) { [weak self] result in
-                
-                switch result {
-                case .success(let trailer):
-                    print("Terminou task 3")
-                    
-                    DispatchQueue.main.async {
-                        
-                        guard let videoID = trailer.results?.first?.key else {
-                            
-                            UIView.animate(withDuration: 0.5) {
-                                self?.videoPlayerViewHeightConstraint.constant = 0
-                                self?.videoPlayer.alpha = 0
-                            }
-                            
-                            return
-                            
-                        }
-                        
-                        self?.videoPlayer.loadVideoID(videoID)
-                        
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-                
-                group.leave()
-                
-            }
-            
-            group.notify(queue: .main) {
-                print("Terminou de executar todas tasks")
-                LoadingView.sharedInstance.hide()
-            }
-            
+            })
         }
+        
+    }
+    
+    private func requestMovieInfo() {
+        
+        guard let movieId = movie?.id else { return }
+        
+        LoadingView.sharedInstance.show()
+        
+        presenter?.getMovieInfo(for: movieId)
         
     }
     
@@ -231,7 +171,7 @@ final class DetailsViewController: UIViewController {
         
         basicAnimation.toValue = 1
         basicAnimation.duration = 1.5
-        basicAnimation.delegate = self
+        //basicAnimation.delegate = self
         
         basicAnimation.fillMode = .forwards
         basicAnimation.isRemovedOnCompletion = false
@@ -244,30 +184,30 @@ final class DetailsViewController: UIViewController {
         
         ///Background Image
         if let urlString = self.movie?.backdropPath {
-            self.backgroundImage.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { _ in
-                
-            })
+            UIView.transition(with: backgroundImage, duration: 0.3, options: .transitionCrossDissolve) {
+                self.backgroundImage.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { _ in})
+            } completion: { _ in}
         }else {
             self.backgroundImage.image = UIImage(named: "movie-placeholder")
         }
         
-        self.moviePlot.text = movie?.overview
-        self.setScore(rating: movie?.voteAverage ?? 50.0)
-        
-        self.movieName.text = "\(movieDetails.title ?? "") (\(movieDetails.releaseDate?.prefix(4) ?? ""))"
-        self.movieTagline.text = movieDetails.tagline ?? ""
-        self.movieRating.text = "\(movieDetails.voteAverage ?? 0.0)%".replacingOccurrences(of: ".", with: "")
-        
-        ///Converts the String into date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: movieDetails.releaseDate ?? "")
-        ///Converts the date into a fommated String
-        let formatDate = DateFormatter()
-        formatDate.dateFormat = "dd/MM/yyyy"
-        let formattedDate = formatDate.string(from: date ?? Date())
-        
-        self.classificationAndDate.text = "[12] " + formattedDate
+        moviePlot.text = movie?.overview
+        setScore(rating: movie?.voteAverage ?? 50.0)
+        movieName.text = "\(movieDetails.title ?? "") (\(movieDetails.releaseDate?.prefix(4) ?? ""))"
+        movieTagline.text = movieDetails.tagline ?? ""
+        movieRating.text = "\(movieDetails.voteAverage ?? 0.0)%".replacingOccurrences(of: ".", with: "")
+        classificationAndDate.text = "[12] " + formatDateAsString(dateString: movieDetails.releaseDate ?? "")
+        ///Other info
+        statusLabel.text = movieDetails.status
+        originalLanguageLabel.text = movieDetails.originalLanguage
+        budgetLabel.text = convertIntToCurrencyString(value: movieDetails.budget ?? 0)
+        revenueLabel.text = convertIntToCurrencyString(value: movieDetails.revenue ?? 0)
+
+        ///Genres
+        if let genres = movieDetails.genres, let duration = movieDetails.runtime {
+            let str = generateStringOfGenres(genres: genres) + " • " + setDurationAsString(duration)
+            self.movieGenre.text = str
+        }
         
         ///Crew
         /*
@@ -284,28 +224,34 @@ final class DetailsViewController: UIViewController {
          crew6Dir
          crew6Role
          */
-        ///Genres
-        if let genres = movieDetails.genres, let duration = movieDetails.runtime {
-            
-            var genresByName = ""
-            
-            for i in genres {
-                
-                genresByName.append(i.name ?? "")
-                genresByName.append(", ")
-                
-            }
-            
-            let str = genresByName[0..<(genresByName.count - 2)] + " • " + setDurationAsString(duration)
-            
-            self.movieGenre.text = str
+    }
+    
+    func generateStringOfGenres(genres: [Genre]) -> String {
+        
+        var genresByName = ""
+        
+        for i in genres {
+            genresByName.append(i.name ?? "")
+            genresByName.append(", ")
         }
         
-        ///Other information
-        statusLabel.text = movieDetails.status
-        originalLanguageLabel.text = movieDetails.originalLanguage
-        budgetLabel.text = convertIntToCurrencyString(value: movieDetails.budget ?? 0)
-        revenueLabel.text = convertIntToCurrencyString(value: movieDetails.revenue ?? 0)
+        let str = genresByName[0..<(genresByName.count - 2)]
+        return str
+        
+    }
+    
+    func formatDateAsString(dateString: String) -> String {
+        
+        ///Converts the String into date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: dateString)
+        ///Converts the date into a fommated String
+        let formatDate = DateFormatter()
+        formatDate.dateFormat = "dd/MM/yyyy"
+        let formattedDate = formatDate.string(from: date ?? Date())
+        
+        return formattedDate
         
     }
     
@@ -353,60 +299,7 @@ final class DetailsViewController: UIViewController {
         return formmatedDuration
         
     }
-    
-    //    func setFavButtonStatus(){
-    //        if let resp = self.controller?.isFavorite(id: movie?.id ?? 0) {
-    //
-    //            if resp == true {
-    //                self.btnFavorite.setImage(#imageLiteral(resourceName: "filledHeart_icon") , for: .normal)
-    //            }
-    //            else{
-    //                self.btnFavorite.setImage(#imageLiteral(resourceName: "emptyHeart_icon") , for: .normal)
-    //            }
-    //        }
-    //    }
-    
-    //    @IBAction func btnFavoriteTapped(_ sender: UIButton) {
-    //
-    //        //verifica status fav / percorre o array e verifica se existe
-    //
-    //        if (self.controller?.isFavorite(id: self.movie?.id ?? 0))! {
-    //
-    //            let alerta = UIAlertController(title: "Aviso", message: "Filme removido dos favoritos.", preferredStyle: .alert)
-    //            let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
-    //
-    //            alerta.addAction(btnOk)
-    //
-    //            self.present(alerta, animated: true)
-    //
-    //            if let removeId = self.movie?.id {
-    //
-    //                self.controller?.removeFavoriteMovie(id: removeId)
-    //
-    //            }
-    //
-    //            self.setFavButtonStatus()
-    //
-    //        }
-    //        else {
-    //
-    //            let alerta = UIAlertController(title: "Salvo", message: "Filme \(self.movie?.title ?? "") salvo nos favoritos.", preferredStyle: .alert)
-    //            let btnOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
-    //
-    //            alerta.addAction(btnOk)
-    //
-    //            self.present(alerta, animated: true)
-    //
-    //            if let selectedMovie = self.movie {
-    //                self.controller?.saveFavoriteMovie(movie: selectedMovie)
-    //            }
-    //
-    //            self.setFavButtonStatus()
-    //
-    //        }
-    //
-    //    }
-    
+        
 }
 
 extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -456,39 +349,24 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     
 }
 
-extension DetailsViewController: YouTubePlayerDelegate {
-    
-    func playerReady(videoPlayer: YouTubePlayerView) {
-        print("TERMINOU DE CARREGAR VIDEO 1")
-    }
-    
-    func playerStateChanged(videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
-        print("TERMINOU DE CARREGAR VIDEO 2")
-    }
-    
-    func playerQualityChanged(videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
-        print("TERMINOU DE CARREGAR VIDEO 3")
-    }
-    
-}
-
-extension DetailsViewController : CAAnimationDelegate {
-    
-    func animationDidStart(_ anim: CAAnimation) {
-        print("animation did start")
-    }
-    
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        print("animation did finish")
-    }
-    
-}
-
-//VIPER ==
+//MARK: - return of requests
 extension DetailsViewController: DetailsPresenterToViewProtocol {
     
-    func DoSomething(_ version: String) {
-        //Do something
+    func showRequestResults(movieDetails: MovieDetails, cast: [CastElement], videoID: String) {
+        
+        DispatchQueue.main.async {
+            LoadingView.sharedInstance.hide()
+            self.fillMovieInfo(movieDetails)
+            self.castArray = cast
+            self.videoPlayer.loadVideoID(videoID)
+            self.castCollectionView.reloadData()
+            
+            //UIView.animate(withDuration: 0.5) {
+            //    self?.videoPlayerViewHeightConstraint.constant = 0
+            //    self?.videoPlayer.alpha = 0
+            //}
+        }
+        
     }
     
 }

@@ -195,16 +195,7 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
-        let identifier = "DetailsViewControllerID"
-        
-        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! DetailsViewController
-        
-        let index = IndexPath(row: indexPath.row, section: identifierObject?.section ?? 0)
-        
-        vc.movie = presenter?.loadMovieWithIndexPath(indexPath: index)
-        
-        present(vc, animated: true, completion: nil)
+        presenter?.showMovie(row: indexPath.row)
         
     }
     

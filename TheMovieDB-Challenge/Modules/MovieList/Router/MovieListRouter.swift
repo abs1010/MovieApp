@@ -45,7 +45,12 @@ class MovieListRouter: MovieListPresenterToRouterProtocol {
         
     }
     
-    func showMovieList() {
+    func goToMovieDetailsViewController(movie: Movie, for view: UIViewController) {
+        
+        let vc = DetailsRouter.createModule(as: .fullScreen) as! DetailsViewController
+        vc.movie = movie
+    
+        view.present(vc, animated: true, completion: nil)
         
     }
 

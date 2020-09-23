@@ -19,6 +19,7 @@ protocol MovieListViewToPresenterProtocol: class {
     func loadMovieWithIndexPath(indexPath: IndexPath) -> Movie
     func searchByValue(searchText: String)
     func resetArray()
+    func showMovie(row: Int)
 }
 
 protocol MovieListPresenterToInteractorProtocol: class {
@@ -41,4 +42,5 @@ protocol MovieListPresenterToViewProtocol: class {
 protocol MovieListPresenterToRouterProtocol: class {
     static var mainstoryboard: UIStoryboard { get }
     static func createModule(as presentationStyle: UIModalPresentationStyle, selection: Constants.MovieSelection) -> UIViewController
+    func goToMovieDetailsViewController(movie: Movie, for view: UIViewController)
 }

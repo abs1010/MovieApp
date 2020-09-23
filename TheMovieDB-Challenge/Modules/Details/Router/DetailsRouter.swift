@@ -18,7 +18,7 @@ class DetailsRouter: DetailsPresenterToRouterProtocol {
     
     static func createModule(as presentationStyle: UIModalPresentationStyle) -> UIViewController {
         
-        let withIdentifier = "DetailsStoryboard"
+        let withIdentifier = "DetailsViewControllerID"
         
         guard let view = mainstoryboard.instantiateViewController(withIdentifier: withIdentifier) as? DetailsViewController else {
             
@@ -33,12 +33,11 @@ class DetailsRouter: DetailsPresenterToRouterProtocol {
         let interactor: DetailsPresenterToInteractorProtocol = DetailsInteractor()
         let router: DetailsPresenterToRouterProtocol = DetailsRouter()
         
-        //view.presenter = presenter
-        //presenter.view = view
-        //presenter.router = router
-        //presenter.interactor = interactor
-        //interactor.presenter = presenter
-        //interactor.view = view
+        view.presenter = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.interactor = interactor
+        interactor.presenter = presenter
         
         return view
         
