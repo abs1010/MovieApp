@@ -72,6 +72,8 @@ final class DetailsViewController: UIViewController {
     
     @IBAction func DidTapToSaveAsFavorite(_ sender: Any) {
         
+        btnFavorite.pulse()
+        
         if let movie = self.movie, let id = movie.id {
             
             presenter?.isFavorite(id, completion: { isFavorite in

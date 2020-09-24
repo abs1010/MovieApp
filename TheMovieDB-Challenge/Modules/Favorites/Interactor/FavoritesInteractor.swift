@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class FavoritesInteractor: FavoritesPresenterToInteractorProtocol {
+    
+    var presenter: FavoritesInteractorToPresenterProtocol?
+    
+    func getFavoriteMovies() {
+        
+        presenter?.didGetFavoriteMovies(movies: DataManager.sharedInstance.loadFavoriteMovies())
+        
+    }
+    
+}

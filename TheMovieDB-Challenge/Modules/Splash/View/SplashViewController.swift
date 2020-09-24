@@ -59,8 +59,9 @@ class SplashViewController: UIViewController {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let tabBar = storyboard.instantiateViewController(withIdentifier: "MainViewControllerIdentifier") as? UITabBarController {
                     let first = HomeRouter.createModule(as: .fullScreen)
-                    let second = UIStoryboard.init(name: "Favorites", bundle: Bundle.main).instantiateViewController(withIdentifier: "favoriteStoryboardID")
+                    let second = FavoritesRouter.createModule(as: .fullScreen)
                     let third = UIStoryboard.init(name: "Settings", bundle: Bundle.main).instantiateViewController(withIdentifier: "settingsStoryboardID")
+                    //let third = SettingsRouter.createModule(as: .fullScreen)
                     
                     tabBar.viewControllers = [first, second, third]
                     

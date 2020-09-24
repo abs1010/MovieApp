@@ -8,6 +8,71 @@
 
 import Foundation
 
-class FavoritesPresenter {
+class FavoritesPresenter: FavoritesViewToPresenterProtocol {
     
+    weak var view: FavoritesPresenterToViewProtocol?
+    var interactor: FavoritesPresenterToInteractorProtocol?
+    var router: FavoritesPresenterToRouterProtocol?
+    
+    private var favoriteMoviesArray: [Movie] = []
+    private var notFilteredFavoriteMoviesArray: [Movie] = []
+    
+    func getFavoriteMovies() {
+        
+        interactor?.getFavoriteMovies()
+        
+    }
+    
+    func getNumberOfRowsInSection(section: Int) -> Int {
+        return favoriteMoviesArray.count
+    }
+    
+    func loadMovieWithIndexPath(indexPath: IndexPath) -> Movie {
+        
+        return favoriteMoviesArray[indexPath.row]
+        
+    }
+    
+    func searchByValue(searchText: String) {
+        
+        guard !searchText.isEmpty else {
+            resetArray()
+            return
+        }
+        
+        favoriteMoviesArray = notFilteredFavoriteMoviesArray.filter({ movie -> Bool in
+            (movie.title?.lowercased().contains(searchText.lowercased()))!
+        })
+        
+    }
+    
+    func resetArray() {
+        
+        favoriteMoviesArray = notFilteredFavoriteMoviesArray
+        
+    }
+    
+    func showMovie(row: Int) {
+        
+        let movie = favoriteMoviesArray[row]
+        
+        router?.goToMovieDetailsViewController(movie: movie, for: view as! MovieListViewController)
+        
+    }
+
+}
+
+extension FavoritesPresenter: FavoritesInteractorToPresenterProtocol {
+    
+    func didGetFavoriteMovies(movies: [Movie]) {
+        
+        favoriteMoviesArray = movies
+        view?.showRequestResults()
+        
+    }
+    
+    func FailRequestResults() {
+        
+    }
+
 }

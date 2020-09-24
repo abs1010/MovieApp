@@ -16,6 +16,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieNameLabel: UILabel!
     @IBOutlet weak var imgLoadActivityIndicator: UIActivityIndicatorView!
     
+    static let nibName = "MovieCollectionViewCell"
+    static var identifier = "MovieCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

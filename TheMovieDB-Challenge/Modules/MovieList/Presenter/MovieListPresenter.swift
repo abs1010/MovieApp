@@ -19,8 +19,6 @@ class MovieListPresenter: MovieListViewToPresenterProtocol {
     
     private var moviesArray : [Movie] = [] // Create another object that holds the page # as well
     private var notFilteredArray : [Movie] = []
-    private var favoriteMoviesArray : [Movie] = []
-    private var notFilteredFavoriteMoviesArray : [Movie] = []
     
     func getMovies(category: Constants.category, movieSelection: Constants.MovieSelection) {
         

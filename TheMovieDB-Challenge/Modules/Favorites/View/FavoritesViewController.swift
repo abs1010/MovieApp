@@ -7,27 +7,30 @@
 //
 
 import UIKit
+import Hero
 
 class FavoritesViewController: UIViewController {
     
-    @IBOutlet weak var favoritesTableView: UITableView!
+    @IBOutlet weak var favoritesCollectionView: UICollectionView!
     @IBOutlet weak var favoritesSearchBar: UISearchBar!
+    
+    var presenter: FavoritesViewToPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        
-        //self.controller = MovieController()
-        //controller?.loadFavoriteMovies()
+            
+        setUp()
+        updateListOfFavorites()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //self.controller?.delegate = self
+        updateListOfFavorites()
+    }
+    
+    private func updateListOfFavorites() {
         
-        // self.controller?.loadFavoriteMovies()
-        //        self.favoritesTableView.reloadData()
+        presenter?.getFavoriteMovies()
         
     }
     
@@ -35,39 +38,50 @@ class FavoritesViewController: UIViewController {
         
         favoritesSearchBar.searchTextField.backgroundColor = .white
         
-        self.favoritesTableView.delegate = self
-        self.favoritesTableView.dataSource = self
+        self.favoritesCollectionView.delegate = self
+        self.favoritesCollectionView.dataSource = self
         
         ///Register Cells
-        self.favoritesTableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
+        self.favoritesCollectionView.register(UINib(nibName: MovieCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
         
     }
     
 }
 
-extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
+extension FavoritesViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0// self.controller?.numberOfRowsForFavorites() ?? 0
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return presenter?.getNumberOfRowsInSection(section: section) ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as! MovieCollectionViewCell
+        
+        if let movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath) {
+            
+            cell.hero.id = "\(movie.id ?? 0)"
+            //Hero.shared.apply(modifiers: [.fade, .scale(1.5)], to: cell)
+            
+            cell.setupCell(movie: movie)
+            
+        }
+        
+        return cell
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        //let cell : MovieCollectionViewCell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
-        
-        //cell.setupCell(movie: (self.controller?.loadMovieWithIndexPathForFavorites(indexPath: indexPath))!)
-        
-        return UITableViewCell()
+        return .init(width: view.frame.width / 3.4 , height: 190)
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        //self.performSegue(withIdentifier: "goToDetailsOfFav", sender: self)
+        return UIEdgeInsets(top: 10.0, left: 10, bottom: 20.0, right: 10)
         
     }
-    
     
 }
 
@@ -81,7 +95,7 @@ extension FavoritesViewController : UISearchBarDelegate {
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
                 //self.controller?.updateFavoriteArray()
-                self.favoritesTableView.reloadData()
+                self.favoritesCollectionView.reloadData()
             }
             
         }
@@ -95,7 +109,7 @@ extension FavoritesViewController : UISearchBarDelegate {
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
                 //self.controller?.updateFavoriteArray()
-                self.favoritesTableView.reloadData()
+                self.favoritesCollectionView.reloadData()
             }
             
         }
@@ -103,9 +117,24 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             //self.controller?.searchFavoriteByValue(searchText: searchText)
             
-            self.favoritesTableView.reloadData()
+            self.favoritesCollectionView.reloadData()
         }
         
+    }
+    
+}
+
+extension FavoritesViewController: FavoritesPresenterToViewProtocol {
+    
+    func showRequestResults() {
+        ///Show Sucess
+        
+        favoritesCollectionView.reloadData()
+        
+    }
+    
+    func FailRequestResults() {
+        ///Show Alert of Failure
     }
     
 }

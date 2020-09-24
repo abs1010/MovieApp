@@ -11,7 +11,7 @@ import RealmSwift
 
 struct DataManager {
     
-    static let sharedInstance = DataManager()
+    static var sharedInstance = DataManager()
     
     let realm = try! Realm()
     private var favoriteMoviesArray : [Movie] = []
@@ -97,7 +97,7 @@ struct DataManager {
         
     }
     
-    mutating func loadFavoriteMovies() {
+    mutating func loadFavoriteMovies() -> [Movie] {
         
         let tempFavoriteMovieArray : Results<FavoriteMovie>? = realm.objects(FavoriteMovie.self)
         
@@ -124,10 +124,9 @@ struct DataManager {
                     
             }
             
-            print("\(favoriteMoviesArray.count) Filme no array Favoritos")
-            print("########")
-            notFilteredFavoriteMoviesArray = favoriteMoviesArray
         }
+        
+        return favoriteMoviesArray
         
     }
 

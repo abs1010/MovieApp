@@ -43,9 +43,7 @@ class MovieListViewController: UIViewController {
         movieSearchBar.delegate = self
         
         ///Registering Cells
-        let nibName = "MovieCollectionViewCell"
-        let identifier = "MovieCell"
-        movieCollectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: identifier)
+        movieCollectionView.register(UINib(nibName: MovieCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
         
     }
     
@@ -142,9 +140,7 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let identifier = "MovieCell"
-        
-        let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! MovieCollectionViewCell
+        let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as! MovieCollectionViewCell
         
         let index = IndexPath(row: indexPath.row, section: identifierObject?.section ?? 0)
         

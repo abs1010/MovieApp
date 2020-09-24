@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wze-eV-GHH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wze-eV-GHH">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--The Movie DB Challenge-->
         <scene sceneID="OhM-nq-2na">
             <objects>
-                <viewController storyboardIdentifier="MoviesListIdentifier" modalPresentationStyle="fullScreen" id="wze-eV-GHH" customClass="MovieListViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoviesListIdentifier" modalPresentationStyle="fullScreen" id="wze-eV-GHH" customClass="MovieListViewController" customModule="TheMovieDB_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2fK-Xa-FSW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YEI-N7-Aaf">
                                 <rect key="frame" x="0.0" y="128" width="375" height="601"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rhi-Hu-fBS">
                                     <size key="itemSize" width="180" height="304"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -88,7 +90,8 @@
                                 </connections>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="aPE-2l-Elo"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="TzI-pn-b6B" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="8IU-db-AMT"/>
                             <constraint firstItem="YEI-N7-Aaf" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="9BD-Vv-RvU"/>
@@ -105,7 +108,6 @@
                             <constraint firstItem="YEI-N7-Aaf" firstAttribute="bottom" secondItem="aPE-2l-Elo" secondAttribute="bottom" id="ht4-hA-I1L"/>
                             <constraint firstAttribute="trailing" secondItem="xaa-DV-06L" secondAttribute="trailing" id="iS6-8u-hEG"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="aPE-2l-Elo"/>
                     </view>
                     <navigationItem key="navigationItem" title="The Movie DB Challenge" largeTitleDisplayMode="always" id="RyT-5U-GRT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -117,26 +119,18 @@
                         <outlet property="movieCollectionView" destination="YEI-N7-Aaf" id="4Rc-7z-Im7"/>
                         <outlet property="movieSearchBar" destination="TzI-pn-b6B" id="6CQ-gV-Ftv"/>
                         <outlet property="searchBarHight" destination="zR2-YL-tti" id="zrf-8k-BjY"/>
-                        <segue destination="hRV-6i-Qmi" kind="show" identifier="goToDetailsViewController" id="4vf-bE-xpv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4T0-CQ-2Zr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2418.4000000000001" y="1080.2955665024631"/>
         </scene>
-        <!--Details-->
-        <scene sceneID="xeO-Bd-lMm">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Details" id="hRV-6i-Qmi" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="PrQ-M8-YTU"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9a9-9V-CvT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3003.1999999999998" y="992.36453201970448"/>
-        </scene>
     </scenes>
     <resources>
         <image name="icon_voltar" width="9" height="15"/>
         <image name="long_logo" width="509.33334350585938" height="37"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
