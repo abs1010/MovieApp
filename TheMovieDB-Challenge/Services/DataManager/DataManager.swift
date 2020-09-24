@@ -99,6 +99,8 @@ struct DataManager {
     
     mutating func loadFavoriteMovies() -> [Movie] {
         
+        favoriteMoviesArray.removeAll()
+        
         let tempFavoriteMovieArray : Results<FavoriteMovie>? = realm.objects(FavoriteMovie.self)
         
         if let array = tempFavoriteMovieArray {

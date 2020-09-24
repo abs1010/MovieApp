@@ -147,7 +147,7 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
         if let movie = presenter?.loadMovieWithIndexPath(indexPath: index) {
             
             cell.hero.id = "\(movie.id ?? 0)"
-            Hero.shared.apply(modifiers: [.fade, .scale(1.5)], to: cell)
+            Hero.shared.apply(modifiers: [.fade, .scale(2.5)], to: cell)
             
             cell.setupCell(movie: movie)
             

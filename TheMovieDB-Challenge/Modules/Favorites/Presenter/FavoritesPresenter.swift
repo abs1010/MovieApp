@@ -56,7 +56,7 @@ class FavoritesPresenter: FavoritesViewToPresenterProtocol {
         
         let movie = favoriteMoviesArray[row]
         
-        router?.goToMovieDetailsViewController(movie: movie, for: view as! MovieListViewController)
+        router?.goToMovieDetailsViewController(movie: movie, for: view as! FavoritesViewController)
         
     }
 
@@ -67,6 +67,7 @@ extension FavoritesPresenter: FavoritesInteractorToPresenterProtocol {
     func didGetFavoriteMovies(movies: [Movie]) {
         
         favoriteMoviesArray = movies
+        notFilteredFavoriteMoviesArray = movies
         view?.showRequestResults()
         
     }

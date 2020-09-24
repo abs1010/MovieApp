@@ -23,11 +23,7 @@ class FavoritesViewController: UIViewController {
         updateListOfFavorites()
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        updateListOfFavorites()
-    }
-    
+
     private func updateListOfFavorites() {
         
         presenter?.getFavoriteMovies()
@@ -61,7 +57,7 @@ extension FavoritesViewController : UICollectionViewDelegate, UICollectionViewDa
         if let movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath) {
             
             cell.hero.id = "\(movie.id ?? 0)"
-            //Hero.shared.apply(modifiers: [.fade, .scale(1.5)], to: cell)
+            Hero.shared.apply(modifiers: [.fade, .scale(2.5), .cascade], to: cell)
             
             cell.setupCell(movie: movie)
             
@@ -83,6 +79,12 @@ extension FavoritesViewController : UICollectionViewDelegate, UICollectionViewDa
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        presenter?.showMovie(row: indexPath.row)
+        
+    }
+    
 }
 
 //MARK: - UISearchBar Delegate methods
@@ -94,7 +96,7 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                //self.controller?.updateFavoriteArray()
+                self.presenter?.resetArray()
                 self.favoritesCollectionView.reloadData()
             }
             
@@ -108,16 +110,16 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                //self.controller?.updateFavoriteArray()
+                self.presenter?.resetArray()
                 self.favoritesCollectionView.reloadData()
             }
             
         }
         else {
-            
-            //self.controller?.searchFavoriteByValue(searchText: searchText)
-            
+        
+            self.presenter?.searchByValue(searchText: searchText)
             self.favoritesCollectionView.reloadData()
+            
         }
         
     }
@@ -128,7 +130,6 @@ extension FavoritesViewController: FavoritesPresenterToViewProtocol {
     
     func showRequestResults() {
         ///Show Sucess
-        
         favoritesCollectionView.reloadData()
         
     }
