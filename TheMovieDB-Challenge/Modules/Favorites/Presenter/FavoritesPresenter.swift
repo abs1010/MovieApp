@@ -68,7 +68,7 @@ extension FavoritesPresenter: FavoritesInteractorToPresenterProtocol {
         
         favoriteMoviesArray = movies
         notFilteredFavoriteMoviesArray = movies
-        view?.showRequestResults()
+        view?.showRequestResults(movies)
         
     }
     

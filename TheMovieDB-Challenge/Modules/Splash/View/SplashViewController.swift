@@ -37,7 +37,7 @@ class SplashViewController: UIViewController {
     }
     
     private func startAnimation() {
-        lottieStartAnimation(on: animatedImageView, animationFileName: .movieLoading3)
+        lottieStartAnimation(on: animatedImageView, animationName: .movieClapperboard)
     }
     
     private func startTimer() {

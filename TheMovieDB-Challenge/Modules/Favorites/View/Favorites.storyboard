@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham-Rounded-Medium.otf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Favoritos-->
         <scene sceneID="Ifk-Fu-rtq">
@@ -41,32 +46,66 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3M-pW-ghh" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="40" y="124" width="240" height="265"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nada por aqui..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c2-hQ-sRL">
+                                        <rect key="frame" x="0.0" y="238" width="240" height="15"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Os filmes que você favoritar aparecerão aqui." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCB-WZ-5bE">
+                                        <rect key="frame" x="0.0" y="255" width="240" height="10"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="10"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="RCB-WZ-5bE" secondAttribute="bottom" id="AD6-Kp-MbM"/>
+                                    <constraint firstItem="RCB-WZ-5bE" firstAttribute="leading" secondItem="i3M-pW-ghh" secondAttribute="leading" id="Hw8-cv-C5l"/>
+                                    <constraint firstAttribute="trailing" secondItem="RCB-WZ-5bE" secondAttribute="trailing" id="PIi-wF-wb2"/>
+                                    <constraint firstItem="1c2-hQ-sRL" firstAttribute="leading" secondItem="i3M-pW-ghh" secondAttribute="leading" id="TWT-rW-BWl"/>
+                                    <constraint firstAttribute="trailing" secondItem="1c2-hQ-sRL" secondAttribute="trailing" id="dgf-dY-Zxr"/>
+                                    <constraint firstItem="RCB-WZ-5bE" firstAttribute="top" secondItem="1c2-hQ-sRL" secondAttribute="bottom" constant="2" id="iV8-sL-wg1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="I4u-av-ZsU"/>
                         <color key="backgroundColor" red="0.53896349669999999" green="0.80920666460000001" blue="0.64233911040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dmd-Ex-Qby" firstAttribute="top" secondItem="I4u-av-ZsU" secondAttribute="top" id="5aT-1D-99T"/>
-                            <constraint firstItem="hdL-08-vab" firstAttribute="trailing" secondItem="I4u-av-ZsU" secondAttribute="trailing" id="5yg-CJ-pA3"/>
-                            <constraint firstItem="I4u-av-ZsU" firstAttribute="bottom" secondItem="hdL-08-vab" secondAttribute="bottom" id="7Fi-pw-gBe"/>
                             <constraint firstItem="dmd-Ex-Qby" firstAttribute="trailing" secondItem="I4u-av-ZsU" secondAttribute="trailing" id="7OB-do-cBS"/>
-                            <constraint firstItem="hdL-08-vab" firstAttribute="top" secondItem="dmd-Ex-Qby" secondAttribute="bottom" id="OVQ-1e-XzF"/>
+                            <constraint firstItem="hdL-08-vab" firstAttribute="trailing" secondItem="I4u-av-ZsU" secondAttribute="trailing" id="NVx-Rp-L0A"/>
+                            <constraint firstItem="i3M-pW-ghh" firstAttribute="top" secondItem="dmd-Ex-Qby" secondAttribute="bottom" constant="80" id="PPT-9H-88Y"/>
+                            <constraint firstItem="hdL-08-vab" firstAttribute="bottom" secondItem="I4u-av-ZsU" secondAttribute="bottom" id="RUk-jM-24n"/>
+                            <constraint firstItem="hdL-08-vab" firstAttribute="top" secondItem="dmd-Ex-Qby" secondAttribute="bottom" id="Uua-hS-RPk"/>
+                            <constraint firstItem="I4u-av-ZsU" firstAttribute="bottom" secondItem="i3M-pW-ghh" secondAttribute="bottom" constant="130" id="aQr-N6-Vqf"/>
                             <constraint firstItem="dmd-Ex-Qby" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" id="dMl-At-gwO"/>
-                            <constraint firstItem="hdL-08-vab" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" id="o5s-Cd-qac"/>
+                            <constraint firstItem="i3M-pW-ghh" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" constant="40" id="thk-GB-ktp"/>
+                            <constraint firstItem="hdL-08-vab" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" id="wZI-IK-H3v"/>
+                            <constraint firstItem="I4u-av-ZsU" firstAttribute="trailing" secondItem="i3M-pW-ghh" secondAttribute="trailing" constant="40" id="xyV-fi-WF5"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" image="iconStar" selectedImage="iconStarFilled" id="pTe-EG-E4x"/>
                     <navigationItem key="navigationItem" title="Favoritos" largeTitleDisplayMode="always" id="R6F-Og-xe2"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="animatedView" destination="i3M-pW-ghh" id="SAG-rI-xkI"/>
                         <outlet property="favoritesCollectionView" destination="hdL-08-vab" id="vAd-GC-bkb"/>
                         <outlet property="favoritesSearchBar" destination="dmd-Ex-Qby" id="XlT-yO-OFq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cse-Yf-SnW" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2543" y="918"/>
+            <point key="canvasLocation" x="2542.5" y="917.95774647887322"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="i3M-pW-ghh"/>
+    </designables>
     <resources>
         <image name="iconStar" width="30" height="30"/>
         <image name="iconStarFilled" width="30" height="30"/>

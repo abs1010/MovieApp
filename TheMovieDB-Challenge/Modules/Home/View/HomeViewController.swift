@@ -37,17 +37,19 @@ class HomeViewController: UIViewController {
         
         registerCells()
         
+        chechLoginState()
+        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    private func chechLoginState() {
         
-        //guard let signIn = GIDSignIn.sharedInstance() else { return }
-        #warning("Refactor this")
-//        if !signIn.hasPreviousSignIn() {
-//
-//            perform(#selector(shouldShowOnboarding), with: self, afterDelay: 2.5)
-//
-//        }
+        guard let signIn = GIDSignIn.sharedInstance() else { return }
+        
+        if !signIn.hasPreviousSignIn() {
+
+            perform(#selector(shouldShowOnboarding), with: self, afterDelay: 2.5)
+
+        }
         
     }
     

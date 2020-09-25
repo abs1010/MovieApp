@@ -32,7 +32,7 @@ protocol FavoritesInteractorToPresenterProtocol: class {
 }
 
 protocol FavoritesPresenterToViewProtocol: class {
-    func showRequestResults()
+    func showRequestResults(_ movies: [Movie])
     func FailRequestResults()
 }
 

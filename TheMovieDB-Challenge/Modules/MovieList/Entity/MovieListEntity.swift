@@ -42,7 +42,7 @@ struct MovieHeader: Codable {
 }
 
 // MARK: - Result
-struct Movie: Codable {
+struct Movie: Codable, Hashable {
     var popularity: Double?
     var voteCount: Int?
     var video: Bool?

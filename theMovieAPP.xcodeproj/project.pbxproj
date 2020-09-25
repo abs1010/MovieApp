@@ -86,6 +86,8 @@
 		BC6E8764247D52A8004D71F6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6E8762247D52A8004D71F6 /* SplashViewController.swift */; };
 		BC6E8765247D52A8004D71F6 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6E8763247D52A8004D71F6 /* SplashViewController.xib */; };
 		BC6E8770247DA07E004D71F6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6E876F247DA07E004D71F6 /* Settings.storyboard */; };
+		BC7471C0251D5E52002BBCC1 /* 10687-not-found.json in Resources */ = {isa = PBXBuildFile; fileRef = BC7471BF251D5E52002BBCC1 /* 10687-not-found.json */; };
+		BC7471C1251D5E52002BBCC1 /* 10687-not-found.json in Resources */ = {isa = PBXBuildFile; fileRef = BC7471BF251D5E52002BBCC1 /* 10687-not-found.json */; };
 		BC78E26B251948F8002958DD /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D6FED23E2209400639A19 /* HomeInteractor.swift */; };
 		BC78E26C251948F8002958DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD2C0C9246D7E2E0046910F /* Constants.swift */; };
 		BC78E26D251948F8002958DD /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94C7F323E2A2D900E225E1 /* FavoritesViewController.swift */; };
@@ -196,6 +198,12 @@
 		BCABADFA251BFCE800A05779 /* Button+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCABADF9251BFCE800A05779 /* Button+.swift */; };
 		BCABADFB251BFCE800A05779 /* Button+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCABADF9251BFCE800A05779 /* Button+.swift */; };
 		BCABADFC251BFCE800A05779 /* Button+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCABADF9251BFCE800A05779 /* Button+.swift */; };
+		BCABAE6F251D2DC000A05779 /* 16702-lady-searching.json in Resources */ = {isa = PBXBuildFile; fileRef = BCABAE6C251D2DC000A05779 /* 16702-lady-searching.json */; };
+		BCABAE70251D2DC100A05779 /* 16702-lady-searching.json in Resources */ = {isa = PBXBuildFile; fileRef = BCABAE6C251D2DC000A05779 /* 16702-lady-searching.json */; };
+		BCABAE71251D2DC100A05779 /* 2086-wow.json in Resources */ = {isa = PBXBuildFile; fileRef = BCABAE6D251D2DC000A05779 /* 2086-wow.json */; };
+		BCABAE72251D2DC100A05779 /* 2086-wow.json in Resources */ = {isa = PBXBuildFile; fileRef = BCABAE6D251D2DC000A05779 /* 2086-wow.json */; };
+		BCABAE73251D2DC100A05779 /* 13525-empty.json in Resources */ = {isa = PBXBuildFile; fileRef = BCABAE6E251D2DC000A05779 /* 13525-empty.json */; };
+		BCABAE74251D2DC100A05779 /* 13525-empty.json in Resources */ = {isa = PBXBuildFile; fileRef = BCABAE6E251D2DC000A05779 /* 13525-empty.json */; };
 		BCB20C1824741FC1009E0175 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB20C1624741FC1009E0175 /* LoadingViewController.swift */; };
 		BCB20C1924741FC1009E0175 /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB20C1724741FC1009E0175 /* Loading.storyboard */; };
 		BCC988472495B43C00504891 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC988462495B43C00504891 /* Page.swift */; };
@@ -288,6 +296,7 @@
 		BC6E8762247D52A8004D71F6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BC6E8763247D52A8004D71F6 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		BC6E876F247DA07E004D71F6 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		BC7471BF251D5E52002BBCC1 /* 10687-not-found.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "10687-not-found.json"; sourceTree = "<group>"; };
 		BC78E2C3251948F8002958DD /* TheMovieDB-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TheMovieDB-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC78E3062519507F002958DD /* Enviroment_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Enviroment_Info.plist; sourceTree = "<group>"; };
 		BC7D6FED23E2209400639A19 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
@@ -320,6 +329,9 @@
 		BCA4113E2469D58200C570CD /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		BCA411402469D5EA00C570CD /* OnbordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbordViewController.swift; sourceTree = "<group>"; };
 		BCABADF9251BFCE800A05779 /* Button+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+.swift"; sourceTree = "<group>"; };
+		BCABAE6C251D2DC000A05779 /* 16702-lady-searching.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "16702-lady-searching.json"; sourceTree = "<group>"; };
+		BCABAE6D251D2DC000A05779 /* 2086-wow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "2086-wow.json"; sourceTree = "<group>"; };
+		BCABAE6E251D2DC000A05779 /* 13525-empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "13525-empty.json"; sourceTree = "<group>"; };
 		BCB20C1624741FC1009E0175 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		BCB20C1724741FC1009E0175 /* Loading.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Loading.storyboard; sourceTree = "<group>"; };
 		BCC988462495B43C00504891 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -386,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				BC0E7E9625195D910006C5D1 /* Bundle+.swift */,
+				BCABADF9251BFCE800A05779 /* Button+.swift */,
 				BC0E7EA825195F130006C5D1 /* Double+.swift */,
 				BC0E7EA525195F120006C5D1 /* Notification+.swift */,
 				BC0E7E9F25195F0E0006C5D1 /* String+.swift */,
@@ -393,7 +406,6 @@
 				BC0E7EAA25195F150006C5D1 /* UIView+.swift */,
 				BC5A6C6E23E604BF00C99597 /* UIViewController.swift */,
 				BC0E7EA925195F140006C5D1 /* UserDefaults+.swift */,
-				BCABADF9251BFCE800A05779 /* Button+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -869,12 +881,9 @@
 		BCA411242465E82C00C570CD /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				BC366B7023E08C56009ABFD6 /* LaunchScreen.storyboard */,
 				BC0E7E132519556A0006C5D1 /* Dev_LaunchScreen.storyboard */,
-				BC915ED62506E8D0000832EC /* 31162-movie-engagement.json */,
-				BCA411262465E83E00C570CD /* 1961-movie-loading.json */,
-				BC611FA724A67E7200CD123F /* 19404-video-playback.json */,
-				BCA411252465E83E00C570CD /* 19117-movie-clapperboard.json */,
+				BC366B7023E08C56009ABFD6 /* LaunchScreen.storyboard */,
+				BCABAE78251D2DCB00A05779 /* Lottie */,
 				BCE370C424A012700017BC27 /* presentingVideo.mp4 */,
 			);
 			path = Animation;
@@ -952,6 +961,21 @@
 			children = (
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		BCABAE78251D2DCB00A05779 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				BC7471BF251D5E52002BBCC1 /* 10687-not-found.json */,
+				BC915ED62506E8D0000832EC /* 31162-movie-engagement.json */,
+				BCA411262465E83E00C570CD /* 1961-movie-loading.json */,
+				BC611FA724A67E7200CD123F /* 19404-video-playback.json */,
+				BCA411252465E83E00C570CD /* 19117-movie-clapperboard.json */,
+				BCABAE6D251D2DC000A05779 /* 2086-wow.json */,
+				BCABAE6E251D2DC000A05779 /* 13525-empty.json */,
+				BCABAE6C251D2DC000A05779 /* 16702-lady-searching.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		BCB20C1524741F72009E0175 /* Loading */ = {
@@ -1241,6 +1265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCABAE73251D2DC100A05779 /* 13525-empty.json in Resources */,
 				BCE370C524A0129F0017BC27 /* presentingVideo.mp4 in Resources */,
 				BCA4111B2465E01E00C570CD /* Favorites.storyboard in Resources */,
 				BCA4113F2469D58200C570CD /* Onboarding.storyboard in Resources */,
@@ -1254,7 +1279,9 @@
 				BC910BBB249EFD3D00CD5A1A /* Gotham-Rounded-Bold.ttf in Resources */,
 				BC910BBC249EFD3D00CD5A1A /* Inter-Regular.ttf in Resources */,
 				BC611FA824A67E7200CD123F /* 19404-video-playback.json in Resources */,
+				BCABAE6F251D2DC000A05779 /* 16702-lady-searching.json in Resources */,
 				BC915ED72506E8D1000832EC /* 31162-movie-engagement.json in Resources */,
+				BCABAE71251D2DC100A05779 /* 2086-wow.json in Resources */,
 				BC366B7223E08C56009ABFD6 /* LaunchScreen.storyboard in Resources */,
 				BC0E7E84251958A80006C5D1 /* Dev_LaunchScreen.storyboard in Resources */,
 				BCA411212465E47C00C570CD /* Details.storyboard in Resources */,
@@ -1271,6 +1298,7 @@
 				BC6E8765247D52A8004D71F6 /* SplashViewController.xib in Resources */,
 				BCC988522495C3DB00504891 /* OnboardingViewCell.xib in Resources */,
 				BC6E8770247DA07E004D71F6 /* Settings.storyboard in Resources */,
+				BC7471C0251D5E52002BBCC1 /* 10687-not-found.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1278,6 +1306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCABAE74251D2DC100A05779 /* 13525-empty.json in Resources */,
 				BC78E29F251948F8002958DD /* presentingVideo.mp4 in Resources */,
 				BC78E2A0251948F8002958DD /* Favorites.storyboard in Resources */,
 				BC78E2A1251948F8002958DD /* Onboarding.storyboard in Resources */,
@@ -1291,7 +1320,9 @@
 				BC78E2A9251948F8002958DD /* Gotham-Rounded-Bold.ttf in Resources */,
 				BC78E2AA251948F8002958DD /* Inter-Regular.ttf in Resources */,
 				BC78E2AB251948F8002958DD /* 19404-video-playback.json in Resources */,
+				BCABAE70251D2DC100A05779 /* 16702-lady-searching.json in Resources */,
 				BC78E2AC251948F8002958DD /* 31162-movie-engagement.json in Resources */,
+				BCABAE72251D2DC100A05779 /* 2086-wow.json in Resources */,
 				BC78E2AD251948F8002958DD /* LaunchScreen.storyboard in Resources */,
 				BC0E7E88251958A90006C5D1 /* Dev_LaunchScreen.storyboard in Resources */,
 				BC78E2AE251948F8002958DD /* Details.storyboard in Resources */,
@@ -1308,6 +1339,7 @@
 				BC78E2B9251948F8002958DD /* SplashViewController.xib in Resources */,
 				BC78E2BA251948F8002958DD /* OnboardingViewCell.xib in Resources */,
 				BC78E2BB251948F8002958DD /* Settings.storyboard in Resources */,
+				BC7471C1251D5E52002BBCC1 /* 10687-not-found.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1893,7 +1925,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.abstec.TheMovieDB-Challenge";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.abstec.TheMovieApp;
 				PRODUCT_NAME = "The MovieDB";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1918,7 +1950,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.abstec.TheMovieDB-Challenge";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.abstec.TheMovieApp;
 				PRODUCT_NAME = "The MovieDB";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

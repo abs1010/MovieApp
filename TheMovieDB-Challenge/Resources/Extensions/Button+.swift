@@ -10,7 +10,7 @@ import UIKit
 
 extension UIButton {
     
-    func setGradientToButton(colorOne: UIColor, colorTwo: UIColor) {
+    func setGradientColor(colorOne: UIColor, colorTwo: UIColor) {
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds

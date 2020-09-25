@@ -13,15 +13,19 @@ import Lottie
 extension UIViewController {
 
     public enum animationFile : String {
-        case movieLoading1 = "1961-movie-loading"
-        case movieLoading2 = "19404-video-playback"
-        case movieLoading3 = "19117-movie-clapperboard"
-        case movieLoading4 = "31162-movie-engagement"
+        case movieLoading = "1961-movie-loading"
+        case videoPlayback = "19404-video-playback"
+        case movieClapperboard = "19117-movie-clapperboard"
+        case movieEngagement = "31162-movie-engagement"
+        case wow = "2086-wow"
+        case empty = "13525-empty"
+        case ladySearching = "16702-lady-searching"
+        case notFound = "10687-not-found"
     }
     
-    public func lottieStartAnimation(on uiview: AnimationView, animationFileName: animationFile) {
+    public func lottieStartAnimation(on uiview: AnimationView, animationName: animationFile) {
         
-        let animation = Animation.named(animationFileName.rawValue)
+        let animation = Animation.named(animationName.rawValue)
         uiview.animation = animation
         uiview.loopMode = .loop
         uiview.play()
