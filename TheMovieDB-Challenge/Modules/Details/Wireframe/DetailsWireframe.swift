@@ -17,6 +17,8 @@ protocol DetailsViewToPresenterProtocol: class {
     func isFavorite(_ movieID: Int, completion: @escaping (Bool) -> Void) -> Void
     func saveAsFavorite(movie: Movie?)
     func removeFromFavorites(_ movieID: Int, completion: @escaping (Bool) -> Void) -> Void
+    func numberOfItemsInSection() -> Int
+    func getCellForItemAt(_ indexPath: IndexPath) -> CastElement
 }
 
 protocol DetailsPresenterToInteractorProtocol: class {
@@ -25,11 +27,11 @@ protocol DetailsPresenterToInteractorProtocol: class {
 }
 
 protocol DetailsInteractorToPresenterProtocol: class {
-    func didGetMovieInfo(movieDetails: MovieDetails, cast: [CastElement], videoID: String)
+    func didGetMovieInfo(movieDetails: MovieDetails, credits: Cast, videoID: String)
 }
 
 protocol DetailsPresenterToViewProtocol: class {
-    func showRequestResults(movieDetails: MovieDetails, cast: [CastElement], videoID: String)
+    func showRequestResults(movieDetails: MovieDetails, crew: [Crew], videoID: String)
 }
 
 protocol DetailsPresenterToRouterProtocol: class {

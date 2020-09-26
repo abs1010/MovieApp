@@ -46,7 +46,6 @@ final class DetailsViewController: UIViewController {
     @IBOutlet weak var revenueLabel: UILabel!
     
     var presenter: DetailsViewToPresenterProtocol?
-    var castArray: [CastElement]?
     let shapeLayer = CAShapeLayer()
     var movie : Movie?
     
@@ -131,7 +130,7 @@ final class DetailsViewController: UIViewController {
         favoriteView.layer.cornerRadius = favoriteView.frame.width / 2
         if let movieID = movie?.id {
             presenter?.isFavorite(movieID, completion: { favourite in
-            
+                
                 let imgName = favourite ? "iconStarFilled" : "iconStar"
                 self.btnFavorite.setImage(UIImage(named: imgName), for: .normal)
                 
@@ -198,7 +197,7 @@ final class DetailsViewController: UIViewController {
         
     }
     
-    func fillMovieInfo(_ movieDetails: MovieDetails) {
+    func fillMovieInfo(movieDetails: MovieDetails, crew: [Crew]) {
         
         ///Background Image
         if let urlString = self.movie?.backdropPath {
@@ -220,7 +219,7 @@ final class DetailsViewController: UIViewController {
         originalLanguageLabel.text = movieDetails.originalLanguage
         budgetLabel.text = convertIntToCurrencyString(value: movieDetails.budget ?? 0)
         revenueLabel.text = convertIntToCurrencyString(value: movieDetails.revenue ?? 0)
-
+        
         ///Genres
         if let genres = movieDetails.genres, let duration = movieDetails.runtime {
             let str = generateStringOfGenres(genres: genres) + " • " + setDurationAsString(duration)
@@ -228,20 +227,46 @@ final class DetailsViewController: UIViewController {
         }
         
         ///Crew
-        /*
-         crew1Dir.text = movieDetails
-         crew1Role
-         crew2Dir
-         crew2Role
-         crew3Dir
-         crew3Role
-         crew4Dir
-         crew4Role
-         crew5Dir
-         rew5Role
-         crew6Dir
-         crew6Role
-         */
+        var emptySet = Set<Crew>()
+        crew.forEach { emptySet.insert($0) }
+        let dirList = emptySet.filter({ $0.department?.lowercased() == "Directing".lowercased() })
+        let writerList = emptySet.filter({ $0.department?.lowercased() == "Writing".lowercased() })
+        let remainingList = emptySet.subtracting(dirList).subtracting(writerList)
+        var emptyArray = [Crew]()
+        dirList.forEach({ emptyArray.append($0) })
+        writerList.forEach({ emptyArray.append($0) })
+        remainingList.forEach({ emptyArray.append($0) })
+        
+        if emptyArray[0].name?.isEmpty == false {
+            let zero = emptyArray[0]
+            crew1Role.text = zero.job
+            crew1Dir.text = zero.name
+        }
+        if emptyArray[1].name?.isEmpty == false {
+            let one = emptyArray[1]
+            crew2Role.text = one.job
+            crew2Dir.text = one.name
+        }
+        if emptyArray[2].name?.isEmpty == false {
+            let two = emptyArray[2]
+            crew3Role.text = two.job
+            crew3Dir.text = two.name
+        }
+        if emptyArray[3].name?.isEmpty == false {
+            let three = emptyArray[3]
+            crew4Role.text = three.job
+            crew4Dir.text = three.name
+        }
+        if emptyArray[4].name?.isEmpty == false {
+            let four = emptyArray[4]
+            crew5Role.text = four.job
+            crew5Dir.text = four.name
+        }
+        if emptyArray[5].name?.isEmpty == false {
+            let five = emptyArray[5]
+            crew6Role.text = five.job
+            crew6Dir.text = five.name
+        }
     }
     
     func generateStringOfGenres(genres: [Genre]) -> String {
@@ -317,7 +342,7 @@ final class DetailsViewController: UIViewController {
         return formmatedDuration
         
     }
-        
+    
 }
 
 extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -326,7 +351,7 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let nCells = castArray?.count ?? 0
+        let nCells = presenter?.numberOfItemsInSection() ?? 0
         
         if nCells > 8 {
             return 9
@@ -340,7 +365,7 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCellID", for: indexPath) as! CastCollectionViewCell
         
-        if let castElement = castArray?[indexPath.item] {
+        if let castElement = presenter?.getCellForItemAt(indexPath) {
             
             cell.setupCell(cast: castElement, item: indexPath.item)
             
@@ -369,13 +394,11 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
 
 //MARK: - return of requests
 extension DetailsViewController: DetailsPresenterToViewProtocol {
-    
-    func showRequestResults(movieDetails: MovieDetails, cast: [CastElement], videoID: String) {
+    func showRequestResults(movieDetails: MovieDetails, crew: [Crew], videoID: String) {
         
         DispatchQueue.main.async {
             LoadingView.sharedInstance.hide()
-            self.fillMovieInfo(movieDetails)
-            self.castArray = cast
+            self.fillMovieInfo(movieDetails: movieDetails, crew: crew)
             self.videoPlayer.loadVideoID(videoID)
             self.castCollectionView.reloadData()
             

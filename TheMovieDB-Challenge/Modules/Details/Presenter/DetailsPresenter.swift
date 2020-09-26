@@ -14,6 +14,9 @@ class DetailsPresenter: DetailsViewToPresenterProtocol {
     var interactor: DetailsPresenterToInteractorProtocol?
     var router: DetailsPresenterToRouterProtocol?
     
+    private var castArray: [CastElement]?
+    private var crewArray: [Crew]?
+    
     func getMovieInfo(for movieId: Int) {
         
         interactor?.getMovieInfo(for: movieId)
@@ -40,12 +43,24 @@ class DetailsPresenter: DetailsViewToPresenterProtocol {
         
     }
     
+    func numberOfItemsInSection() -> Int {
+        return castArray?.count ?? 0
+    }
+    
+    func getCellForItemAt(_ indexPath: IndexPath) -> CastElement {
+        
+        return castArray?[indexPath.item] ?? CastElement()
+        
+    }
+    
 }
 
 extension DetailsPresenter: DetailsInteractorToPresenterProtocol {
     
-    func didGetMovieInfo(movieDetails: MovieDetails, cast: [CastElement], videoID: String) {
-        view?.showRequestResults(movieDetails: movieDetails, cast: cast, videoID: videoID)
+    func didGetMovieInfo(movieDetails: MovieDetails, credits: Cast, videoID: String) {
+        self.castArray = credits.cast
+        self.crewArray = credits.crew
+        view?.showRequestResults(movieDetails: movieDetails, crew: crewArray ?? [], videoID: videoID)
     }
     
 }

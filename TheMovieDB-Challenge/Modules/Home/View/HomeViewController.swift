@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
         
         registerCells()
         
-        chechLoginState()
+        ///chechLoginState()
         
     }
     

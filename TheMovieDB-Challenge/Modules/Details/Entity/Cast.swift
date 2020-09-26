@@ -37,10 +37,22 @@ struct CastElement: Codable {
         case gender, id, name, order
         case profilePath = "profile_path"
     }
+    
+    init() {
+        self.castID = 0
+        self.character = ""
+        self.creditID = ""
+        self.gender = 0
+        self.id = 0
+        self.name = ""
+        self.order = 0
+        self.profilePath = ""
+    }
+    
 }
 
 // MARK: - Crew
-struct Crew: Codable {
+struct Crew: Codable, Hashable {
     let creditID, department: String?
     let gender, id: Int?
     let job, name: String?

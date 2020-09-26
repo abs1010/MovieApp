@@ -13,7 +13,7 @@ class DetailsInteractor: DetailsPresenterToInteractorProtocol {
     weak var presenter: DetailsInteractorToPresenterProtocol?
     
     private var movieDetails: MovieDetails? = nil
-    private var cast = [CastElement]()
+    private var credits: Cast?
     private var videoID = ""
     
     func getMovieInfo(for movieId: Int) {
@@ -40,7 +40,7 @@ class DetailsInteractor: DetailsPresenterToInteractorProtocol {
             switch result {
             case .success(let castArray):
                 print("Task 2 has Finished")
-                self?.cast = castArray.cast ?? []
+                self?.credits = castArray
             case .failure(let error):
                 print(error)
             }
@@ -72,7 +72,8 @@ class DetailsInteractor: DetailsPresenterToInteractorProtocol {
         //The group has finished all tasks
         group.notify(queue: .main) {
             guard let mvDetails = self.movieDetails else { return }
-            self.presenter?.didGetMovieInfo(movieDetails: mvDetails, cast: self.cast, videoID: self.videoID)
+            guard let credits = self.credits else { return }
+            self.presenter?.didGetMovieInfo(movieDetails: mvDetails, credits: credits, videoID: self.videoID)
         }
         
     }
