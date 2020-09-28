@@ -233,9 +233,8 @@ final class DetailsViewController: UIViewController {
         let writerList = emptySet.filter({ $0.department?.lowercased() == "Writing".lowercased() })
         let remainingList = emptySet.subtracting(dirList).subtracting(writerList)
         var emptyArray = [Crew]()
-        dirList.forEach({ emptyArray.append($0) })
-        writerList.forEach({ emptyArray.append($0) })
-        remainingList.forEach({ emptyArray.append($0) })
+        
+        [dirList, writerList, remainingList].forEach({ $0.forEach({ emptyArray.append($0) })})
         
         if emptyArray[0].name?.isEmpty == false {
             let zero = emptyArray[0]

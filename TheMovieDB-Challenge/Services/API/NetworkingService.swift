@@ -23,38 +23,16 @@ struct NetworkingService {
     
     private enum API {
         static let baseURL = "https://api.themoviedb.org/3"
+        static let privateKey = "132dfc8e68a337152fd3e36d63c77677"
+        static let publicKey = ""
         static let imageURLBanner = "https://image.tmdb.org/t/p/w1280"
         static let imageURLCover = "https://image.tmdb.org/t/p/original"
-        static let faceImage = "https://image.tmdb.org/t/p/w276_and_h350_face//hPwCMEq6jLAidsXAX5BfoYgIfg2.jpg"
-        static let publicKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-        static let privateKey = "132dfc8e68a337152fd3e36d63c77677"
     }
     
     private enum language : String {
-        
         case Portuguese = "pt-BR"
         case English = "en-US"
         case Spanish = "es-ES"
-        
-    }
-    
-    private enum MovieEndpoint {
-        case account_states
-        case alternative_titles
-        case changes
-        case credits
-        case external_ids
-        case images
-        case keywords
-        case release_dates
-        case videos
-        case translations
-        case recommendations
-        case similar
-        case reviews
-        case lists
-        case rating//POST DELETE
-        
     }
     
     enum Endpoints {
@@ -66,9 +44,28 @@ struct NetworkingService {
         case getMovieCast(id: Int)
         case getMovieTrailer(id: Int)
         
+//        case account_states
+//        case alternative_titles
+//        case changes
+//        case credits
+//        case external_ids
+//        case images
+//        case keywords
+//        case release_dates
+//        case videos
+//        case translations
+//        case recommendations
+//        case similar
+//        case reviews
+//        case lists
+//        case rating//POST DELETE
+        
         var url: String {
             
-            let appLanguage = language.English.rawValue ///Replace by UserDefaults later
+            var appLanguage: String {
+                let lgn: language = .Portuguese
+                return lgn.rawValue ///Replace by UserDefaults later
+            }
             
             switch self {
             case .getMovies(let movieSelection):
