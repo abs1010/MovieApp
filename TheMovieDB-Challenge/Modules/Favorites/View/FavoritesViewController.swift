@@ -15,7 +15,7 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var favoritesCollectionView: UICollectionView!
     @IBOutlet weak var favoritesSearchBar: UISearchBar!
     @IBOutlet weak var animatedView: AnimationView!
-    
+    private var refreshControl: UIRefreshControl?
     var presenter: FavoritesViewToPresenterProtocol?
     
     typealias DataSource = UICollectionViewDiffableDataSource<Int, Movie>
@@ -24,9 +24,17 @@ class FavoritesViewController: UIViewController {
     private var dataSource: DataSource!
     private var snapshot: DataSourceSnapshot!
     
+    //MARK: - Sets the StatusBar as white
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        return UIStatusBarStyle.lightContent
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addRefreshingControl()
         setUp()
         configureCollectionViewDataSource()
         updateListOfFavorites()
@@ -45,6 +53,24 @@ class FavoritesViewController: UIViewController {
     @objc private func updateListOfFavorites() {
         
         presenter?.getFavoriteMovies()
+        
+    }
+    
+    private func addRefreshingControl() {
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.tintColor = #colorLiteral(red: 0.5346772075, green: 0.8092244267, blue: 0.6423767805, alpha: 1)
+        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+        self.favoritesCollectionView.addSubview(refreshControl ?? UIView())
+        
+    }
+    
+    @objc private func refreshList() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.refreshControl?.endRefreshing()
+            self.presenter?.getFavoriteMovies()
+        }
         
     }
     
@@ -125,14 +151,12 @@ extension FavoritesViewController : UISearchBarDelegate {
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
                 self.presenter?.resetArray()
-                self.favoritesCollectionView.reloadData()
             }
             
         }
         else {
             
             self.presenter?.searchByValue(searchText: searchText)
-            self.favoritesCollectionView.reloadData()
             
         }
         

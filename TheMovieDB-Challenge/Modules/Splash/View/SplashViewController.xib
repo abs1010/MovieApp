@@ -43,7 +43,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZb-8k-leI">
                     <rect key="frame" x="145.5" y="530" width="29.5" height="13"/>
                     <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" red="0.53896349669999999" green="0.80920666460000001" blue="0.64233911040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -60,6 +60,9 @@
             <point key="canvasLocation" x="138.75" y="152.11267605633802"/>
         </view>
     </objects>
+    <designables>
+        <designable name="Kzp-Sf-Kkh"/>
+    </designables>
     <resources>
         <image name="logo" width="289" height="208.5"/>
     </resources>

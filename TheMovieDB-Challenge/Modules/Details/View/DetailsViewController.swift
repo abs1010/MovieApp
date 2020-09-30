@@ -236,32 +236,34 @@ final class DetailsViewController: UIViewController {
         
         [dirList, writerList, remainingList].forEach({ $0.forEach({ emptyArray.append($0) })})
         
-        if emptyArray[0].name?.isEmpty == false {
+        let counter = emptyArray.count
+        
+        if counter >= 1 {
             let zero = emptyArray[0]
             crew1Role.text = zero.job
             crew1Dir.text = zero.name
         }
-        if emptyArray[1].name?.isEmpty == false {
+        if counter >= 2 {
             let one = emptyArray[1]
             crew2Role.text = one.job
             crew2Dir.text = one.name
         }
-        if emptyArray[2].name?.isEmpty == false {
+        if counter >= 3 {
             let two = emptyArray[2]
             crew3Role.text = two.job
             crew3Dir.text = two.name
         }
-        if emptyArray[3].name?.isEmpty == false {
+        if counter >= 4 {
             let three = emptyArray[3]
             crew4Role.text = three.job
             crew4Dir.text = three.name
         }
-        if emptyArray[4].name?.isEmpty == false {
+        if counter >= 5 {
             let four = emptyArray[4]
             crew5Role.text = four.job
             crew5Dir.text = four.name
         }
-        if emptyArray[5].name?.isEmpty == false {
+        if counter >= 6 {
             let five = emptyArray[5]
             crew6Role.text = five.job
             crew6Dir.text = five.name

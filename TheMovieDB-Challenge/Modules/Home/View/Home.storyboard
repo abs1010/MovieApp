@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wze-eV-GHH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wze-eV-GHH">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--The Movie DB Challenge-->
         <scene sceneID="OhM-nq-2na">
             <objects>
-                <viewController storyboardIdentifier="HomeViewControllerIdentifier" modalPresentationStyle="fullScreen" id="wze-eV-GHH" customClass="HomeViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2fK-Xa-FSW">
+                <viewController storyboardIdentifier="HomeViewControllerIdentifier" modalPresentationStyle="fullScreen" id="wze-eV-GHH" customClass="HomeViewController" customModule="TheMovieDB_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="2fK-Xa-FSW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -41,7 +43,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ymd-98-l2H">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="729"/>
-                                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.10986601560000001" green="0.109588854" blue="0.1179477498" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wCz-Id-zfW">
                                             <size key="itemSize" width="180" height="304"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -60,7 +62,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="aPE-2l-Elo"/>
+                        <color key="tintColor" systemColor="systemBlueColor"/>
                         <constraints>
                             <constraint firstItem="Laj-85-yJA" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="11s-Y5-bcL"/>
                             <constraint firstItem="goU-fW-9dx" firstAttribute="trailing" secondItem="aPE-2l-Elo" secondAttribute="trailing" id="KrP-iS-okm"/>
@@ -74,7 +77,6 @@
                             <constraint firstItem="goU-fW-9dx" firstAttribute="leading" secondItem="aPE-2l-Elo" secondAttribute="leading" id="tb0-SA-EFI"/>
                             <constraint firstItem="Laj-85-yJA" firstAttribute="top" secondItem="aPE-2l-Elo" secondAttribute="top" id="tm9-15-pSK"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="aPE-2l-Elo"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="baseline_movie_filter_black_24pt" id="dmG-ye-Nzs"/>
                     <navigationItem key="navigationItem" title="The Movie DB Challenge" largeTitleDisplayMode="always" id="RyT-5U-GRT"/>
@@ -94,5 +96,8 @@
     <resources>
         <image name="baseline_movie_filter_black_24pt" width="24" height="24"/>
         <image name="long_logo" width="509.33334350585938" height="37"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

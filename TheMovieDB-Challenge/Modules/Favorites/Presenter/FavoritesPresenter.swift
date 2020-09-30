@@ -44,11 +44,14 @@ class FavoritesPresenter: FavoritesViewToPresenterProtocol {
             (movie.title?.lowercased().contains(searchText.lowercased()))!
         })
         
+        view?.showRequestResults(favoriteMoviesArray)
+        
     }
     
     func resetArray() {
         
         favoriteMoviesArray = notFilteredFavoriteMoviesArray
+        view?.showRequestResults(favoriteMoviesArray)
         
     }
     

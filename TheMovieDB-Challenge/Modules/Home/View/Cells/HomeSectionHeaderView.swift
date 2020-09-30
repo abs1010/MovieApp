@@ -80,6 +80,7 @@ class HomeSectionHeaderView : UICollectionReusableView {
             seeDetailsLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
+        //seeDetailsLabel.centerYAnchor.constraint(equalTo: centerYAnchor).priority = UILayoutPriority(rawValue: 999)
     }
     
 }

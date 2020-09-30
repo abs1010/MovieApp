@@ -92,7 +92,7 @@ class HomeViewController: UIViewController {
     private func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.tintColor = .darkBlue
+        self.refreshControl?.tintColor = #colorLiteral(red: 0.5346772075, green: 0.8092244267, blue: 0.6423767805, alpha: 1)
         self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
         self.mainCollectionView.addSubview(refreshControl ?? UIView())
         
@@ -100,7 +100,7 @@ class HomeViewController: UIViewController {
     
     @objc private func refreshList() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.refreshControl?.endRefreshing()
             self.presenter?.requestFirstCallOfMovies()
         }
