@@ -48,6 +48,7 @@ class FavoritesViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         lottieStopAnimation(on: animatedView)
         animatedView.isHidden = true
+        favoritesSearchBar.text?.removeAll()
     }
     
     @objc private func updateListOfFavorites() {
@@ -79,6 +80,10 @@ class FavoritesViewController: UIViewController {
         favoritesSearchBar.searchTextField.backgroundColor = .white
         self.favoritesCollectionView.delegate = self
         self.favoritesCollectionView.register(UINib(nibName: MovieCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
+        
+        ///Sets a tap gesture on view in order to dismiss keyboard
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        favoritesCollectionView.addGestureRecognizer(tap)
         
     }
     
@@ -137,7 +142,6 @@ extension FavoritesViewController : UISearchBarDelegate {
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
                 self.presenter?.resetArray()
-                self.favoritesCollectionView.reloadData()
             }
             
         }
@@ -151,10 +155,15 @@ extension FavoritesViewController : UISearchBarDelegate {
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
                 self.presenter?.resetArray()
+                self.lottieStopAnimation(on: self.animatedView)
+                self.animatedView.isHidden = true
             }
             
         }
         else {
+            
+            lottieStopAnimation(on: animatedView)
+            animatedView.isHidden = true
             
             self.presenter?.searchByValue(searchText: searchText)
             
@@ -175,7 +184,7 @@ extension FavoritesViewController: FavoritesPresenterToViewProtocol {
         dataSource.apply(snapshot, animatingDifferences: true)
         
         if movies.count == 0 {
-            UIView.animate(withDuration: 0.9, delay: 0.5, options: .transitionCrossDissolve) {
+            UIView.animate(withDuration: 0.9, delay: 0.5, options: .curveEaseIn) {
                 self.animatedView.isHidden = false
                 self.animatedView.alpha = 1
             } completion: { _ in

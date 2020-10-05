@@ -15,10 +15,9 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     
     private let itemsArray = [
-        SettingsItems(id: 0, description: "Conta"),
-        SettingsItems(id: 1, description: "Avalie o App"),
-        SettingsItems(id: 2, description: "Creditos API ©TMDB"),
-        SettingsItems(id: 3, description: "Sair")
+        SettingsItems(id: 0, description: "Rate the App"),
+        SettingsItems(id: 1, description: "©TMDB API Credits"),
+        SettingsItems(id: 2, description: "Log Out")
     ]
     
     //MARK: - Sets the StatusBar as white
@@ -58,8 +57,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.textLabel?.text = itemsArray[indexPath.row].description
         
-        if indexPath.row == 3 {
+        if indexPath.row == itemsArray.last?.id {
             cell.accessoryType = .none
+        }else if indexPath.row == 1 {
+            cell.accessoryType = .detailDisclosureButton
         }
         
         return cell
@@ -71,12 +72,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            print("Contas conectadas")
-        case 1:
             print("Avalie o App")
-        case 2:
+        case 1:
             performSegue(withIdentifier: "goToCredits", sender: self)
-        case 3:
+        case 2:
             
             guard let signIn = GIDSignIn.sharedInstance() else { return }
             

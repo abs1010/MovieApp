@@ -49,19 +49,19 @@
                                 <rect key="frame" x="40" y="124" width="240" height="265"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nada por aqui..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c2-hQ-sRL">
-                                        <rect key="frame" x="0.0" y="238" width="240" height="15"/>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="235" width="240" height="17"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Os filmes que você favoritar aparecerão aqui." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCB-WZ-5bE">
-                                        <rect key="frame" x="0.0" y="255" width="240" height="10"/>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="10"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="254" width="240" height="11"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="11"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="RCB-WZ-5bE" secondAttribute="bottom" id="AD6-Kp-MbM"/>
                                     <constraint firstItem="RCB-WZ-5bE" firstAttribute="leading" secondItem="i3M-pW-ghh" secondAttribute="leading" id="Hw8-cv-C5l"/>
@@ -102,9 +102,6 @@
             <point key="canvasLocation" x="2542.5" y="917.95774647887322"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="i3M-pW-ghh"/>
-    </designables>
     <resources>
         <image name="iconStar" width="30" height="30"/>
         <image name="iconStarFilled" width="30" height="30"/>

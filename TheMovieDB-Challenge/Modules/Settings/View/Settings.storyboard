@@ -43,7 +43,7 @@
                                                 <constraint firstAttribute="height" constant="100" id="rF9-MR-5Z9"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configurações" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbw-7o-OXJ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbw-7o-OXJ">
                                             <rect key="frame" x="20" y="49" width="264" height="22"/>
                                             <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="22"/>
                                             <color key="textColor" red="0.53896349669999999" green="0.80920666460000001" blue="0.64233911040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
