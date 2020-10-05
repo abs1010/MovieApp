@@ -14,8 +14,9 @@ class HomeInteractor: HomePresenterToInteractorProtocol {
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
-        NetworkingService.sharedInstance.getMovies(page: page, category: category, movieSelection: movieSelection) { result in
-            
+        let parameters = ["page": page]
+        
+        NetworkingService.sharedInstance.genericRequest(endpoint: .getMovies(selection: movieSelection), parameters: parameters, movieSelection: movieSelection) { (result: Result<MovieHeader, errorTypes>) in
             switch result {
             case .success(let movieHeader):
                 self.presenter?.returnMovieResults(movieHeader: movieHeader)

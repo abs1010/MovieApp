@@ -8,9 +8,15 @@
 
 import Foundation
 
-typealias GenericResponse<T> = (_ value: T?, _ success: Bool, _ error : errorTypes?) -> Void
+public enum HTTPMethod: String {
+    case get     = "GET"
+    case post    = "POST"
+    case put     = "PUT"
+    case delete  = "DELETE"
+}
 
 enum errorTypes: Error {
+    case ErrorOnGettingData
     case NoDataAvailable
     case CanNotProccessData
 }
@@ -40,46 +46,24 @@ struct NetworkingService {
         case getMovies(selection: Constants.MovieSelection)
         case getSeries
         case getGenres
-        case getMovieID(id: Int)
+        case getMovieDetails(id: Int)
         case getMovieCast(id: Int)
         case getMovieTrailer(id: Int)
         
-//        case account_states
-//        case alternative_titles
-//        case changes
-//        case credits
-//        case external_ids
-//        case images
-//        case keywords
-//        case release_dates
-//        case videos
-//        case translations
-//        case recommendations
-//        case similar
-//        case reviews
-//        case lists
-//        case rating//POST DELETE
-        
         var url: String {
-            
-            var appLanguage: String {
-                let lgn: language = .Portuguese
-                return lgn.rawValue ///Replace by UserDefaults later
-            }
-            
             switch self {
             case .getMovies(let movieSelection):
-                return "\(API.baseURL)/movie/\(movieSelection.rawValue)?api_key=\(API.privateKey)&language=\(appLanguage)"
+                return "\(API.baseURL)/movie/\(movieSelection.rawValue)"
             case .getSeries:
                 return "\(API.baseURL)/series/"
             case .getGenres:
                 return "\(API.baseURL)/genre/"
-            case .getMovieID(let id):
-                return "\(API.baseURL)/movie/\(id)?api_key=\(API.privateKey)&language=\(appLanguage)"
+            case .getMovieDetails(let id):
+                return "\(API.baseURL)/movie/\(id)"
             case .getMovieCast(let id):
-                return "\(API.baseURL)/movie/\(id)/credits?api_key=\(API.privateKey)&language=\(appLanguage)"
+                return "\(API.baseURL)/movie/\(id)/credits"
             case .getMovieTrailer(let id):
-                return "\(API.baseURL)/movie/\(id)/videos?api_key=\(API.privateKey)&language=\(appLanguage)"
+                return "\(API.baseURL)/movie/\(id)/videos"
             }
             
         }
@@ -96,10 +80,83 @@ struct NetworkingService {
         
     }
     
-    func showApiLog(_ url: String) {
-        print(String.init(repeating: "-", count: 56) + "API LOG" + String.init(repeating: "-", count: 57))
+    private func showApiLog(_ url: String, page: Int = 0) {
+        
+        if page > 0 {
+            print(String.init(repeating: "-", count: 56) + "API LOG" + String.init(repeating: "-", count: 57))
+            print("Page#\(page) \(url)")
+            print(String.init(repeating: "-", count: 120));print("")
+            return
+        }
+        print(String.init(repeating: "-", count: 53) + "API LOG" + String.init(repeating: "-", count: 53))
         print("URL: #\(url)")
         print(String.init(repeating: "-", count: 120));print("")
+        
+    }
+    
+    private func genParams(_ parameters: [String: Any]) -> [URLQueryItem] {
+        
+        var array: [URLQueryItem] = []
+        array.append(URLQueryItem(name: "api_key", value: API.privateKey))
+        array.append(URLQueryItem(name: "language", value: language.English.rawValue))
+        if let page = parameters["page"] as? Int {
+            array.append(URLQueryItem(name: "page", value: "\(page)"))
+        }
+        
+        return array
+    }
+    
+    func genericRequest<T: Codable>(endpoint: Endpoints, parameters: [String: Any] = [:], movieSelection: Constants.MovieSelection? = .NoSelection, completion : @escaping (Result<T, errorTypes>) -> Void) {
+        
+        var components = URLComponents(string: endpoint.url)!
+        
+        components.queryItems = genParams(parameters)
+        
+        components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+        let request = URLRequest(url: components.url!)
+        
+        if let page = parameters["page"] as? Int {
+            self.showApiLog(request.url!.absoluteString, page: page)
+        }else {
+            self.showApiLog(request.url!.absoluteString)
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard error == nil else {
+                completion(.failure(.ErrorOnGettingData))
+                return
+            }
+            
+            guard let jsonData = data else {
+                completion(.failure(.NoDataAvailable))
+                return
+            }
+            
+            do {
+                let decodedObj = try JSONDecoder().decode(T.self, from: jsonData)
+                
+                ///For Object Mapper
+//                if let JSONString = String(data: jsonData, encoding: .utf8) {
+//                    guard let decodedObj = MovieTrailer(JSONString: JSONString) else { return }
+//                }
+                
+                if let categoryType = movieSelection {
+                    if categoryType != .NoSelection {
+                        var movieHeader = decodedObj as! MovieHeader
+                        movieHeader.categoryType = categoryType
+                        completion(.success(movieHeader as! T))
+                        return
+                    }
+                }
+                
+                completion(.success(decodedObj))
+            }catch {
+                completion(.failure(.CanNotProccessData))
+            }
+            
+        }.resume()
+        
     }
     
 }

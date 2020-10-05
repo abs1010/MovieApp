@@ -9,16 +9,6 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>TheMovieDB-Dev.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>33</integer>
-		</dict>
-		<key>TheMovieDB.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>32</integer>
-		</dict>
 	</dict>
 </dict>
 </plist>

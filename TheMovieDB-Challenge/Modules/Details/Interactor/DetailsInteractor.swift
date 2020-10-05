@@ -22,7 +22,7 @@ class DetailsInteractor: DetailsPresenterToInteractorProtocol {
         let group = DispatchGroup()
         
         group.enter()
-        NetworkingService.sharedInstance.getMovieDetails(movieId: movieId) { [weak self] result in
+        NetworkingService.sharedInstance.genericRequest(endpoint: .getMovieDetails(id: movieId)) { [weak self] (result: Result<MovieDetails, errorTypes>) in
             switch result {
             case .success(let movieDetails):
                 print("Task 1 has Finished")
@@ -36,7 +36,8 @@ class DetailsInteractor: DetailsPresenterToInteractorProtocol {
         }
         
         group.enter()
-        NetworkingService.sharedInstance.getMovieCast(movieId: movieId) { [weak self] result in
+        
+        NetworkingService.sharedInstance.genericRequest(endpoint: .getMovieCast(id: movieId)) { [weak self] (result: Result<Cast, errorTypes>) in
             switch result {
             case .success(let castArray):
                 print("Task 2 has Finished")
@@ -50,7 +51,7 @@ class DetailsInteractor: DetailsPresenterToInteractorProtocol {
         }
         
         group.enter()
-        NetworkingService.sharedInstance.getMovieTrailer(movieId: movieId) { [weak self] result in
+        NetworkingService.sharedInstance.genericRequest(endpoint: .getMovieTrailer(id: movieId)) { [weak self] (result: Result<MovieTrailer, errorTypes>) in
             
             switch result {
             case .success(let trailer):
@@ -71,6 +72,7 @@ class DetailsInteractor: DetailsPresenterToInteractorProtocol {
         
         //The group has finished all tasks
         group.notify(queue: .main) {
+            print("The group has finished all tasks")
             guard let mvDetails = self.movieDetails else { return }
             guard let credits = self.credits else { return }
             self.presenter?.didGetMovieInfo(movieDetails: mvDetails, credits: credits, videoID: self.videoID)

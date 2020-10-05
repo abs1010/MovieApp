@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 // MARK: - MovieTrailer
-struct MovieTrailer: Mappable {
+struct MovieTrailer: Mappable, Codable {
 
     var id: Int?
     var results: [MovieTrailerElement]?
@@ -28,7 +28,7 @@ struct MovieTrailer: Mappable {
 
 // MARK: - MovieTrailerElemente
 
-struct MovieTrailerElement: Mappable {
+struct MovieTrailerElement: Mappable, Codable {
 
     var id, iso639, iso3166, key: String?
     var name, site: String?
