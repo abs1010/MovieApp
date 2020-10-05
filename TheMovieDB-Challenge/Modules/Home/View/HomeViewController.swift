@@ -37,16 +37,18 @@ class HomeViewController: UIViewController {
         
         registerCells()
         
+        ///chechLoginState()
+        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    private func chechLoginState() {
         
         guard let signIn = GIDSignIn.sharedInstance() else { return }
         
         if !signIn.hasPreviousSignIn() {
-            
-            perform(#selector(shouldShowOnboarding), with: self, afterDelay: 1)
-            
+
+            perform(#selector(shouldShowOnboarding), with: self, afterDelay: 2.5)
+
         }
         
     }
@@ -86,22 +88,11 @@ class HomeViewController: UIViewController {
         mainCollectionView.register(HomeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeSectionHeaderView.reuseIdentifier)
         
     }
-        
-    //MARK: - TapGestures
-//    @IBAction func tapToSeeMorePopularMovies(_ sender: UIButton) {
-//
-//        let storyboard = UIStoryboard.init(name: "Movies", bundle: nil)
-//
-//        let vc = storyboard.instantiateViewController(withIdentifier: "MoviesList") as! MovieViewController
-//
-//        self.present(vc, animated: true, completion: nil)
-//
-//    }
     
     private func addRefreshingControl() {
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.tintColor = .darkBlue
+        self.refreshControl?.tintColor = #colorLiteral(red: 0.5346772075, green: 0.8092244267, blue: 0.6423767805, alpha: 1)
         self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
         self.mainCollectionView.addSubview(refreshControl ?? UIView())
         
@@ -109,7 +100,7 @@ class HomeViewController: UIViewController {
     
     @objc private func refreshList() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.refreshControl?.endRefreshing()
             self.presenter?.requestFirstCallOfMovies()
         }
@@ -130,7 +121,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 1//presenter?.getNumberOfRowsInSection(section: section) ?? 0
+        return 1 ///One row for each category
         
     }
     
@@ -165,7 +156,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         }
         
-        //cell.categoryLabel.text = presenter?.getCategoryName(section: indexPath.row)
         cell.selectedSection = indexPath.section
         cell.delegate = self
         
@@ -200,7 +190,7 @@ extension HomeViewController: HomePresenterToViewProtocol {
         
     }
     
-    func problemOnFetchingData(error: Constants.errorTypes) {
+    func problemOnFetchingData(error: errorTypes) {
         
         ///Show Alert with problem
         
@@ -212,29 +202,21 @@ extension HomeViewController: HomePresenterToViewProtocol {
 
 extension HomeViewController: MainCollectionViewCellDelegate {
     
-    func didSelectItemAt(section: Int, row: Int) {
-    
-        let storyboard = UIStoryboard.init(name: "Details", bundle: nil)
-        let identifier = "DetailsViewControllerID"
-        
-        let vc: DetailsViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! DetailsViewController
-        
-        let indexPath = IndexPath(row: row, section: section)
-        
-        vc.movie = presenter?.loadMovieWithIndexPath(indexPath: indexPath)
-        
-        present(vc, animated: true, completion: nil)
+    func didSelectItemAt(indexPath: IndexPath) {
+  
+        presenter?.showMovie(indexPath: indexPath)
         
     }
     
     func didTapToSeeDetails(_ section: Int) {
         
-        let movieStoryboard = UIStoryboard.init(name: "Movies", bundle: Bundle.main)
-        
-        let vc = movieStoryboard.instantiateViewController(withIdentifier: "MoviesList")
-        
-        self.present(vc, animated: true, completion: nil)
+        if let selection = presenter?.getSelectionWithSection(section: section) {
+            
+            let vc = MovieListRouter.createModule(as: .fullScreen, selection: selection)
+            self.present(vc, animated: true, completion: nil)
+            
+        }
         
     }
-        
+    
 }

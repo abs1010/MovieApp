@@ -11,8 +11,6 @@ import RealmSwift
 
 class HomePresenter: HomeViewToPresenterProtocol {
     
-    //let realm = try! Realm()
-    
     ///Layer instances
     var view: HomePresenterToViewProtocol?
     var interactor: HomePresenterToInteractorProtocol?
@@ -22,6 +20,7 @@ class HomePresenter: HomeViewToPresenterProtocol {
     private var favoriteMoviesArray: [[Movie]] = []
     private var moviesArray: [[Movie]] = [[]]
     private var sectionNames: [String] = []
+    private var selectionOrder: [Constants.MovieSelection] = []
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
@@ -59,14 +58,27 @@ class HomePresenter: HomeViewToPresenterProtocol {
     
     }
     
+    func getSelectionWithSection(section: Int) -> Constants.MovieSelection {
+
+        return selectionOrder[section]
+        
+    }
+    
     func requestFirstCallOfMovies() {
         
         moviesArray.removeAll()
         
-        interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.Popular)
-        interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.NowPlaying)
-        interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.TopRated)
-        interactor?.getMovies(page: 1, category: .Movie, movieSelection: Constants.MovieSelection.Upcoming)
+        [.Popular, .NowPlaying, .TopRated, .Upcoming].forEach({
+            interactor?.getMovies(page: 1, category: .Movie, movieSelection: $0)
+        })
+        
+    }
+    
+    func showMovie(indexPath: IndexPath) {
+        
+        let movie = moviesArray[indexPath.section][indexPath.row]
+        
+        router?.goToMovieDetailsViewController(movie: movie, for: view as! HomeViewController)
         
     }
     
@@ -95,12 +107,15 @@ extension HomePresenter: HomeInteractorToPresenterProtocol {
         }()
         
         sectionNames.append(sectionName)
-        moviesArray.append(movieHeader.movies ?? [])
+        if let selection = movieHeader.categoryType {
+            selectionOrder.append(selection)
+        }
+        moviesArray.append(movieHeader.movies?.shuffled() ?? [])
         view?.showMovieResults()
         
     }
     
-    func problemOnFetchingData(error: Constants.errorTypes) {
+    func problemOnFetchingData(error: errorTypes) {
         
         view?.problemOnFetchingData(error: error)
         

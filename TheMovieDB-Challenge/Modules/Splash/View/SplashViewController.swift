@@ -13,6 +13,7 @@ class SplashViewController: UIViewController {
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var animatedImageView: AnimationView!
+    @IBOutlet weak var versionLabel: UILabel!
     
     var timer: Timer!
     
@@ -22,22 +23,32 @@ class SplashViewController: UIViewController {
         
         startTimer()
         startAnimation()
+        setVersionLabel()
+        
+    }
+    
+    private func setVersionLabel() {
+        versionLabel.text = "Versão \(Bundle.main.releaseVersionNumber ?? "-")"
+        
+        UIView.animate(withDuration: 0.5) {
+            self.versionLabel.alpha = 1
+        }
         
     }
     
     private func startAnimation() {
-        lottieStartAnimation(on: animatedImageView, animationFileName: .movieLoading1)
+        lottieStartAnimation(on: animatedImageView, animationName: .movieClapperboard)
     }
     
     private func startTimer() {
         
-        let timeInterval = 1.0//5.0
+        let timeInterval = 0.0//7.0
         
         timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(self.endAnimation), userInfo: nil, repeats: false)
         
     }
     
-    @objc func endAnimation() {
+    @objc private func endAnimation() {
         
         lottieStopAnimation(on: animatedImageView)
         timer.invalidate()
@@ -48,8 +59,9 @@ class SplashViewController: UIViewController {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let tabBar = storyboard.instantiateViewController(withIdentifier: "MainViewControllerIdentifier") as? UITabBarController {
                     let first = HomeRouter.createModule(as: .fullScreen)
-                    let second = UIStoryboard.init(name: "Favorites", bundle: Bundle.main).instantiateViewController(withIdentifier: "favoriteStoryboardID")
+                    let second = FavoritesRouter.createModule(as: .fullScreen)
                     let third = UIStoryboard.init(name: "Settings", bundle: Bundle.main).instantiateViewController(withIdentifier: "settingsStoryboardID")
+                    //let third = SettingsRouter.createModule(as: .fullScreen)
                     
                     tabBar.viewControllers = [first, second, third]
                     

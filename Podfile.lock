@@ -110,12 +110,14 @@ PODS:
   - GTMSessionFetcher/Core (1.4.0)
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
+  - Hero (1.5.0)
   - lottie-ios (3.1.8)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
+  - ObjectMapper (4.2.0)
   - PromisesObjC (1.2.8)
   - Realm (5.0.3):
     - Realm/Headers (= 5.0.3)
@@ -127,6 +129,7 @@ PODS:
   - SDWebImage/Core (5.8.0)
   - SwiftLint (0.39.2)
   - SwiftVideoBackground (3.4.0)
+  - YouTubePlayer (0.7.2)
 
 DEPENDENCIES:
   - FBSDKLoginKit
@@ -134,11 +137,14 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Crashlytics
   - GoogleSignIn
+  - Hero
   - lottie-ios
+  - ObjectMapper (~> 4.2)
   - RealmSwift (~> 5.0.3)
   - SDWebImage (~> 5.0)
   - SwiftLint
   - SwiftVideoBackground
+  - YouTubePlayer (~> 0.7)
 
 SPEC REPOS:
   trunk:
@@ -162,14 +168,17 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - Hero
     - lottie-ios
     - nanopb
+    - ObjectMapper
     - PromisesObjC
     - Realm
     - RealmSwift
     - SDWebImage
     - SwiftLint
     - SwiftVideoBackground
+    - YouTubePlayer
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
@@ -192,15 +201,18 @@ SPEC CHECKSUMS:
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Realm: bfca1699b61b0b17c3a69ae0e648314eae91fbdb
   RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftVideoBackground: 826e0567c737ded2a211aa309e9951c643695e8f
+  YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: d5b2ce1861d3ab90e4155646ac821238ec090871
+PODFILE CHECKSUM: 1caa0bfa70394703013e7eb3a83ac4cba2793dd4
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

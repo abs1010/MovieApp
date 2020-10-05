@@ -42,20 +42,13 @@ class HomeRouter: HomePresenterToRouterProtocol {
         return view
         
     }
-
-    static func initModule(from view: HomeViewController) {
+    
+    func goToMovieDetailsViewController(movie: Movie, for view: UIViewController) {
         
-        view.modalPresentationStyle = .fullScreen
-        
-        let presenter: HomeViewToPresenterProtocol & HomeInteractorToPresenterProtocol = HomePresenter()
-        let interactor: HomePresenterToInteractorProtocol = HomeInteractor()
-        let router: HomePresenterToRouterProtocol = HomeRouter()
-        
-        view.presenter = presenter
-        presenter.view = view
-        presenter.router = router
-        presenter.interactor = interactor
-        interactor.presenter = presenter
+        let vc = DetailsRouter.createModule(as: .fullScreen) as! DetailsViewController
+        vc.movie = movie
+    
+        view.present(vc, animated: true, completion: nil)
         
     }
     

@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Hero
 
 protocol MainCollectionViewCellDelegate : class {
     func didTapToSeeDetails(_ section: Int)
-    func didSelectItemAt(section: Int, row: Int)
+    func didSelectItemAt(indexPath: IndexPath)
 }
 
 class CategorySectionsCollectionViewCell: UICollectionViewCell {
@@ -75,6 +76,7 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
         
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
+        cell.hero.id = "\(self.categorizedArray[indexPath.row].id ?? 0)"
         cell.setupCell(movie: self.categorizedArray[indexPath.row])
         
         return cell
@@ -96,8 +98,10 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if let section = selectedSection {
-        
-            delegate?.didSelectItemAt(section: section, row: indexPath.row)
+            
+            let index = IndexPath(row: indexPath.row, section: section)
+            
+            delegate?.didSelectItemAt(indexPath: index)
         
         }
         

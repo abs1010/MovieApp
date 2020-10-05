@@ -7,33 +7,21 @@
 //
 
 import Foundation
-import RealmSwift
 
 class HomeInteractor: HomePresenterToInteractorProtocol {
-
+    
     var presenter: HomeInteractorToPresenterProtocol?
     
     func getMovies(page: Int, category: Constants.category, movieSelection: Constants.MovieSelection) {
         
-        NetworkingService.shared.getMovies(page: page, category: category, movieSelection: movieSelection) { (movieHeader, success, error) in
-            
-            if success {
-                
-                guard let movieHeader = movieHeader else {
-                    return
-                }
-                
+        let parameters = ["page": page]
+        
+        NetworkingService.sharedInstance.genericRequest(endpoint: .getMovies(selection: movieSelection), parameters: parameters, movieSelection: movieSelection) { (result: Result<MovieHeader, errorTypes>) in
+            switch result {
+            case .success(let movieHeader):
                 self.presenter?.returnMovieResults(movieHeader: movieHeader)
-                
-            }
-            else {
-                
-                if let error = error {
-                    
-                    self.presenter?.problemOnFetchingData(error: error)
-                    
-                }
-                
+            case .failure(let error):
+                self.presenter?.problemOnFetchingData(error: error)
             }
             
         }

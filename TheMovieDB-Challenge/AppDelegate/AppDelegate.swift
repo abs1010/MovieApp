@@ -29,6 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ///Facebook
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
         
+        #if DEVELOPMENT
+        print("Development Environment")
+        #else
+        print("Production Environment")
+        #endif
+        
         return true
     }
     

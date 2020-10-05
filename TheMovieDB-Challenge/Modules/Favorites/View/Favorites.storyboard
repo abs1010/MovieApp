@@ -1,94 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="176-fc-qdK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HHL-8A-3h9">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham-Rounded-Medium.otf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Favorites-->
-        <scene sceneID="lIV-Lc-AUE">
-            <objects>
-                <navigationController storyboardIdentifier="favoriteStoryboardID" automaticallyAdjustsScrollViewInsets="NO" id="176-fc-qdK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="iconStar" selectedImage="iconStarFilled" id="pTe-EG-E4x"/>
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KrI-aA-Hcw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.69475418330000005" blue="0.87939745189999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="HHL-8A-3h9" kind="relationship" relationship="rootViewController" id="8kx-Qp-7mo"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E9K-ra-Sog" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1657.9710144927537" y="918.75"/>
-        </scene>
         <!--Favoritos-->
         <scene sceneID="Ifk-Fu-rtq">
             <objects>
-                <viewController id="HHL-8A-3h9" customClass="FavoritesViewController" customModule="The_MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favoriteStoryboardID" id="HHL-8A-3h9" customClass="FavoritesViewController" customModule="TheMovieDB_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QBg-xz-NzJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Busque pelo nome ou ano" translatesAutoresizingMaskIntoConstraints="NO" id="dmd-Ex-Qby">
-                                <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.69081521030000004" blue="0.8754540086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="a6G-Li-xT2"/>
                                 </constraints>
                                 <color key="tintColor" red="0.0" green="0.69081521030000004" blue="0.8754540086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="barTintColor" red="0.0" green="0.69081521030000004" blue="0.8754540086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="HHL-8A-3h9" id="7up-lW-syq"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="265" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vmB-jn-C0z">
-                                <rect key="frame" x="0.0" y="88" width="320" height="431"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hdL-08-vab">
+                                <rect key="frame" x="0.0" y="44" width="320" height="475"/>
+                                <color key="backgroundColor" red="0.10986601560000001" green="0.109588854" blue="0.1179477498" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UzQ-OZ-iwS">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3M-pW-ghh" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="40" y="124" width="240" height="265"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nada por aqui..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c2-hQ-sRL">
+                                        <rect key="frame" x="0.0" y="238" width="240" height="15"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Os filmes que você favoritar aparecerão aqui." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCB-WZ-5bE">
+                                        <rect key="frame" x="0.0" y="255" width="240" height="10"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="10"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="RCB-WZ-5bE" secondAttribute="bottom" id="AD6-Kp-MbM"/>
+                                    <constraint firstItem="RCB-WZ-5bE" firstAttribute="leading" secondItem="i3M-pW-ghh" secondAttribute="leading" id="Hw8-cv-C5l"/>
+                                    <constraint firstAttribute="trailing" secondItem="RCB-WZ-5bE" secondAttribute="trailing" id="PIi-wF-wb2"/>
+                                    <constraint firstItem="1c2-hQ-sRL" firstAttribute="leading" secondItem="i3M-pW-ghh" secondAttribute="leading" id="TWT-rW-BWl"/>
+                                    <constraint firstAttribute="trailing" secondItem="1c2-hQ-sRL" secondAttribute="trailing" id="dgf-dY-Zxr"/>
+                                    <constraint firstItem="RCB-WZ-5bE" firstAttribute="top" secondItem="1c2-hQ-sRL" secondAttribute="bottom" constant="2" id="iV8-sL-wg1"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="I4u-av-ZsU"/>
+                        <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dmd-Ex-Qby" firstAttribute="top" secondItem="I4u-av-ZsU" secondAttribute="top" id="5aT-1D-99T"/>
                             <constraint firstItem="dmd-Ex-Qby" firstAttribute="trailing" secondItem="I4u-av-ZsU" secondAttribute="trailing" id="7OB-do-cBS"/>
-                            <constraint firstItem="vmB-jn-C0z" firstAttribute="trailing" secondItem="I4u-av-ZsU" secondAttribute="trailing" id="Lnj-kc-LQG"/>
-                            <constraint firstItem="vmB-jn-C0z" firstAttribute="top" secondItem="dmd-Ex-Qby" secondAttribute="bottom" symbolic="YES" id="My2-Ia-TQx"/>
-                            <constraint firstItem="vmB-jn-C0z" firstAttribute="bottom" secondItem="I4u-av-ZsU" secondAttribute="bottom" id="Urh-mQ-sBm"/>
+                            <constraint firstItem="hdL-08-vab" firstAttribute="trailing" secondItem="I4u-av-ZsU" secondAttribute="trailing" id="NVx-Rp-L0A"/>
+                            <constraint firstItem="i3M-pW-ghh" firstAttribute="top" secondItem="dmd-Ex-Qby" secondAttribute="bottom" constant="80" id="PPT-9H-88Y"/>
+                            <constraint firstItem="hdL-08-vab" firstAttribute="bottom" secondItem="I4u-av-ZsU" secondAttribute="bottom" id="RUk-jM-24n"/>
+                            <constraint firstItem="hdL-08-vab" firstAttribute="top" secondItem="dmd-Ex-Qby" secondAttribute="bottom" id="Uua-hS-RPk"/>
+                            <constraint firstItem="I4u-av-ZsU" firstAttribute="bottom" secondItem="i3M-pW-ghh" secondAttribute="bottom" constant="130" id="aQr-N6-Vqf"/>
                             <constraint firstItem="dmd-Ex-Qby" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" id="dMl-At-gwO"/>
-                            <constraint firstItem="vmB-jn-C0z" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" id="wor-mc-z9u"/>
+                            <constraint firstItem="i3M-pW-ghh" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" constant="40" id="thk-GB-ktp"/>
+                            <constraint firstItem="hdL-08-vab" firstAttribute="leading" secondItem="I4u-av-ZsU" secondAttribute="leading" id="wZI-IK-H3v"/>
+                            <constraint firstItem="I4u-av-ZsU" firstAttribute="trailing" secondItem="i3M-pW-ghh" secondAttribute="trailing" constant="40" id="xyV-fi-WF5"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="I4u-av-ZsU"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="iconStar" selectedImage="iconStarFilled" id="pTe-EG-E4x"/>
                     <navigationItem key="navigationItem" title="Favoritos" largeTitleDisplayMode="always" id="R6F-Og-xe2"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="animatedView" destination="i3M-pW-ghh" id="SAG-rI-xkI"/>
+                        <outlet property="favoritesCollectionView" destination="hdL-08-vab" id="vAd-GC-bkb"/>
                         <outlet property="favoritesSearchBar" destination="dmd-Ex-Qby" id="XlT-yO-OFq"/>
-                        <outlet property="favoritesTableView" destination="vmB-jn-C0z" id="EXu-WB-rdZ"/>
-                        <segue destination="wBV-YP-ikg" kind="show" identifier="goToDetailsOfFav" id="nhY-Pj-eud"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cse-Yf-SnW" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2543" y="918"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="XxH-kx-vZK">
-            <objects>
-                <viewControllerPlaceholder id="wBV-YP-ikg" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Dgt-85-Vj2"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UCr-De-gAO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3356" y="820"/>
+            <point key="canvasLocation" x="2542.5" y="917.95774647887322"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="i3M-pW-ghh"/>
+    </designables>
     <resources>
         <image name="iconStar" width="30" height="30"/>
         <image name="iconStarFilled" width="30" height="30"/>

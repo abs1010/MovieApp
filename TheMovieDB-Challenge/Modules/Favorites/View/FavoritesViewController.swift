@@ -7,118 +7,127 @@
 //
 
 import UIKit
+import Hero
+import Lottie
 
 class FavoritesViewController: UIViewController {
     
-    //var controller : MovieController?
-    var refreshControl: UIRefreshControl?
-    
-    @IBOutlet weak var favoritesTableView: UITableView!
+    @IBOutlet weak var favoritesCollectionView: UICollectionView!
     @IBOutlet weak var favoritesSearchBar: UISearchBar!
+    @IBOutlet weak var animatedView: AnimationView!
+    private var refreshControl: UIRefreshControl?
+    var presenter: FavoritesViewToPresenterProtocol?
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Int, Movie>
+    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Int, Movie>
+    
+    private var dataSource: DataSource!
+    private var snapshot: DataSourceSnapshot!
+    
+    //MARK: - Sets the StatusBar as white
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        return UIStatusBarStyle.lightContent
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        //favoritesSearchBar.searchTextField.backgroundColor = .white
-        self.addRefreshingControl()
-        
-        //self.controller = MovieController()
-        //controller?.loadFavoriteMovies()
-        
-        //CV DELEGATE AND DATASOURCE
-//        self.favoritesTableView.delegate = self
-//        self.favoritesTableView.dataSource = self
-        
-        //REGISTER CELL
-        //self.favoritesTableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
+        addRefreshingControl()
+        setUp()
+        configureCollectionViewDataSource()
+        updateListOfFavorites()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //self.controller?.delegate = self
-        //self.tempGenreArray = self.controller?.getgenresArray() ?? []
-       // self.controller?.loadFavoriteMovies()
-//        self.favoritesTableView.reloadData()
+    override func viewDidAppear(_ animated: Bool) {
+        perform(#selector(updateListOfFavorites), with: self, afterDelay: 0.4)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        lottieStopAnimation(on: animatedView)
+        animatedView.isHidden = true
+    }
+    
+    @objc private func updateListOfFavorites() {
+        
+        presenter?.getFavoriteMovies()
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    private func addRefreshingControl() {
         
-        if segue.identifier == "goToDetailsOfFav" {
-            
-//            if let vc: DetailsViewController = segue.destination as? DetailsViewController {
-//
-//                if let indexPath = favoritesTableView.indexPathForSelectedRow {
-//                    //vc.movie = self.controller?.loadMovieWithIndexPath(indexPath: indexPath, favorite: true)
-//                }
-//
-//            }
-            
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.tintColor = #colorLiteral(red: 0.5346772075, green: 0.8092244267, blue: 0.6423767805, alpha: 1)
+        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+        self.favoritesCollectionView.addSubview(refreshControl ?? UIView())
+        
+    }
+    
+    @objc private func refreshList() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.refreshControl?.endRefreshing()
+            self.presenter?.getFavoriteMovies()
         }
         
     }
     
-    func addRefreshingControl() {
+    private func setUp() {
         
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl?.tintColor = .green
-        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
-//        self.favoritesTableView.addSubview(refreshControl!)
+        favoritesSearchBar.searchTextField.backgroundColor = .white
+        self.favoritesCollectionView.delegate = self
+        self.favoritesCollectionView.register(UINib(nibName: MovieCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
         
     }
     
-    @objc func refreshList() {
-        print("Pull to refresh")
-        self.refreshControl?.endRefreshing()
-        //self.controller?.loadFavoriteMovies()
-        self.favoritesTableView.reloadData()
+    private func configureCollectionViewDataSource() {
+        
+        dataSource = DataSource(collectionView: favoritesCollectionView, cellProvider: { (collectionView, indexPath, movie) -> MovieCollectionViewCell? in
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as! MovieCollectionViewCell
+            
+            if let movie = self.presenter?.loadMovieWithIndexPath(indexPath: indexPath) {
+                
+                cell.hero.id = "\(movie.id ?? 0)"
+                Hero.shared.apply(modifiers: [.fade, .scale(2.5), .cascade], to: cell)
+                
+                cell.setupCell(movie: movie)
+                
+            }
+            
+            return cell
+            
+        })
         
     }
     
 }
 
-//extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.controller?.numberOfRowsForFavorites() ?? 0
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        let cell : MovieCollectionViewCell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
-//
-//        cell.setupCell(movie: (self.controller?.loadMovieWithIndexPathForFavorites(indexPath: indexPath))!)
-//
-//        return cell
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//
-//        if let removeId = self.controller?.loadMovieWithIndexPathForFavorites(indexPath: indexPath).id {
-//
-//            self.controller?.removeFavoriteMovie(id: removeId)
-//
-//        }
-//
-//        self.controller?.loadFavoriteMovies()
-//        self.favoritesTableView.reloadData()
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        self.performSegue(withIdentifier: "goToDetailsOfFav", sender: self)
-//
-//    }
-//
-//
-//}
+extension FavoritesViewController : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return .init(width: view.frame.width / 3.4 , height: 190)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 10.0, left: 10, bottom: 20.0, right: 10)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        presenter?.showMovie(row: indexPath.row)
+        
+    }
+    
+}
 
 //MARK: - UISearchBar Delegate methods
-
 extension FavoritesViewController : UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -127,8 +136,8 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                //self.controller?.updateFavoriteArray()
-                self.favoritesTableView.reloadData()
+                self.presenter?.resetArray()
+                self.favoritesCollectionView.reloadData()
             }
             
         }
@@ -141,18 +150,44 @@ extension FavoritesViewController : UISearchBarDelegate {
             
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
-                //self.controller?.updateFavoriteArray()
-                self.favoritesTableView.reloadData()
+                self.presenter?.resetArray()
             }
             
         }
         else {
             
-            //self.controller?.searchFavoriteByValue(searchText: searchText)
+            self.presenter?.searchByValue(searchText: searchText)
             
-            self.favoritesTableView.reloadData()
         }
         
+    }
+    
+}
+
+extension FavoritesViewController: FavoritesPresenterToViewProtocol {
+    
+    func showRequestResults(_ movies: [Movie]) {
+        
+        snapshot = DataSourceSnapshot()
+        snapshot.appendSections([0])
+        snapshot.appendItems(movies)
+        //snapshot.appendItems(movies, toSection: 0)
+        dataSource.apply(snapshot, animatingDifferences: true)
+        
+        if movies.count == 0 {
+            UIView.animate(withDuration: 0.9, delay: 0.5, options: .transitionCrossDissolve) {
+                self.animatedView.isHidden = false
+                self.animatedView.alpha = 1
+            } completion: { _ in
+                self.lottieStartAnimation(on: self.animatedView, animationName: .empty)
+            }
+            
+        }
+        
+    }
+    
+    func FailRequestResults() {
+        ///Show Alert of Failure
     }
     
 }

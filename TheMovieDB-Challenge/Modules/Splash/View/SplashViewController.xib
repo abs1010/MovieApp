@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham-Rounded-Medium.otf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="The_MovieDB" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="TheMovieDB_Dev" customModuleProvider="target">
             <connections>
                 <outlet property="animatedImageView" destination="Kzp-Sf-Kkh" id="rgk-Ll-lhg"/>
                 <outlet property="logoImageView" destination="KfN-Bh-AWQ" id="XiJ-Ja-c2l"/>
+                <outlet property="versionLabel" destination="oZb-8k-leI" id="Oys-TA-3Au"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,18 +40,29 @@
                         <constraint firstAttribute="width" secondItem="Kzp-Sf-Kkh" secondAttribute="height" multiplier="3:1" id="eFa-Ux-0qt"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZb-8k-leI">
+                    <rect key="frame" x="145.5" y="530" width="29.5" height="13"/>
+                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="13"/>
+                    <color key="textColor" red="0.53896349669999999" green="0.80920666460000001" blue="0.64233911040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oZb-8k-leI" secondAttribute="bottom" constant="25" id="6XS-fT-3Bu"/>
                 <constraint firstItem="KfN-Bh-AWQ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="I34-rI-VQW"/>
                 <constraint firstItem="Kzp-Sf-Kkh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KtR-1k-ggU"/>
                 <constraint firstItem="KfN-Bh-AWQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N6a-UW-Phh"/>
                 <constraint firstItem="Kzp-Sf-Kkh" firstAttribute="top" secondItem="KfN-Bh-AWQ" secondAttribute="bottom" id="aJL-xs-oGR"/>
+                <constraint firstItem="oZb-8k-leI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="it7-jf-ajq"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.75" y="152.11267605633802"/>
         </view>
     </objects>
+    <designables>
+        <designable name="Kzp-Sf-Kkh"/>
+    </designables>
     <resources>
         <image name="logo" width="289" height="208.5"/>
     </resources>
