@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B82B21B675C610E1B6C2978C193DB39B"
-               BuildableName = "Pods_TheMovieDB_Challenge.framework"
-               BlueprintName = "Pods-TheMovieDB-Challenge"
+               BlueprintIdentifier = "35770E20849D4F82A527E35B9DFA8412"
+               BuildableName = "Pods_TheMovieDB.framework"
+               BlueprintName = "Pods-TheMovieDB"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

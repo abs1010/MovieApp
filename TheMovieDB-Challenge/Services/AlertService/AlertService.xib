@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham-Rounded-Bold.ttf">
+            <string>GothamRounded-Bold</string>
+        </array>
+        <array key="Gotham-Rounded-Book.otf">
+            <string>GothamRounded-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertService">
+            <connections>
+                <outlet property="alertView" destination="715-6n-JpH" id="tsZ-Od-sGy"/>
+                <outlet property="backgroundImage" destination="FCq-7S-PDU" id="yVp-bT-9Fe"/>
+                <outlet property="doneButton" destination="hTG-r8-od5" id="GEj-o0-yYR"/>
+                <outlet property="mainView" destination="iN0-l3-epB" id="PjX-Zo-Urx"/>
+                <outlet property="messageLabel" destination="HSF-1V-CHJ" id="d8X-eE-rBP"/>
+                <outlet property="titleLabel" destination="qQn-ZA-pHb" id="BsG-0M-dVC"/>
+                <outlet property="topLogoImage" destination="tvQ-Tg-ECi" id="AYe-SG-YnF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bU0-do-5ea">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="715-6n-JpH" userLabel="AlertView">
+                            <rect key="frame" x="47.5" y="209" width="280" height="200"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prettyAlert" translatesAutoresizingMaskIntoConstraints="NO" id="FCq-7S-PDU">
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="200"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Failure" translatesAutoresizingMaskIntoConstraints="NO" id="tvQ-Tg-ECi">
+                                    <rect key="frame" x="110" y="-30" width="60" height="60"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="4Kb-Ab-Dbj"/>
+                                        <constraint firstAttribute="height" constant="60" id="tRg-4a-eBp"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSF-1V-CHJ">
+                                    <rect key="frame" x="20" y="83" width="240" height="34"/>
+                                    <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTG-r8-od5">
+                                    <rect key="frame" x="100" y="146" width="80" height="34"/>
+                                    <color key="backgroundColor" red="0.052064843479999998" green="0.1431232989" blue="0.24707186219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="BHW-6T-iGb"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="Ok">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQn-ZA-pHb">
+                                    <rect key="frame" x="20" y="42" width="240" height="17"/>
+                                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="qQn-ZA-pHb" secondAttribute="trailing" constant="20" id="CgB-Ai-4qk"/>
+                                <constraint firstAttribute="width" constant="280" id="CwD-cw-0W8"/>
+                                <constraint firstAttribute="height" constant="200" id="IWc-GZ-ON2"/>
+                                <constraint firstItem="hTG-r8-od5" firstAttribute="centerX" secondItem="715-6n-JpH" secondAttribute="centerX" id="Kuj-Xm-qjf"/>
+                                <constraint firstItem="HSF-1V-CHJ" firstAttribute="centerY" secondItem="715-6n-JpH" secondAttribute="centerY" id="MdU-PF-yQo"/>
+                                <constraint firstItem="HSF-1V-CHJ" firstAttribute="leading" secondItem="715-6n-JpH" secondAttribute="leading" constant="20" id="SR1-JJ-6pF"/>
+                                <constraint firstAttribute="bottom" secondItem="hTG-r8-od5" secondAttribute="bottom" constant="20" id="bey-2y-vK1"/>
+                                <constraint firstItem="tvQ-Tg-ECi" firstAttribute="centerX" secondItem="715-6n-JpH" secondAttribute="centerX" id="fmd-5C-Jmd"/>
+                                <constraint firstItem="qQn-ZA-pHb" firstAttribute="top" secondItem="tvQ-Tg-ECi" secondAttribute="bottom" constant="12" id="hGi-ze-0aj"/>
+                                <constraint firstItem="qQn-ZA-pHb" firstAttribute="leading" secondItem="715-6n-JpH" secondAttribute="leading" constant="20" id="ktt-qG-zUZ"/>
+                                <constraint firstAttribute="trailing" secondItem="HSF-1V-CHJ" secondAttribute="trailing" constant="20" id="qPc-Uw-THO"/>
+                                <constraint firstItem="tvQ-Tg-ECi" firstAttribute="top" secondItem="715-6n-JpH" secondAttribute="top" constant="-30" id="t1r-y9-8sr"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.40089897260273971" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="715-6n-JpH" firstAttribute="centerY" secondItem="bU0-do-5ea" secondAttribute="centerY" id="JXo-hv-Xg9"/>
+                        <constraint firstItem="715-6n-JpH" firstAttribute="centerX" secondItem="bU0-do-5ea" secondAttribute="centerX" id="L4m-71-D0C"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="bU0-do-5ea" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="GXa-Ua-AVD"/>
+                <constraint firstItem="bU0-do-5ea" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="W7H-1t-fSb"/>
+                <constraint firstItem="bU0-do-5ea" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="b2R-IG-Fba"/>
+                <constraint firstItem="bU0-do-5ea" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="uMO-CB-C5n"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="21.600000000000001" y="11.694152923538232"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Failure" width="128" height="128"/>
+        <image name="prettyAlert" width="327" height="226"/>
+    </resources>
+</document>

@@ -184,10 +184,11 @@ extension FavoritesViewController: FavoritesPresenterToViewProtocol {
         dataSource.apply(snapshot, animatingDifferences: true)
         
         if movies.count == 0 {
-            UIView.animate(withDuration: 0.9, delay: 0.5, options: .curveEaseIn) {
+            
+            UIView.animate(withDuration: 0.3, delay: 0.3, options: .transitionFlipFromBottom, animations: {
                 self.animatedView.isHidden = false
                 self.animatedView.alpha = 1
-            } completion: { _ in
+            }) { _ in
                 self.lottieStartAnimation(on: self.animatedView, animationName: .empty)
             }
             
@@ -197,6 +198,7 @@ extension FavoritesViewController: FavoritesPresenterToViewProtocol {
     
     func FailRequestResults() {
         ///Show Alert of Failure
+        AlertService.shared.showAlert(image: .failure, title: "Sorry...", message: "There was an error during the request")
     }
     
 }

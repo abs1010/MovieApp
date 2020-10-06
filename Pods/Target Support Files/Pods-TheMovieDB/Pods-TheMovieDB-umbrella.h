@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_TheMovieDB_ChallengeVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_TheMovieDB_ChallengeVersionString[];
+FOUNDATION_EXPORT double Pods_TheMovieDBVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_TheMovieDBVersionString[];
 

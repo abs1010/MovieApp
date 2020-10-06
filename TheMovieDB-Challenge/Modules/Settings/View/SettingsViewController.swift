@@ -50,7 +50,7 @@ class SettingsViewController: UIViewController {
             guard let signIn = GIDSignIn.sharedInstance() else { return}
             signIn.signOut()
             
-            AlertService.shared.showAlert(image: UIImage(named: "Error")!, title: "Alert", message: "You have been logged out")
+            AlertService.shared.showAlert(image: .success, title: "Alert", message: "You have been logged out")
             
         }
         
@@ -114,6 +114,8 @@ extension SettingsViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
         print("Google user was disconnected")
+        
+        AlertService.shared.showAlert(image: .success, title: "Alert", message: "The user has been disconnected")
         
     }
     

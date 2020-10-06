@@ -37,7 +37,7 @@ class AlertService: UIView {
         doneButton.layer.cornerRadius = doneButton.frame.height / 2
         
         topLogoImage.layer.cornerRadius = 30
-        topLogoImage.layer.borderColor = #colorLiteral(red: 0.9796836972, green: 0.2490850687, blue: 0.3219926953, alpha: 1)
+        topLogoImage.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         topLogoImage.layer.shadowRadius = 6.0
         topLogoImage.layer.borderWidth = 2
         
@@ -49,13 +49,18 @@ class AlertService: UIView {
         
     }
     
-    func showAlert(image: UIImage, title: String, message: String, completion: (() -> Void)? = nil) {
+    enum topImage: String {
+        case success = "Success"
+        case failure = "Failure"
+    }
+    
+    func showAlert(image: topImage, title: String, message: String, completion: (() -> Void)? = nil) {
         
         titleLabel.text = title
         messageLabel.text = message
-        topLogoImage.image = image
+        topLogoImage.image = UIImage(named: image.rawValue)
         
-        UIApplication.shared.windows.first{ $0.isKeyWindow }?.addSubview(mainView)
+        UIApplication.shared.windows.first {$0.isKeyWindow}?.addSubview(mainView)
         
     }
     
