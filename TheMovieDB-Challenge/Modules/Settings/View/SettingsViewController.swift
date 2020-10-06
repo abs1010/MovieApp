@@ -43,6 +43,19 @@ class SettingsViewController: UIViewController {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
     }
     
+    private func checkLoginState() {
+        
+        if LoginStateService.sharedInstance.isUserLogged() {
+
+            guard let signIn = GIDSignIn.sharedInstance() else { return}
+            signIn.signOut()
+            
+            AlertService.shared.showAlert(image: UIImage(named: "Error")!, title: "Alert", message: "You have been logged out")
+            
+        }
+        
+    }
+    
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -59,6 +72,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == itemsArray.last?.id {
             cell.accessoryType = .none
+            
+            if !LoginStateService.sharedInstance.isUserLogged() {
+                cell.textLabel?.isEnabled = false
+            }
+            
         }else if indexPath.row == 1 {
             cell.accessoryType = .detailDisclosureButton
         }
@@ -76,15 +94,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             performSegue(withIdentifier: "goToCredits", sender: self)
         case 2:
-            
-            guard let signIn = GIDSignIn.sharedInstance() else { return }
-            
-            if signIn.hasPreviousSignIn() {
-                signIn.signOut()
-            }else {
-                print("usuário não está logado.")
-            }
-            
+            checkLoginState()
         default:
             print("Outros")
         }

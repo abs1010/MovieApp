@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseCrashlytics
-import GoogleSignIn
 
 class HomeViewController: UIViewController {
     
@@ -37,15 +36,13 @@ class HomeViewController: UIViewController {
         
         registerCells()
         
-        ///chechLoginState()
+        chechLoginState()
         
     }
     
     private func chechLoginState() {
         
-        guard let signIn = GIDSignIn.sharedInstance() else { return }
-        
-        if !signIn.hasPreviousSignIn() {
+        if !LoginStateService.sharedInstance.isUserLogged() {
 
             perform(#selector(shouldShowOnboarding), with: self, afterDelay: 2.5)
 
