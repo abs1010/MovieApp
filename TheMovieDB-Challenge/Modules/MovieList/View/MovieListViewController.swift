@@ -84,7 +84,6 @@ class MovieListViewController: UIViewController {
                 guard let select = self.movieSelection else { return }
                 
                 self.presenter?.getMovies(category: .Movie, movieSelection: select)
-                self.isFethingNewPage = false
                 
             })
             
@@ -260,7 +259,8 @@ extension MovieListViewController: MovieListPresenterToViewProtocol {
             
             self.page += 1
             self.loadingMoreActivityIndicator.stopAnimating()
-
+            self.isFethingNewPage = false
+            
         }
         
     }
