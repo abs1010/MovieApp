@@ -18,7 +18,7 @@ class CastCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .white
+        //imageView.backgroundColor = .white
         
         return imageView
     }()
@@ -49,7 +49,7 @@ class CastCollectionViewCell: UICollectionViewCell {
     let bottomView: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .secondarySystemBackground
         
         return view
     }()

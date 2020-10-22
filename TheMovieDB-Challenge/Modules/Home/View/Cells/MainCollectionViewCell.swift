@@ -77,6 +77,7 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
         cell.hero.id = "\(self.categorizedArray[indexPath.row].id ?? 0)"
+        //cell.hero.id = "\(self.categorizedArray[indexPath.row].id ?? 0)\(selectedSection ?? 0)"
         cell.setupCell(movie: self.categorizedArray[indexPath.row])
         
         return cell

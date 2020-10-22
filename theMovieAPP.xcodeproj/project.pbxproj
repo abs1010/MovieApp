@@ -432,6 +432,7 @@
 		BC0E7F7A251975150006C5D1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				BC5EF6B52541D40F0067ED0A /* Onboarding */,
 				BC0E8056251AA7910006C5D1 /* Cast */,
 				BCD4E58A25047EBB00C7D172 /* Movie */,
 			);
@@ -612,6 +613,15 @@
 				BC0E8044251A9AB10006C5D1 /* DetailsInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		BC5EF6B52541D40F0067ED0A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				BCE370D624A42FB00017BC27 /* RegularCell */,
+				BCE370D724A42FCB0017BC27 /* LoginCell */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		BC611FA924A6CD2400CD123F /* Services */ = {
@@ -902,7 +912,6 @@
 				BCA4113024698B9100C570CD /* ViewModel */,
 				BCA4113424698BB700C570CD /* Controller */,
 				BCA4113124698B9100C570CD /* View */,
-				BCC988482495B4FB00504891 /* Cells */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -969,15 +978,6 @@
 				BCC988462495B43C00504891 /* Page.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		BCC988482495B4FB00504891 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				BCE370D624A42FB00017BC27 /* RegularCell */,
-				BCE370D724A42FCB0017BC27 /* LoginCell */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		BCD2C0C6246D72B30046910F /* AppDelegate */ = {
