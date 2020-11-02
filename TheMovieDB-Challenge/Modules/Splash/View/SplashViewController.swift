@@ -28,7 +28,7 @@ class SplashViewController: UIViewController {
     }
     
     private func setVersionLabel() {
-        versionLabel.text = "Versão \(Bundle.main.releaseVersionNumber ?? "-")"
+        versionLabel.text = "Version \(Bundle.main.releaseVersionNumber ?? "-")"
         
         UIView.animate(withDuration: 0.5) {
             self.versionLabel.alpha = 1

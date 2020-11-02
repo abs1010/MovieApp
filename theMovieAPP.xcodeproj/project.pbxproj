@@ -284,6 +284,8 @@
 		BC5A6C7023E6100B00C99597 /* GenreID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreID.swift; sourceTree = "<group>"; };
 		BC611FA724A67E7200CD123F /* 19404-video-playback.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "19404-video-playback.json"; sourceTree = "<group>"; };
 		BC611FAC24A82AB400CD123F /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		BC6E1DE225508AFA0075B4C7 /* MovieLandscapeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLandscapeCollectionViewCell.swift; sourceTree = "<group>"; };
+		BC6E1DE325508AFE0075B4C7 /* MovieLandscapeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieLandscapeCollectionViewCell.xib; sourceTree = "<group>"; };
 		BC6E876024784B1E004D71F6 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		BC6E8762247D52A8004D71F6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BC6E8763247D52A8004D71F6 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -646,6 +648,24 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		BC6E1DDA2550646B0075B4C7 /* Portrait */ = {
+			isa = PBXGroup;
+			children = (
+				BCA411082465D46700C570CD /* MovieCollectionViewCell.swift */,
+				BCA411092465D46700C570CD /* MovieCollectionViewCell.xib */,
+			);
+			path = Portrait;
+			sourceTree = "<group>";
+		};
+		BC6E1DDB2550647B0075B4C7 /* Landscape */ = {
+			isa = PBXGroup;
+			children = (
+				BC6E1DE225508AFA0075B4C7 /* MovieLandscapeCollectionViewCell.swift */,
+				BC6E1DE325508AFE0075B4C7 /* MovieLandscapeCollectionViewCell.xib */,
+			);
+			path = Landscape;
+			sourceTree = "<group>";
+		};
 		BC6E875F24773041004D71F6 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,19 +929,18 @@
 			isa = PBXGroup;
 			children = (
 				BCC988452495B42500504891 /* Model */,
-				BCA4113024698B9100C570CD /* ViewModel */,
-				BCA4113424698BB700C570CD /* Controller */,
+				BCA4113024698B9100C570CD /* Controller */,
 				BCA4113124698B9100C570CD /* View */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		BCA4113024698B9100C570CD /* ViewModel */ = {
+		BCA4113024698B9100C570CD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				BCC988532495C46A00504891 /* OnboardingViewModel.swift */,
 			);
-			path = ViewModel;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		BCA4113124698B9100C570CD /* View */ = {
@@ -939,13 +958,6 @@
 				BC28143D2498414700A71447 /* LoginPresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		BCA4113424698BB700C570CD /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		BCABAE78251D2DCB00A05779 /* Lottie */ = {
@@ -1060,8 +1072,8 @@
 		BCD4E58A25047EBB00C7D172 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
-				BCA411082465D46700C570CD /* MovieCollectionViewCell.swift */,
-				BCA411092465D46700C570CD /* MovieCollectionViewCell.xib */,
+				BC6E1DDB2550647B0075B4C7 /* Landscape */,
+				BC6E1DDA2550646B0075B4C7 /* Portrait */,
 			);
 			path = Movie;
 			sourceTree = "<group>";

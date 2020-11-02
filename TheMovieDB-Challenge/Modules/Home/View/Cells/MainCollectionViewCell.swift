@@ -86,7 +86,7 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: frame.width / 3.5, height: frame.height - 25)
+        return CGSize(width: frame.width / 3.42, height: 190)
         
     }
     

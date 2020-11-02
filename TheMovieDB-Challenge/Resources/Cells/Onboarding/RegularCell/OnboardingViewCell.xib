@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,28 +27,41 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woman_watching" translatesAutoresizingMaskIntoConstraints="NO" id="FeL-13-0GT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="600" id="6Bv-R9-ufh"/>
-                        </constraints>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="611"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Lorem Ipsum?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gU-ap-pyz">
-                        <rect key="frame" x="20" y="620" width="374" height="19"/>
-                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="19"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra0-qw-mzC">
-                        <rect key="frame" x="20" y="649" width="374" height="96"/>
-                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
-                        <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="16"/>
-                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAY-da-bWf">
-                        <rect key="frame" x="0.0" y="600" width="414" height="1"/>
-                        <color key="backgroundColor" red="0.0049759647810000002" green="0.14137595889999999" blue="0.25887107850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAY-da-bWf" userLabel="lineView">
+                        <rect key="frame" x="0.0" y="611" width="414" height="1"/>
+                        <color key="backgroundColor" red="0.53896349669999999" green="0.80920666460000001" blue="0.64233911040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="GcT-pN-3tX"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="sd2-93-QJc"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6F5-ia-tFZ" userLabel="bottomView">
+                        <rect key="frame" x="0.0" y="612" width="414" height="200"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra0-qw-mzC">
+                                <rect key="frame" x="16" y="43" width="382" height="75"/>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+                                <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="15"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Lorem Ipsum?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gU-ap-pyz">
+                                <rect key="frame" x="20" y="15" width="374" height="18"/>
+                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ra0-qw-mzC" firstAttribute="top" secondItem="9gU-ap-pyz" secondAttribute="bottom" constant="10" id="4fW-lI-wKo"/>
+                            <constraint firstItem="9gU-ap-pyz" firstAttribute="top" secondItem="6F5-ia-tFZ" secondAttribute="top" constant="15" id="f8v-Kp-64O"/>
+                            <constraint firstAttribute="trailing" secondItem="9gU-ap-pyz" secondAttribute="trailing" constant="20" symbolic="YES" id="gaT-ac-l4C"/>
+                            <constraint firstAttribute="trailing" secondItem="ra0-qw-mzC" secondAttribute="trailing" constant="16" id="iew-OT-Za5"/>
+                            <constraint firstItem="9gU-ap-pyz" firstAttribute="leading" secondItem="6F5-ia-tFZ" secondAttribute="leading" constant="20" symbolic="YES" id="og6-yS-88v"/>
+                            <constraint firstAttribute="height" constant="200" id="tWJ-6k-X05"/>
+                            <constraint firstItem="ra0-qw-mzC" firstAttribute="leading" secondItem="6F5-ia-tFZ" secondAttribute="leading" constant="16" id="yTH-Sy-vRO"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -56,18 +69,18 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="6F5-ia-tFZ" firstAttribute="top" secondItem="eAY-da-bWf" secondAttribute="bottom" id="2us-cf-AI3"/>
                 <constraint firstItem="eAY-da-bWf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4WM-cx-6sg"/>
-                <constraint firstAttribute="trailing" secondItem="ra0-qw-mzC" secondAttribute="trailing" constant="20" id="BCM-3g-n4D"/>
-                <constraint firstItem="9gU-ap-pyz" firstAttribute="top" secondItem="FeL-13-0GT" secondAttribute="bottom" constant="20" id="FzR-Cr-NaG"/>
-                <constraint firstItem="ra0-qw-mzC" firstAttribute="top" secondItem="9gU-ap-pyz" secondAttribute="bottom" constant="10" id="Kwn-hr-axJ"/>
-                <constraint firstItem="eAY-da-bWf" firstAttribute="top" secondItem="FeL-13-0GT" secondAttribute="bottom" id="L33-SL-svF"/>
-                <constraint firstItem="9gU-ap-pyz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="MC3-Mk-Wmo"/>
-                <constraint firstAttribute="trailing" secondItem="9gU-ap-pyz" secondAttribute="trailing" constant="20" id="N45-ei-4ur"/>
-                <constraint firstItem="FeL-13-0GT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="RzY-Z1-f9B"/>
-                <constraint firstItem="ra0-qw-mzC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="b5e-ns-Vey"/>
-                <constraint firstAttribute="trailing" secondItem="FeL-13-0GT" secondAttribute="trailing" id="fFT-o3-f2a"/>
+                <constraint firstItem="eAY-da-bWf" firstAttribute="top" secondItem="FeL-13-0GT" secondAttribute="bottom" id="BLS-hQ-z2q"/>
+                <constraint firstItem="FeL-13-0GT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Kaq-p9-24g"/>
+                <constraint firstAttribute="trailing" secondItem="eAY-da-bWf" secondAttribute="trailing" id="MAL-sB-1tY"/>
+                <constraint firstItem="eAY-da-bWf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="RCV-WD-C6m"/>
+                <constraint firstItem="FeL-13-0GT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YCZ-5M-C4r"/>
+                <constraint firstAttribute="trailing" secondItem="6F5-ia-tFZ" secondAttribute="trailing" id="ddk-5k-0eh"/>
+                <constraint firstAttribute="bottom" secondItem="6F5-ia-tFZ" secondAttribute="bottom" id="jv1-AP-ZIB"/>
                 <constraint firstAttribute="trailing" secondItem="eAY-da-bWf" secondAttribute="trailing" id="tdf-UO-RyB"/>
-                <constraint firstItem="FeL-13-0GT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="y8n-x1-EYa"/>
+                <constraint firstAttribute="trailing" secondItem="FeL-13-0GT" secondAttribute="trailing" id="vnT-HE-LmG"/>
+                <constraint firstItem="6F5-ia-tFZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yZ0-gq-820"/>
             </constraints>
             <size key="customSize" width="423" height="601"/>
             <connections>
