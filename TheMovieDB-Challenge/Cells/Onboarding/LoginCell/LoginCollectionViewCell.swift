@@ -31,11 +31,11 @@ class LoginCollectionViewCell: UICollectionViewCell {
     
     private func setupView() {
         
-        [loginNowButton, loginButton].forEach { $0.layer.cornerRadius = loginNowButton.frame.height / 2 }
+        [loginNowButton, loginButton].forEach { $0.layer.cornerRadius = 6.0 }
         [loginNowButton, loginButton].forEach { $0.layer.borderWidth = 0.5 }
         [loginNowButton, loginButton].forEach { $0.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)}
         
-        loginNowButton.setGradientColor(colorOne: #colorLiteral(red: 0.5389634967, green: 0.8092066646, blue: 0.6423391104, alpha: 1), colorTwo: #colorLiteral(red: 0, green: 0.7066470981, blue: 0.8913161159, alpha: 1))
+        //loginNowButton.setGradientColor(colorOne: #colorLiteral(red: 0.5389634967, green: 0.8092066646, blue: 0.6423391104, alpha: 1), colorTwo: #colorLiteral(red: 0, green: 0.7066470981, blue: 0.8913161159, alpha: 1))
         
         //try? VideoBackground.shared.play(view: self, videoName: "presentingVideo", videoType: "mp4")
         

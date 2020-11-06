@@ -77,7 +77,6 @@ class FavoritesViewController: UIViewController {
     
     private func setUp() {
         
-        favoritesSearchBar.searchTextField.backgroundColor = .white
         self.favoritesCollectionView.delegate = self
         self.favoritesCollectionView.register(UINib(nibName: MovieCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
         

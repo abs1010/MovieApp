@@ -23,3 +23,4 @@ DerivedData
 
 # CocoaPods
 ios/Pods/
+.DS_Store

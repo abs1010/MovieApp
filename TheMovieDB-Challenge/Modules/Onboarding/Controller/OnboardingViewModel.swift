@@ -13,11 +13,11 @@ class OnboardingViewModel {
     //ArrayOfPages for Onborading
     let pages: [Page] = {
         
-        let firstPage = Page(title: "Veja o que está em alta", message: "Você pode acompanhar o que há de novo nos cinemas, bem como os filmes populares e os mais bem ranqueados.", imageName: "pg8")
+        let firstPage = Page(title: "See what's trending", message: "You can see what's new in theaters, as well as popular and top-rated movies.", imageName: "pg8")
         
-        let secondPage = Page(title: "Favorite os seus interesses", message: "Clique em favoritar em qualquer item, seja um filme ou uma série para consultar depois.", imageName: "pg5")
+        let secondPage = Page(title: "Save your favorites", message: "Tap to save any item, whether a movie or a serie to see it later.", imageName: "pg5")
         
-        let thirdPage = Page(title: "Saiba antes de ir ao cinema", message: "Assista aos trailers e reviews de outras pessoas e veja o que te espera.", imageName: "pg7")
+        let thirdPage = Page(title: "See what is waiting for you", message: "Watch trailers and other people's reviews before going to the cinema.", imageName: "pg7")
         
         return [firstPage, secondPage, thirdPage]
     }()

@@ -17,12 +17,6 @@ class LoginInteractor: NSObject, LoginPresentorToInteractorProtocol {
     var view: LoginViewController!
     var presenter: LoginInteractorToPresenterProtocol?
     
-    //        if let token = AccessToken.current, !token.isExpired {
-    //
-    //            // User is logged in, do work such as go to next view controller.
-    //
-    //        }
-    
     func loginWithProvider(for provider: SocialLoginTypes) {
         
         switch provider {
@@ -63,12 +57,22 @@ class LoginInteractor: NSObject, LoginPresentorToInteractorProtocol {
                 let fbloginresult : LoginManagerLoginResult = result!
                 // if user cancel the login
                 if (result?.isCancelled)! {
+                    NotificationCenter.default.post(name: .loginCancelled, object: nil)
                     return
                 }
                 if(fbloginresult.grantedPermissions.contains("email")) {
-                    //self.getFBUserData()
+                    //Login com sucesso. Dismiss a tela de login anterior
+                    
+                    self.view.dismiss(animated: true, completion: {
+                        
+                        NotificationCenter.default.post(name: .loggedInSuccessfully, object: nil)
+                        
+                    })
+                    
                 }
+                
             }
+            
         }
         
     }
@@ -102,29 +106,37 @@ extension LoginInteractor: GIDSignInDelegate {
         guard error == nil else {
             if let error = error {
                 print("Failed to sign in with Google: \(error)")
+                NotificationCenter.default.post(name: .loginCancelled, object: nil)
             }
             return
         }
         
         //Login com sucesso. Dismiss a tela de login anterior
         
-        self.view.dismiss(animated: true, completion: {
-            
-            NotificationCenter.default.post(name: .loginCancelled, object: nil)
-            
-        })
-        
         guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         
         print(credential)
+        
+        self.view.dismiss(animated: true, completion: {
+            
+            NotificationCenter.default.post(name: .loggedInSuccessfully, object: nil)
+            
+        })
         
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
-        print("Google user was disconnected")
+        guard error == nil else {
+            if let error = error {
+                print("Failed to disconnect from Google: \(error)")
+            }
+            return
+        }
+        
+        //        print("Google user was disconnected")
+        //        NotificationCenter.default.post(name: .loggedInSuccessfully, object: nil)
         
     }
     
@@ -135,7 +147,7 @@ extension LoginInteractor: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
         switch authorization.credential {
-            
+        
         case let credentials as ASAuthorizationAppleIDCredential:
             let user = LoginSocialEntity()
             
