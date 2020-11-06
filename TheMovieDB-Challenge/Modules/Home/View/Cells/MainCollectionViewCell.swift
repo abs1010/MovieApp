@@ -77,6 +77,7 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
         let cell : MovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
         cell.hero.id = "\(self.categorizedArray[indexPath.row].id ?? 0)"
+        //cell.hero.id = "\(self.categorizedArray[indexPath.row].id ?? 0)\(selectedSection ?? 0)"
         cell.setupCell(movie: self.categorizedArray[indexPath.row])
         
         return cell
@@ -85,7 +86,7 @@ extension CategorySectionsCollectionViewCell: UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: frame.width / 3.5, height: frame.height - 25)
+        return CGSize(width: frame.width / 3.42, height: 190)
         
     }
     

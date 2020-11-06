@@ -9,6 +9,8 @@
 import UIKit
 import RealmSwift
 
+public var isAppInBackground = false
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -43,16 +45,60 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
     }
-    
+/*
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        if !isAppInBackground { return }
+        
+        var presentedView : UIViewController?
+        var presentView = self.window?.rootViewController
+        repeat {
+
+            presentedView = presentView?.presentedViewController
+
+            if presentedView != nil {
+                presentView = presentedView
+            }
+
+        } while presentedView != nil
+
+        presentView?.dismiss(animated: false, completion: {
+            UIView.animate(withDuration: 0.2, animations: {
+                presentView?.view.alpha = 00
+            })
+        })
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        
+        if let viewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController() {
+
+            var presentedView : UIViewController?
+            var presentView = self.window?.rootViewController
+            repeat {
+
+                presentedView = presentView?.presentedViewController
+
+                if presentedView != nil {
+                    presentView = presentedView
+                }
+
+            } while presentedView != nil
+
+            viewController.view.alpha = 0
+            presentView?.present(viewController, animated: false, completion: {
+                UIView.animate(withDuration: 0.2, animations: {
+                    viewController.view.alpha = 1
+                })
+                isAppInBackground = true
+            })
+        }
     }
+*/
     
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.

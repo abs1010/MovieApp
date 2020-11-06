@@ -28,7 +28,7 @@ class SplashViewController: UIViewController {
     }
     
     private func setVersionLabel() {
-        versionLabel.text = "Versão \(Bundle.main.releaseVersionNumber ?? "-")"
+        versionLabel.text = "Version \(Bundle.main.releaseVersionNumber ?? "-")"
         
         UIView.animate(withDuration: 0.5) {
             self.versionLabel.alpha = 1
@@ -42,7 +42,7 @@ class SplashViewController: UIViewController {
     
     private func startTimer() {
         
-        let timeInterval = 0.0//7.0
+        let timeInterval = 4.0
         
         timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(self.endAnimation), userInfo: nil, repeats: false)
         

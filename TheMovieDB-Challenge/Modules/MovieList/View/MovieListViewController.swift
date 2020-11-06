@@ -11,12 +11,12 @@ import Hero
 
 class MovieListViewController: UIViewController {
     
-    var page = 1
+    private var page = 1
     var presenter: MovieListViewToPresenterProtocol?
-    var isFethingNewPage = false
+    private var isFethingNewPage = false
     var movieSelection: Constants.MovieSelection?
-    var identifierObject: IdentifierObject?
-    var noticeNoMoreData = false ///Indicates whether the page limit has reached the end
+    private var identifierObject: IdentifierObject?
+    private var noticeNoMoreData = false ///Indicates whether the page limit has reached the end
     
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollectionView: UICollectionView!
@@ -84,7 +84,6 @@ class MovieListViewController: UIViewController {
                 guard let select = self.movieSelection else { return }
                 
                 self.presenter?.getMovies(category: .Movie, movieSelection: select)
-                self.isFethingNewPage = false
                 
             })
             
@@ -171,7 +170,7 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        self.setHideOrShowOnSearchBar(scrollView)
+        //self.setHideOrShowOnSearchBar(scrollView)
         
         guard scrollView.isDragging else {return}
         
@@ -179,7 +178,7 @@ extension MovieListViewController : UICollectionViewDelegate, UICollectionViewDa
         let contentHeight = scrollView.contentSize.height
         let scrollFrameHeight = scrollView.frame.height
         
-        if offsetY > (contentHeight - scrollFrameHeight) { //1.5
+        if offsetY > (contentHeight - scrollFrameHeight) {
             
             if !isFethingNewPage {
                 startFetchingNewPage()
@@ -260,7 +259,8 @@ extension MovieListViewController: MovieListPresenterToViewProtocol {
             
             self.page += 1
             self.loadingMoreActivityIndicator.stopAnimating()
-
+            self.isFethingNewPage = false
+            
         }
         
     }

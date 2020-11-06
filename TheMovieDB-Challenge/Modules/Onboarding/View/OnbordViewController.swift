@@ -39,7 +39,7 @@ class OnbordingViewController: UIViewController {
     
     private func setupNotificationObserver() {
         
-        cancelLoginObserver = NotificationCenter.default.addObserver(forName: .loginCancelled, object: nil, queue: .main) { [weak self] ( _ ) in
+        cancelLoginObserver = NotificationCenter.default.addObserver(forName: .loggedInSuccessfully, object: nil, queue: .main) { [weak self] ( _ ) in
             
             guard let strongSelf = self else {
                 return

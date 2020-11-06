@@ -201,9 +201,13 @@ final class DetailsViewController: UIViewController {
         
         ///Background Image
         if let urlString = self.movie?.backdropPath {
-            UIView.transition(with: backgroundImage, duration: 0.3, options: .transitionCrossDissolve) {
+            
+            UIView.transition(with: backgroundImage, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 self.backgroundImage.loadUrlImageFromSDWeb(urlString: urlString, type: .cover, done: { _ in})
-            } completion: { _ in}
+            }, completion: { _ in
+            
+            })
+            
         }else {
             self.backgroundImage.image = UIImage(named: "movie-placeholder")
         }

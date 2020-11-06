@@ -8,17 +8,20 @@
 
 import UIKit
 import GoogleSignIn
+import FBSDKLoginKit
 
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var settingsTableView: UITableView!
     @IBOutlet weak var avatarImageView: UIImageView!
     
-    private let itemsArray = [
-        SettingsItems(id: 0, description: "Conta"),
-        SettingsItems(id: 1, description: "Avalie o App"),
-        SettingsItems(id: 2, description: "Creditos API ©TMDB"),
-        SettingsItems(id: 3, description: "Sair")
+    private var successLoginObserver: NSObjectProtocol?
+    private var loggedOutObserver: NSObjectProtocol?
+    
+    private var itemsArray = [
+        SettingsItems(id: 0, description: "Rate the App"),
+        SettingsItems(id: 1, description: "©TMDB API Credits"),
+        SettingsItems(id: 2, description: "Log Out")
     ]
     
     //MARK: - Sets the StatusBar as white
@@ -33,6 +36,72 @@ class SettingsViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         setUp()
+        setupNotificationObserver()
+    }
+    
+    deinit {
+        
+        if let successLogin = successLoginObserver {
+            NotificationCenter.default.removeObserver(successLogin)
+        }
+        if let loggedOUt = loggedOutObserver {
+            NotificationCenter.default.removeObserver(loggedOUt)
+        }
+        
+    }
+    
+    private func setupNotificationObserver() {
+        
+        successLoginObserver = NotificationCenter.default.addObserver(forName: .loggedInSuccessfully, object: nil, queue: .main) { [weak self] ( _ ) in
+            
+            self?.alterArrayState(set: .logged)
+            
+        }
+        
+        loggedOutObserver = NotificationCenter.default.addObserver(forName: .loggedOut, object: nil, queue: .main) { [weak self] ( _ ) in
+            
+            self?.alterArrayState(set: .notLogged)
+            
+        }
+        
+    }
+    
+    private enum state {
+        case logged
+        case notLogged
+    }
+    
+    private func alterArrayState(set to: state ) {
+        switch to {
+        case .logged:
+            let new = SettingsItems(id: 2, description: "Log Out")
+            itemsArray.removeLast()
+            itemsArray.append(new)
+        case .notLogged:
+            let new = SettingsItems(id: 2, description: "Log In")
+            itemsArray.removeLast()
+            itemsArray.append(new)
+            
+        }
+        
+        settingsTableView.reloadData()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkLoginState()
+    }
+    
+    private func checkLoginState() {
+        
+        let login = LoginStateService.sharedInstance
+        
+        if login.isUserLogged() {
+            self.alterArrayState(set: .logged)
+            return
+        }else {
+            self.alterArrayState(set: .notLogged)
+        }
         
     }
     
@@ -42,6 +111,29 @@ class SettingsViewController: UIViewController {
         settingsTableView.dataSource = self
         
         avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+    }
+    
+    private func logOutUser() {
+        
+        let login = LoginStateService.sharedInstance
+        
+        if login.isUserLogged() {
+            login.logOutUser()
+        }
+        
+        settingsTableView.reloadData()
+        
+    }
+    
+    private func showDevAlert() {
+        
+        let alerta = UIAlertController(title: "Alert", message: "Feature to be developed ;)", preferredStyle: .alert)
+        let btnOk = UIAlertAction(title: "Done 😀", style: .destructive, handler: nil)
+        
+        alerta.addAction(btnOk)
+        
+        self.present(alerta, animated: true)
+        
     }
     
 }
@@ -58,8 +150,15 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.textLabel?.text = itemsArray[indexPath.row].description
         
-        if indexPath.row == 3 {
+        if indexPath.row == itemsArray.last?.id {
             cell.accessoryType = .none
+            
+            //if !LoginStateService.sharedInstance.isUserLogged() {
+            //    cell.textLabel?.isEnabled = false
+            //}
+            
+        }else if indexPath.row == 1 {
+            cell.accessoryType = .detailDisclosureButton
         }
         
         return cell
@@ -71,19 +170,25 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            print("Contas conectadas")
+            showDevAlert()
         case 1:
-            print("Avalie o App")
-        case 2:
             performSegue(withIdentifier: "goToCredits", sender: self)
-        case 3:
-            
-            guard let signIn = GIDSignIn.sharedInstance() else { return }
-            
-            if signIn.hasPreviousSignIn() {
-                signIn.signOut()
+        case 2:
+            if LoginStateService.sharedInstance.isUserLogged() {
+                
+                let alerta = UIAlertController(title: "Alert", message: "You will be logged out. Would you like to continue?", preferredStyle: .alert)
+                let btnCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                let btnLogout = UIAlertAction(title: "Log Out", style: .default, handler: {_ in
+                    self.logOutUser()
+                })
+                
+                alerta.addAction(btnCancel)
+                alerta.addAction(btnLogout)
+                
+                self.present(alerta, animated: true)
             }else {
-                print("usuário não está logado.")
+                let loginView = LoginRouter.createModule(as: .fullScreen)
+                self.present(loginView, animated: true)
             }
             
         default:
@@ -105,6 +210,8 @@ extension SettingsViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
         print("Google user was disconnected")
+        
+        AlertService.shared.showAlert(image: .success, title: "Alert", message: "The user has been disconnected")
         
     }
     

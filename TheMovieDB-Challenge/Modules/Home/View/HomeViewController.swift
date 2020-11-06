@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseCrashlytics
-import GoogleSignIn
 
 class HomeViewController: UIViewController {
     
@@ -37,15 +36,13 @@ class HomeViewController: UIViewController {
         
         registerCells()
         
-        ///chechLoginState()
+        chechLoginState()
         
     }
     
     private func chechLoginState() {
         
-        guard let signIn = GIDSignIn.sharedInstance() else { return }
-        
-        if !signIn.hasPreviousSignIn() {
+        if !LoginStateService.sharedInstance.isUserLogged() {
 
             perform(#selector(shouldShowOnboarding), with: self, afterDelay: 2.5)
 
@@ -165,7 +162,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: view.frame.height / 4)
+        return CGSize(width: view.frame.width, height: 215)//view.frame.height / 4)
         
     }
     

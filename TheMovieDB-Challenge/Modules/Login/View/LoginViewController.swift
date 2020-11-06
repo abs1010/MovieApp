@@ -14,7 +14,6 @@ class LoginViewController: UIViewController, LoginPresenterToViewProtocol {
     @IBOutlet weak var loginApple: UIButton!
     @IBOutlet weak var loginFacebook: UIButton!
     @IBOutlet weak var loginGoogle: UIButton!
-    @IBOutlet weak var loginEmail: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var mainConstraint: NSLayoutConstraint!
     
@@ -32,9 +31,9 @@ class LoginViewController: UIViewController, LoginPresenterToViewProtocol {
     
     private func setupView() {
         
-        [loginGoogle, loginFacebook, loginApple, loginEmail].forEach { $0.layer.cornerRadius = 4 }
-        [loginGoogle, loginFacebook, loginApple, loginEmail].forEach { $0.layer.borderWidth = 0.5 }
-        [loginGoogle, loginFacebook, loginApple, loginEmail].forEach { $0.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)}
+        [loginGoogle, loginFacebook, loginApple].forEach { $0.layer.cornerRadius = 4 }
+        [loginGoogle, loginFacebook, loginApple].forEach { $0.layer.borderWidth = 0.5 }
+        [loginGoogle, loginFacebook, loginApple].forEach { $0.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) }
         
     }
     
